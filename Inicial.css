@@ -23,7 +23,7 @@ background-color: #0B0F19;
     
 }
 
-a{
+.A{
 text-decoration: none;
 color: #007BFF;
 font-size: 25px;
@@ -34,7 +34,7 @@ font-size: 25px;
 
 }
 
-a:hover{
+.A:hover{
 color: #00CFFF;
 font-size: 25px;
   font-family: "Bebas Neue", sans-serif;
@@ -46,7 +46,6 @@ transform: translateY(-6px);
 
 .fundo{
 background-image: url(https://images6.alphacoders.com/131/1319754.jpeg);
-
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
@@ -96,10 +95,80 @@ left: 14%;
 background-color: #0056b3;
 transform: scale(1.05);
 box-shadow: 
-    0 10px 25px rgba(0, 0, 0, 25),
-    0 0 20px rgba(140, 120, 255, .6);
+0 10px 25px rgba(0, 0, 0, 25),
+0 0 20px rgba(140, 120, 255, .6);
 }
 
-h1 {
-    border-bottom: 1px solid white;
+
+.Projeto{
+background-image: url(Fundo\ Blue\ Lock.png);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+height: 95vh;
+position: relative;
+}
+
+.Rokku{
+ font-size: 20px;
+ color: #006BFF;
+ position: absolute;
+left: 5%;
+bottom: 83%;
+  line-height: .9;
+  letter-spacing: 3px;
+  transform: rotate(-2deg);
+}
+
+.TITULO2{
+ font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 95px;
+  color: #FFFFFF;
+  position: absolute;
+  line-height: .9;
+  letter-spacing: 3px;
+  transform: rotate(-2deg);
+  left: 5%;
+  bottom: 55%;
+}
+
+b{
+font-size: 115px;
+color: #006BFF;
+text-shadow:
+0 0 100px #006BFF,
+0 0 20px #006BFF;
+}
+
+.explicação{
+color: #FFFFFF;
+font-family: "Poppins", sans-serif;
+font-weight: 100;
+font-style: normal;
+font-size: 18px;
+position: absolute;
+  bottom: 48%;
+    left: 3%;
+}
+
+.conhecer{
+background-color: #0B0F19;
+color: #FFFFFF;
+text-decoration: none;
+border: solid 1px #1977FF;
+border-radius: 8px;
+padding: 16px 40px;
+ font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  position: absolute;
+    bottom: 40%;
+    left: 14%;
+}
+
+.conhecer:hover{
+background-color: #1977FF;
 }
