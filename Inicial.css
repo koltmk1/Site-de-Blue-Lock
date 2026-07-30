@@ -114,7 +114,7 @@ position: relative;
  color: #006BFF;
  position: absolute;
 left: 5%;
-bottom: 83%;
+bottom: 87%;
   line-height: .9;
   letter-spacing: 3px;
   transform: rotate(-2deg);
@@ -131,10 +131,10 @@ bottom: 83%;
   letter-spacing: 3px;
   transform: rotate(-2deg);
   left: 5%;
-  bottom: 55%;
+  bottom: 60%;
 }
 
-b{
+.b1{
 font-size: 115px;
 color: #006BFF;
 text-shadow:
@@ -149,7 +149,7 @@ font-weight: 100;
 font-style: normal;
 font-size: 18px;
 position: absolute;
-  bottom: 48%;
+  bottom: 52%;
     left: 3%;
 }
 
@@ -165,10 +165,96 @@ padding: 16px 40px;
   font-style: normal;
   font-size: 20px;
   position: absolute;
-    bottom: 40%;
+    bottom: 45%;
     left: 14%;
 }
 
 .conhecer:hover{
 background-color: #1977FF;
+}
+
+.Destaque{
+position: absolute;
+bottom: 28%;
+left: 38%;
+color: #FFFFFF;
+font-size: 27px;
+ font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing:3px;
+}
+
+.b2{
+color: #006BFF;
+}
+
+.cards{
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+
+    min-height: 155vh;
+}
+
+.card{
+    width: 200px;
+    height: 180px;
+
+    background: #0B1120;
+    border: 2px solid #0E4BFF;
+    border-radius: 15px;
+
+    padding: 15px;
+    text-align: center;
+
+    transition: .3s;
+    box-shadow: 0 0 15px rgba(0,110,255,.15);
+    
+
+    
+}
+
+.card:hover{
+    transform: translateY(-6px);
+    border-color: #2D8CFF;
+    box-shadow: 0 0 20px rgba(0,110,255,.45);
+}
+
+.card img{
+    width: 40px;
+    margin-bottom: 8px;
+     background-color: #006BFF;
+    font-size: 38px;
+    text-shadow: 0 0 30px #006BFF;
+    border-radius: 10px;
+}
+
+.card img:hover{
+background-color: #3A8DFF;
+}
+
+.card h2{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 38px;
+    color: #006BFF;
+    margin: 0;
+}
+
+.card h3{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 22px;
+    color: white;
+    letter-spacing: 1px;
+    margin: 5px 0;
+}
+
+.card p{
+    margin-top: 8px;
+    font-family: "Poppins", sans-serif;
+    color: #D8D8D8;
+    font-size: 13px;
+    line-height: 1.4;
 }
