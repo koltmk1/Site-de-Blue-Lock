@@ -258,3 +258,84 @@ background-color: #3A8DFF;
     font-size: 13px;
     line-height: 1.4;
 }
+
+.Jogadores{
+background-image: url(fundoAzul.png);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+height: 95vh;
+
+}
+
+.destaque{
+   width: 320px;
+    height: 450px;
+    background: #0B1120;
+    border: 2px solid #0E4BFF;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    transition: .3s;
+    box-shadow: 0 0 15px rgba(0,110,255,.15);
+    position: relative;
+}
+
+.Isagi{
+width: 250px;
+height: 250px;
+border-radius: 50px;
+
+}
+
+.nome{
+color: #FFFFFF;
+font-family: "Bebas Neue", sans-serif;
+font-size: 34px;
+}
+
+.Rank{
+display: inline-flex;
+align-items: center;
+border: 1.5px solid #1A73FF;
+border-radius: 6px;
+overflow: hidden;
+font-family: "Bebas Neue", sans-serif;
+font-size: 35px;
+letter-spacing: 1px;
+font-weight: 600;
+background: rgba(10, 16, 32, 0.6);
+box-shadow: 0 0 10px rgba(0, 107, 255, 0.3);
+position: absolute;
+top: 74%;
+left: 27%;
+width: 170px;
+height: 58px;
+}
+
+.posição{
+background-color: #006BFF;
+color: #FFFFFF;
+padding: 6px 12px;
+}
+
+.Level{
+background: rgba(5, 10, 20, 0.8);
+color: #FFFFFF;
+position: absolute;
+left: 40%;
+
+}
+
+.perfil{
+background-color: #006BFF;
+color: #FFFFFF;
+text-decoration: none;
+position: absolute;
+top: 90%;
+font-family: "Bebas Neue", sans-serif;
+font-size: 25px;
+width: 120px;
+height: 30px;
+left: 35%;
+}
