@@ -213,8 +213,6 @@ color: #006BFF;
     transition: .3s;
     box-shadow: 0 0 15px rgba(0,110,255,.15);
     
-
-    
 }
 
 .card:hover{
@@ -259,13 +257,18 @@ background-color: #3A8DFF;
     line-height: 1.4;
 }
 
+
 .Jogadores{
 background-image: url(fundoAzul.png);
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
-height: 95vh;
+height: 125vh;
 position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 20px ;
 }
 
 .TITULO3{
@@ -286,141 +289,751 @@ text-shadow:
  letter-spacing: 1px;
 }
 
-.destaque{
-   width: 320px;
-    height: 450px;
-    background: #0B1120;
-    border: 2px solid #0E4BFF;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    transition: .3s;
-    box-shadow: 0 0 15px rgba(0,110,255,.15);
-    position: relative;
-    display: inline-block;
-    top: 25%;
+
+.card-jogador{
+
+            position: relative;
+
+            width: 280px;
+            height: 470px;
+
+            padding: 15px;
+
+            background: #0B1120;
+
+            border: 2px solid #006BFF;
+
+            border-radius: 15px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 0 10px rgba(0, 107, 255, 0.20);
+
+            transition: 0.3s ease;
+        }
+
+        .card-jogador:hover{
+
+            transform: translateY(-8px);
+
+            border-color: #2D8CFF;
+
+            box-shadow:
+                0 0 15px rgba(0, 107, 255, 0.5),
+                0 0 35px rgba(0, 107, 255, 0.2);
+        }
+
+    .numero{
+    position: absolute;
+
+    top: 12px;
+    left: 18px;
+
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.Isagi{
-width: 250px;
-height: 250px;
- border-radius: 50px 50px 25px 25px;
-overflow: hidden;
- transition: 0.3s ease;
- object-fit: cover;
+.numero span{
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 38px;
+
+    color: #006BFF;
+
+    line-height: 0.85;
+
+    text-shadow: 0 0 10px rgba(0, 107, 255, 0.7);
 }
 
-.isagi:hover{
-transform: scale(1.05);
+.numero small{
+    margin-top: 3px;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    color: #006BFF;
+
+    line-height: 1;
 }
 
-.nome{
-color: #FFFFFF;
-font-family: "Bebas Neue", sans-serif;
-font-size: 34px;
-letter-spacing: 1px;
-margin: 5px 0 20px;
+        .foto-jogador{
+
+          width: 240px;
+    height: 250px;
+
+    margin-top: 25px;
+
+            overflow: hidden;
+
+            border-radius: 45px 45px 25px 25px;
+
+            background: #111827;
+        }
+
+
+        .foto-jogador img{
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: 0.4s ease;
+        }
+
+        .card-jogador:hover .foto-jogador img{
+
+            transform: scale(1.05);
+        }
+
+        .card-jogador h2{
+          margin-top: 10px;
+
+          margin-bottom: 15px;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 30px;
+
+            letter-spacing: 1px;
+
+            color: #FFFFFF;
+
+            text-align: center;
+        }
+
+        .informacoes{
+
+            display: flex;
+
+            height: 42px;
+
+            border: 1px solid #006BFF;
+
+            border-radius: 6px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 0 8px rgba(0, 107, 255, 0.2);
+
+            transition: 0.3s ease;
+        }
+
+        .posicao{
+
+            width: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #006BFF;
+
+            color: white;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 23px;
+        }
+
+        .rank{
+
+            width: 105px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #080E1C;
+
+            color: #FFFFFF;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 23px;
+
+            letter-spacing: 1px;
+        }
+
+        .card-jogador:hover .informacoes{
+
+            box-shadow:
+                0 0 15px rgba(0, 107, 255, 0.5);
+        }
+
+        .botao-perfil{
+
+            width: 120px;
+            height: 35px;
+
+            margin-top: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #006BFF;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 20px;
+
+            letter-spacing: 0.5px;
+
+            transition: 0.3s ease;
+        }
+
+        .botao-perfil:hover{
+
+            background: #2D8CFF;
+
+            transform: scale(1.05);
+
+            box-shadow:
+                0 0 15px #006BFF,
+                0 0 30px rgba(0, 107, 255, 0.4);
+        }
+
+        .card-jogador1::before{
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            background: #006BFF;
+
+            opacity: 0.04;
+
+            border-radius: 50%;
+
+            top: 100px;
+            right: -100px;
+
+            filter: blur(20px);
+
+            pointer-events: none;
+        }
+
+.card-jogador1{
+
+            position: relative;
+
+            width: 280px;
+            height: 470px;
+
+            padding: 15px;
+
+            background: #0B1120;
+
+            border: 2px solid #FFD21F;
+
+            border-radius: 15px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 0 10px rgba(0, 107, 255, 0.20);
+
+            transition: 0.3s ease;
+        }
+
+        .card-jogador1:hover{
+
+            transform: translateY(-8px);
+
+            border-color: #FFB800;
+
+            box-shadow:
+                0 0 12px rgba(255, 210, 31, 0.5),
+        0 0 30px rgba(255, 138, 0, 0.3);
+        }
+
+    .numero1{
+    position: absolute;
+
+    top: 12px;
+    left: 18px;
+
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.Rank{
-display: inline-flex;
-align-items: center;
-border: 1.5px solid #1A73FF;
-border-radius: 6px;
-overflow: hidden;
-font-family: "Bebas Neue", sans-serif;
-font-size: 35px;
-letter-spacing: 1px;
-font-weight: 600;
-background: rgba(10, 16, 32, 0.6);
-box-shadow: 0 0 10px rgba(0, 107, 255, 0.3);
-position: absolute;
-top: 74%;
-left: 27%;
-width: 170px;
-height: 58px;
+.numero1 span{
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 38px;
+
+    color: #006BFF;
+
+    line-height: 0.85;
+
+    text-shadow: 0 0 10px rgba(180, 164, 19, 0.7);
 }
 
-.posição{
-background-color: #006BFF;
-color: #FFFFFF;
-padding: 6px 12px;
-display: flex;
-align-items: center;
-justify-content: center;
+.numero1 small{
+    margin-top: 3px;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    color: #006BFF;
+
+    line-height: 1;
 }
 
-.Level{
-background: rgba(5, 10, 20, 0.8);
-color: #FFFFFF;
-left: 40%;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 0 10px;
+        .foto-jogador1{
 
+          width: 240px;
+    height: 250px;
+
+    margin-top: 25px;
+
+            overflow: hidden;
+
+            border-radius: 45px 45px 25px 25px;
+
+            background: #111827;
+        }
+
+
+        .foto-jogador1 img{
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: 0.4s ease;
+        }
+
+        .card-jogador1:hover .foto-jogador1 img{
+
+            transform: scale(1.05);
+        }
+
+        .card-jogador1 h2{
+          margin-top: 10px;
+
+          margin-bottom: 15px;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 30px;
+
+            letter-spacing: 1px;
+
+            color: #FFFFFF;
+
+            text-align: center;
+        }
+
+        .informacoes1{
+
+            display: flex;
+
+            height: 42px;
+
+            border: 1px solid  #FFB800;
+
+            border-radius: 6px;
+
+            overflow: hidden;
+
+            box-shadow:
+                     0 0 12px rgba(255, 210, 31, 0.5),
+                     0 0 30px rgba(255, 138, 0, 0.3);
+
+            transition: 0.3s ease;
+        }
+
+        .posicao1{
+
+            width: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #FF8A00;
+
+            color: white;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 23px;
+        }
+
+        .rank1{
+
+            width: 105px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #080E1C;
+
+            color: #FFFFFF;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 23px;
+
+            letter-spacing: 1px;
+        }
+
+        .card-jogador1:hover .informacoes1{
+
+            box-shadow:
+                0 0 12px rgba(255, 210, 31, 0.5),
+                0 0 30px rgba(255, 138, 0, 0.3);
+        }
+
+        .botao-perfil1{
+
+            width: 120px;
+            height: 35px;
+
+            margin-top: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #006BFF;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 20px;
+
+            letter-spacing: 0.5px;
+
+            transition: 0.3s ease;
+        }
+
+        .botao-perfil1:hover{
+
+            background: #2D8CFF;
+
+            transform: scale(1.05);
+
+            box-shadow:
+                0 0 15px #006BFF,
+                0 0 30px rgba(0, 107, 255, 0.4);
+        }
+
+        
+        
+        
+        .card-jogador2::before{
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            background: #0B1120;
+
+            opacity: 0.04;
+
+            border-radius: 50%;
+
+            top: 100px;
+            right: -100px;
+
+            filter: blur(20px);
+
+            pointer-events: none;
+        }
+
+
+.card-jogador2{
+
+            position: relative;
+
+            width: 280px;
+            height: 470px;
+
+            padding: 15px;
+
+            background: #0B1120;
+
+            border: 2px solid #FFFFFF;
+
+            border-radius: 15px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 0 10px rgba(0, 107, 255, 0.20);
+
+            transition: 0.3s ease;
+        }
+
+        .card-jogador2:hover{
+
+            transform: translateY(-8px);
+
+            border-color: #8FDBFF;
+
+            box-shadow:
+              0 0 8px #00CFFF,
+        0 0 20px rgba(143, 219, 255, 0.5);
+        }
+
+    .numero2{
+    position: absolute;
+
+    top: 12px;
+    left: 18px;
+
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.perfil{
-background-color: #006BFF;
-color: #FFFFFF;
-text-decoration: none;
-position: absolute;
-top: 90%;
-font-family: "Bebas Neue", sans-serif;
-font-size: 25px;
-width: 120px;
-height: 30px;
-left: 35%;
-border-radius: 5px;
-transition: 0.3s ease;
-display: flex;
-align-items: center;
-justify-content: center;
+.numero2 span{
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 38px;
+
+    color: #A9BBCD;
+
+    line-height: 0.85;
+
+    text-shadow: 0 0 10px rgba(143, 219, 255, 0.25);
 }
 
-.perfil:hover{
-background: #2D8CFF;
-box-shadow: 0 0 15px #006BFF;
-transform: scale(1.05);
-color: #0B0F19;
+.numero2 small{
+    margin-top: 3px;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    color: #A9BBCD;
+
+    line-height: 1;
 }
 
-.Bachira{
-width: 250px;
-height: 250px;
-border-radius: 50px 50px 25px 25px;
-overflow: hidden;
- transition: 0.3s ease;
- object-fit: cover;
-}
+        .foto-jogador2{
+
+          width: 240px;
+    height: 250px;
+
+    margin-top: 25px;
+
+            overflow: hidden;
+
+            border-radius: 45px 45px 25px 25px;
+
+            background: #111827;
+        }
 
 
+        .foto-jogador2 img{
 
-.perfil1{
-background-color: #006BFF;
-color: #FFFFFF;
-text-decoration: none;
-position: absolute;
-top: 72.7%;
-font-family: "Bebas Neue", sans-serif;
-font-size: 25px;
-width: 120px;
-height: 30px;
-left: 25.6%;
-border-radius: 5px;
-transition: 0.3s ease;
-display: flex;
-align-items: center;
-justify-content: center;
+            width: 100%;
+            height: 100%;
 
-}
+            object-fit: cover;
 
-.perfil1:hover{
-background: #2D8CFF;
-box-shadow: 0 0 15px #006BFF;
-transform: scale(1.05);
-color: #0B0F19;
-}
+            display: block;
 
+            transition: 0.4s ease;
+        }
+
+        .card-jogador2:hover .foto-jogador1 img{
+
+            transform: scale(1.05);
+        }
+
+        .card-jogador2 h2{
+          margin-top: 10px;
+
+          margin-bottom: 15px;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 30px;
+
+            letter-spacing: 1px;
+
+            color: #FFFFFF;
+
+            text-align: center;
+        }
+
+        .informacoes2{
+
+            display: flex;
+
+            height: 42px;
+
+            border: 1px solid  #8FDBFF;
+
+            border-radius: 6px;
+
+            overflow: hidden;
+
+            box-shadow:
+                     0 0 8px #00CFFF,
+        0 0 20px rgba(143, 219, 255, 0.5);
+
+            transition: 0.3s ease;
+        }
+
+        .posicao2{
+
+            width: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #00CFFF;
+
+            color: white;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 23px;
+        }
+
+        .rank2{
+
+            width: 105px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #080E1C;
+
+            color: #FFFFFF;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 23px;
+
+            letter-spacing: 1px;
+        }
+
+        .card-jogador2:hover .informacoes1{
+
+            box-shadow:
+            0 0 10px rgba(184, 241, 255, 0.8),
+        0 0 25px rgba(0, 207, 255, 0.35);
+        }
+
+        .botao-perfil2{
+
+            width: 120px;
+            height: 35px;
+
+            margin-top: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #006BFF;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-family: "Bebas Neue", sans-serif;
+
+            font-size: 20px;
+
+            letter-spacing: 0.5px;
+
+            transition: 0.3s ease;
+        }
+
+        .botao-perfil2:hover{
+
+            background: #2D8CFF;
+
+            transform: scale(1.05);
+
+            box-shadow:
+          0 0 10px rgba(184, 241, 255, 0.8),
+        0 0 25px rgba(0, 207, 255, 0.35);
+               
+        }
+
+        .card-jogador2::before{
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            background: #0B1120;
+
+            opacity: 0.04;
+
+            border-radius: 50%;
+
+            top: 100px;
+            right: -100px;
+
+            filter: blur(20px);
+
+            pointer-events: none;
+        }
 
