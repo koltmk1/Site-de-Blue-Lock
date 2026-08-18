@@ -170,7 +170,11 @@ padding: 16px 40px;
 }
 
 .conhecer:hover{
-background-color: #1977FF;
+background-color: #0056b3;
+transform: scale(1.05);
+box-shadow: 
+0 10px 25px rgba(0, 0, 0, 25),
+0 0 20px rgba(140, 120, 255, .6);
 }
 
 .Destaque{
@@ -263,7 +267,7 @@ background-image: url(fundoAzul.png);
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
-height: 125vh;
+height: 100vh;
 position: relative;
 display: flex;
 justify-content: center;
@@ -274,20 +278,24 @@ gap: 25px ;
 .TITULO3{
 font-family: "Bebas Neue", sans-serif;
 font-weight: 100;
-font-size: 45px;
+font-size: 65px;
 color: #FFFFFF;
 position: absolute;
 bottom: 85%;
-left: 40%;
+left: 36%;
+ margin: 0;
+font-weight: 800;
 }
 
-b{
-color: #006BFF;
-text-shadow:
-0 0 100px #006BFF,
-0 0 20px #006BFF;
- letter-spacing: 1px;
+.TITULO3 strong{
+
+    color: #006BFF;
+    text-shadow:
+    0 0 8px rgba(0, 107, 255, 0.7),
+    0 0 18px rgba(0, 107, 255, 0.3);
+
 }
+
 
 
 .card-jogador{
@@ -1537,6 +1545,30 @@ text-shadow:
         }
 
       
+.ver-jogadores{
+text-decoration: none;
+color: #FFFFFF;
+background-color:#006BFF;
+width: 290px;
+position: absolute;
+top: 85%;
+right: 40%;
+background-color: #0B0F19;
+color: #FFFFFF;
+text-decoration: none;
+border: solid 1px #1977FF;
+border-radius: 8px;
+padding: 16px 40px;
+font-family: "Bebas Neue", sans-serif;
+font-style:oblique;
+font-size: 30px;
+}
 
-        
+.ver-jogadores:hover{
+background-color: #0056b3;
+transform: scale(1.05);
+box-shadow: 
+0 10px 25px rgba(0, 0, 0, 25),
+0 0 20px rgba(140, 120, 255, .6);
+}
     
