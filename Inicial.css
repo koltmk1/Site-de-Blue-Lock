@@ -1571,4 +1571,250 @@ box-shadow:
 0 10px 25px rgba(0, 0, 0, 25),
 0 0 20px rgba(140, 120, 255, .6);
 }
+
+.New-Gens{
+background-image: url(fundoAzul.png);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+height: 100vh;
+position: relative;
+gap: 25px ;
+}
+
+
+.new-gens {
+    text-align: center;
+    padding: 70px 20px 40px;
+    position: relative;
+}
+
+.titulo-newgens {
+    display: flex;
     
+    align-items: center;
+    gap: 15px;
+
+       font-family: 'Bebas Neue', sans-serif;
+    font-size: 110px;
+    letter-spacing: 4px;
+}
+
+
+.titulo-newgens span {
+    color: #ffffff;
+
+    text-shadow:
+        4px 4px 0 #17243a,
+        0 0 10px rgba(255,255,255,0.15);
+}
+
+
+.titulo-newgens strong {
+    color: #006BFF;
+
+    font-weight: 900;
+
+    text-shadow:
+        4px 4px 0 #001a45,
+        0 0 15px rgba(0,107,255,0.6);
+}
+
+.descricao-newgens {
+
+    color: #d5d8df;
+    font-size: 20px;
+    line-height: 1.4;
+    max-width: 500px;
+    text-align: center;
+}
+
+
+.descricao-newgens span {
+    color: #006BFF;
+
+ 
+
+    text-shadow:
+        0 0 8px rgba(0, 107, 255, 0.4);
+}
+
+.card {
+    position: relative;
+    width: 280px;
+    height: 430px;
+
+    background: #090b13;
+    border: 2px solid;
+    border-radius: 8px;
+
+    overflow: hidden;
+    transform: skewY(-2deg);
+
+    transition: .3s;
+}
+
+.card:hover {
+    transform: skewY(-2deg) translateY(-10px);
+
+    box-shadow:
+        0 0 25px currentColor;
+}
+
+
+
+
+.personagem {
+
+    position: absolute;
+
+    width: 100%;
+    height: 290px;
+
+    top: 0;
+    left: 0;
+
+    object-fit: cover;
+    object-position: center top;
+
+    z-index: 1;
+}
+
+
+
+
+.numero {
+    position: absolute;
+
+    top: 10px;
+    left: 15px;
+
+    font-size: 32px;
+    font-weight: 900;
+
+    z-index: 3;
+}
+
+
+.nome {
+    position: absolute;
+
+    top: 55px;
+    left: 65%;
+    height: 10%;
+
+    transform: rotate(-90deg);
+
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    z-index: 3;
+}
+
+
+.info {
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+    bottom: 65px;
+
+    z-index: 3;
+}
+
+.info div {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+    font-size: 10px;
+}
+
+.info span {
+    color: #aaa;
+
+    font-weight: bold;
+}
+
+.info b {
+    padding: 5px 8px;
+
+    border: 1px solid currentColor;
+
+    font-size: 10px;
+}
+
+.info p {
+    color: #ddd;
+}
+
+button {
+    position: absolute;
+
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+
+    height: 38px;
+
+    background: transparent;
+
+    border: 1px solid currentColor;
+
+    color: inherit;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    z-index: 3;
+
+    transition: .3s;
+}
+
+button:hover {
+    background: currentColor;
+    color: black;
+}
+
+
+.card-red {
+    color: #ff1744;
+    border-color: #ff1744;
+}
+
+.card-purple {
+    color: #d946ff;
+    border-color: #d946ff;
+}
+
+.card-orange {
+    color: #ff8a00;
+    border-color: #ff8a00;
+}
+
+
+.card::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    background: linear-gradient(
+        to bottom,
+        transparent 35%,
+        rgba(9, 11, 19, 0.5) 50%,
+        #090b13 72%
+    );
+
+    z-index: 2;
+}
