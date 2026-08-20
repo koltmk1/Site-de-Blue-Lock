@@ -20,17 +20,19 @@ background-color: #0B0F19;
 
 .FDP {
     width: 100%;
-
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-
+    display: flex;
+    position: absolute;
     gap: 12px 5px;
-
+    left: 55%;
+    padding: 20px;
     justify-items: center;
     align-items: center;
 }
 
 .A {
+      font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     font-size: 17px;
     text-align: center;
     white-space: nowrap;
@@ -210,7 +212,7 @@ color: #006BFF;
     min-height: 155vh;
 }
 
-.card{
+.cartas{
     width: 200px;
     height: 180px;
 
@@ -226,13 +228,13 @@ color: #006BFF;
     
 }
 
-.card:hover{
+.cartas:hover{
     transform: translateY(-6px);
     border-color: #2D8CFF;
     box-shadow: 0 0 20px rgba(0,110,255,.45);
 }
 
-.card img{
+.cartas img{
     width: 40px;
     margin-bottom: 8px;
      background-color: #006BFF;
@@ -241,18 +243,18 @@ color: #006BFF;
     border-radius: 10px;
 }
 
-.card img:hover{
+.cartas img:hover{
 background-color: #3A8DFF;
 }
 
-.card h2{
+.cartas h2{
     font-family: "Bebas Neue", sans-serif;
     font-size: 38px;
     color: #006BFF;
     margin: 0;
 }
 
-.card h3{
+.cartas h3{
     font-family: "Bebas Neue", sans-serif;
     font-size: 22px;
     color: white;
@@ -260,7 +262,7 @@ background-color: #3A8DFF;
     margin: 5px 0;
 }
 
-.card p{
+.cartas p{
     margin-top: 8px;
     font-family: "Poppins", sans-serif;
     color: #D8D8D8;
@@ -1646,11 +1648,11 @@ gap: 25px ;
         0 0 8px rgba(0, 107, 255, 0.4);
 }
 
-.card {
+.truco {
     position: relative;
     width: 280px;
     height: 430px;
-
+    
     background: #090b13;
     border: 2px solid;
     border-radius: 8px;
@@ -1661,7 +1663,7 @@ gap: 25px ;
     transition: .3s;
 }
 
-.card:hover {
+.truco:hover {
     transform: skewY(-2deg) translateY(-10px);
 
     box-shadow:
@@ -1789,23 +1791,23 @@ button:hover {
 }
 
 
-.card-red {
+.truco2-red {
     color: #ff1744;
     border-color: #ff1744;
 }
 
-.card-purple {
+.truco1-purple {
     color: #d946ff;
     border-color: #d946ff;
 }
 
-.card-orange {
+.truco-orange {
     color: #ff8a00;
     border-color: #ff8a00;
 }
 
 
-.card::after {
+.truco::after {
 
     content: "";
 
@@ -1826,340 +1828,9 @@ button:hover {
     z-index: 2;
 }
 
-/* ================================================= */
-/*                 RESPONSIVO CELULAR                */
-/*                    ATÉ 480px                      */
-/* ================================================= */
 
-@media (max-width: 480px) {
 
-    /* ================= HEADER ================= */
 
-    .Inicial {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 15px 10px;
-        gap: 15px;
-    }
 
-    .Logo {
-        width: 160px;
-        height: auto;
-    }
 
-    .FDP {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 12px 18px;
-    }
-
-    .A {
-        font-size: 18px;
-    }
-
-    .A:hover {
-        font-size: 18px;
-    }
-
-
-    /* ================= PRIMEIRA TELA ================= */
-
-    .fundo {
-        height: 75vh;
-        min-height: 500px;
-
-        background-size: cover;
-        background-position: center;
-    }
-
-    .TITULO {
-        width: 80%;
-        max-width: 360px;
-
-        position: absolute;
-
-        top: 30%;
-        left: 50%;
-
-        transform: translateX(-50%);
-    }
-
-    .SUBTITULO {
-        width: 90%;
-
-        position: absolute;
-
-        top: 52%;
-        left: 50%;
-
-        transform: translateX(-50%);
-
-        text-align: center;
-
-        font-size: 21px;
-    }
-
-    .botao {
-        top: 67%;
-        left: 50%;
-
-        transform: translateX(-50%);
-
-        padding: 13px 25px;
-
-        font-size: 18px;
-
-        white-space: nowrap;
-    }
-
-    .botao:hover {
-        transform: translateX(-50%) scale(1.05);
-    }
-
-
-    /* ================= PROJETO ================= */
-
-    .Projeto {
-        height: auto;
-        min-height: auto;
-
-        padding: 60px 20px 70px;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .Rokku {
-        position: relative;
-
-        left: auto;
-        bottom: auto;
-
-        width: 100%;
-
-        margin: 0 0 25px;
-
-        text-align: center;
-
-        font-size: 18px;
-    }
-
-    .TITULO2 {
-        position: relative;
-
-        left: auto;
-        bottom: auto;
-
-        margin: 0;
-
-        text-align: center;
-
-        font-size: 55px;
-        line-height: .9;
-    }
-
-    .b1 {
-        font-size: 60px;
-    }
-
-    .explicação {
-        position: relative;
-
-        left: auto;
-        bottom: auto;
-
-        width: 100%;
-        max-width: 400px;
-
-        margin: 25px auto 0;
-
-        text-align: center;
-
-        font-size: 15px;
-        line-height: 1.5;
-    }
-
-    .conhecer {
-        position: relative;
-
-        left: auto;
-        bottom: auto;
-
-        display: block;
-
-        width: fit-content;
-
-        margin: 25px auto 0;
-
-        padding: 13px 25px;
-
-        font-size: 18px;
-    }
-
-    .Destaque {
-        position: relative;
-
-        left: auto;
-        bottom: auto;
-
-        margin: 70px 0 25px;
-
-        text-align: center;
-
-        font-size: 22px;
-    }
-
-
-    /* ================= CARDS DO PROJETO ================= */
-
-    .Projeto .cards {
-        width: 100%;
-
-        min-height: auto;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        gap: 20px;
-
-        padding: 0;
-    }
-
-    .Projeto .card {
-        width: 85%;
-        max-width: 280px;
-
-        height: auto;
-
-        min-height: 180px;
-    }
-
-
-    /* ================= JOGADORES ================= */
-
-    .Jogadores {
-        height: auto;
-        min-height: auto;
-
-        padding: 90px 15px 60px;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        gap: 30px;
-    }
-
-    .TITULO3 {
-        position: relative;
-
-        left: auto;
-        bottom: auto;
-
-        width: 100%;
-
-        margin: 0 0 20px;
-
-        text-align: center;
-
-        font-size: 45px;
-
-        line-height: .95;
-    }
-
-
-    /* ================= CARDS DOS JOGADORES ================= */
-
-    .card-jogador,
-    .card-jogador1,
-    .card-jogador2,
-    .card-jogador3,
-    .card-jogador4 {
-        width: 280px;
-        max-width: 90%;
-
-        height: 470px;
-
-        flex-shrink: 0;
-    }
-
-
-    /* ================= FOTO DOS JOGADORES ================= */
-
-    .foto-jogador,
-    .foto-jogador1,
-    .foto-jogador2,
-    .foto-jogador3,
-    .foto-jogador4 {
-        width: 230px;
-        height: 240px;
-    }
-
-
-    /* ================= BOTÃO TODOS ================= */
-
-    .ver-jogadores {
-        display: block;
-
-        margin-top: 15px;
-
-        text-align: center;
-
-        font-size: 18px;
-    }
-
-
-    /* ================= NEW GENS ================= */
-
-    .New-Gens {
-        width: 100%;
-
-        padding: 60px 15px;
-    }
-
-    .titulo-newgens {
-        text-align: center;
-    }
-
-    .descricao-newgens {
-        width: 100%;
-
-        text-align: center;
-
-        font-size: 15px;
-
-        line-height: 1.5;
-    }
-
-    .New-Gens .cards {
-        width: 100%;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        gap: 25px;
-
-        min-height: auto;
-    }
-
-    .New-Gens .card {
-        width: 90%;
-        max-width: 300px;
-
-        height: auto;
-    }
-
-}
+    
