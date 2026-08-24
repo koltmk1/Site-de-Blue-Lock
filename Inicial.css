@@ -1589,7 +1589,7 @@ background-image: url(fundo\ New\ gens.png);
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
-height: 110vh;
+height: 100vh;
 position: relative;
 gap: 25px ;
 display: flex;
@@ -1644,7 +1644,6 @@ flex-direction: column;
     height: 305px;
 
     background: #0047AB;
-    border: 2px solid;
     border-radius: 8px;
 
     overflow: hidden;
@@ -1787,7 +1786,6 @@ display: flex;
 }
 
 
-
 .card-sae {
     position: relative;
     width: 280px;
@@ -1801,7 +1799,7 @@ display: flex;
     transform: skewY(-2deg);
     position: absolute;
     left: 20%;
-    bottom: 10%;
+    bottom: 8%;
     transition: .3s;
 }
 
@@ -2239,7 +2237,7 @@ color: #FFFFFF;
     transform: skewY(-2deg);
     position: absolute;
     left: 40%;
-    bottom: 10%;
+    bottom: 8%;
     transition: .3s;
 }
 
@@ -2383,7 +2381,7 @@ color: #FFFFFF;
     transform: skewY(-2deg);
     position: absolute;
     left: 60%;
-    bottom: 10%;
+    bottom: 8%;
     transition: .3s;
 }
 
