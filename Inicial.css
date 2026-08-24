@@ -1585,30 +1585,24 @@ box-shadow:
 }
 
 .New-Gens{
-background-image: url(fundoAzul.png);
+background-image: url(fundo\ New\ gens.png);
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
-height: 100vh;
+height: 110vh;
 position: relative;
 gap: 25px ;
-
+display: flex;
+flex-direction: column;
 }
 
 
-.new-gens {
-    text-align: center;
-    padding: 70px 20px 40px;
-    position: relative;
-}
 
 .titulo-newgens {
     display: flex;
-    
-    align-items: center;
     gap: 15px;
-
-       font-family: 'Bebas Neue', sans-serif;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 110px;
     letter-spacing: 4px;
 }
@@ -1644,7 +1638,7 @@ gap: 25px ;
 }
 
 .card-kaiser{
-position: relative; width: 90%; max-width: 1200px; height: 300px; background-image: linear-gradient( 90deg, rgba(5, 8, 15, 0.95) 0%, rgba(5, 8, 15, 0.65) 45%, rgba(5, 8, 15, 0.15) 100% ), url(Kaiser\ pro\ site.png); background-size: cover; background-position: center; border-radius: 18px; overflow: hidden; border: solid 1px #FFFFFF; transition: 0.3s ease;
+position: relative; width: 90%; max-width: 800px; height: 300px; background-image: linear-gradient( 90deg, rgba(5, 8, 15, 0.95) 0%, rgba(5, 8, 15, 0.65) 45%, rgba(5, 8, 15, 0.15) 100% ), url(Rei.jpeg); background-size: cover; background-position: center; border-radius: 18px; overflow: hidden; border: solid 1px #FFFFFF; transition: 0.3s ease; position: absolute; bottom: 44%;
 }
 
 .card-kaiser:hover {
@@ -1690,6 +1684,639 @@ font-size: 30px;
 margin-left: 10px;
 }
 
-.roxo{
-color: #7B2CF5;;
+.azul{
+color: #536DFF;
+}
+
+.card-sae{
+position: relative; width: 90%; max-width: 800px; height: 300px; background-image: linear-gradient( 90deg, rgba(5, 8, 15, 0.95) 0%, rgba(5, 8, 15, 0.65) 45%, rgba(5, 8, 15, 0.15) 100% ), url(Sae2.jpeg); background-size: cover; background-position: center; border-radius: 18px; overflow: hidden; border: solid 1px #FFFFFF; transition: 0.3s ease; position: absolute; bottom: 10%;
+}
+
+.card-sae:hover {
+    transform: translateY(-8px);
+        transition: 0.3s ease;
+    border-color: #E91E63;
+
+        box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 77, 90, 0.65),
+        0 0 40px rgba(230, 57, 70, 0.35);
+}
+
+.botao-newgen {
+    padding: 12px 24px;
+
+    border: 2px solid #FFFFFF;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #FFFFFF;
+
+     font-family: 'Bebas Neue', sans-serif;
+    font-size: 35px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-left: 10px;
+    transition: 0.3s ease;
+}
+
+.botao-newgen:hover {
+    background: #FFFFFF;
+    color: #0B1120;
+
+    transform: translateX(5px);
+}
+
+.texto-newgen{
+color: #FFFFFF;
+font-family: 'Bebas Neue', sans-serif;
+font-size: 30px;
+margin-left: 10px;
+}
+
+.rosa{
+color: #E91E63;
+}
+
+
+
+
+
+.card-lorenzo {
+    position: relative;
+    width: 280px;
+    height: 430x;
+
+    background: #090b13;
+    border: 2px solid;
+    border-radius: 8px;
+
+    overflow: hidden;
+    transform: skewY(-2deg);
+    position: absolute;
+    left: 55%;
+    bottom: 44%;
+    transition: .3s;
+}
+
+.personagem-lorenzo {
+    width: 100%;
+    height: 310px;
+    object-fit: cover;
+    object-position: center top;
+    left: -7.5%;
+}
+
+.card-lorenzo::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 25%,
+            rgba(9, 11, 19, 0.25) 40%,
+            rgba(9, 11, 19, 0.85) 65%,
+            #090B13 78%
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+.card-lorenzo:hover {
+    transform: skewY(-2deg) translateY(-8px);
+
+    border-color: #C8FF66;
+
+    box-shadow:
+        0 0 12px rgba(157, 255, 0, 0.7),
+        0 0 30px rgba(157, 255, 0, 0.35),
+        0 0 55px rgba(157, 255, 0, 0.15);
+}
+
+.card-lorenzo:hover .personagem-lorenzo {
+    transform: scale(1.05);
+}
+
+.info {
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+    bottom: 65px;
+
+    z-index: 3;
+}
+
+.info div {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+    font-size: 10px;
+}
+
+.info span {
+    color: #aaa;
+
+    font-weight: bold;
+}
+
+.info b {
+    padding: 5px 8px;
+    color: #FFFFFF;
+    border: 1px solid currentColor;
+    
+    font-size: 10px;
+}
+
+.info p {
+    color: #FFFFFF;
+}
+
+
+.butão-lorenzo {
+    position: absolute;
+
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+
+    height: 38px;
+
+    background: transparent;
+
+    border: 1px solid ;
+
+    color: #395211;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    z-index: 3;
+
+    transition: 0.3s ease;
+}
+
+.butão-lorenzo:hover {
+    background: #9DFF00;
+
+    color: #090B13;
+
+    box-shadow:
+        0 0 12px rgba(157, 255, 0, 0.6),
+        0 0 25px rgba(157, 255, 0, 0.25);
+
+    transform: translateY(-2px);
+}
+
+
+
+.card-hugo {
+    position: relative;
+    width: 280px;
+    height: 328px;
+
+    background: #090b13;
+    border: 2px solid;
+    border-radius: 8px;
+
+    overflow: hidden;
+    transform: skewY(-2deg);
+    position: absolute;
+    left: 75%;
+    bottom: 44%;
+    transition: .3s;
+}
+
+
+.personagem-hugo {
+    width: 100%;
+    height: 310px;
+    object-fit: cover;
+    object-position: center top;
+    left: -7.5%;
+}
+
+.card-hugo::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 25%,
+            rgba(9, 11, 19, 0.25) 40%,
+            rgba(9, 11, 19, 0.85) 65%,
+            #090B13 78%
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+.card-hugo:hover {
+    transform: skewY(-2deg) translateY(-8px);
+
+    border-color: #2A1638;
+
+    box-shadow:   0 0 10px rgba(142, 60, 199, 0.5),
+            0 0 25px rgba(217, 70, 168, 0.25);
+
+.card-hugo:hover .personagem-hugo {
+    transform: scale(1.05);
+}
+}
+
+.nome{
+color: #FFFFFF;
+}
+
+.numero{
+color: #FFFFFF;
+}
+
+.info1 {
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+    bottom: 65px;
+
+    z-index: 3;
+}
+
+.info1 div {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+    font-size: 10px;
+}
+
+.info1 span {
+    color: #FFFFFF;
+
+    font-weight: bold;
+}
+
+.info1 b {
+    padding: 5px 8px;
+    color: #FFFFFF;
+    border: 1px solid currentColor;
+    
+    font-size: 10px;
+}
+
+.info1 p {
+    color: #FFFFFF;
+}
+
+
+.butão-hugo {
+    position: absolute;
+
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+
+    height: 38px;
+
+    background: transparent;
+
+    border: 1px solid ;
+
+    color: #4B1F68;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    z-index: 3;
+
+    transition: 0.3s ease;
+}
+
+.butão-hugo:hover {
+    background: #8E3CC7;
+
+    color: #090B13;
+
+    box-shadow:
+    
+            0 0 20px rgba(142, 60, 199, 0.6),
+            0 0 40px rgba(217, 70, 168, 0.3);
+
+    transform: translateY(-2px);
+}
+
+
+
+
+
+.card-loki {
+    position: relative;
+    width: 280px;
+    height: 320px;
+
+    background: #090b13;
+    border: 2px solid;
+    border-radius: 8px;
+
+    overflow: hidden;
+    transform: skewY(-2deg);
+    position: absolute;
+    left: 75%;
+    bottom: 10%;
+    transition: .3s;
+}
+
+
+.personagem-loki {
+    width: 100%;
+    height: 310px;
+    object-fit: cover;
+    object-position: center top;
+    left: -7.5%;
+}
+
+.card-loki::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 25%,
+            rgba(9, 11, 19, 0.25) 40%,
+            rgba(9, 11, 19, 0.85) 65%,
+            #090B13 78%
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+.card-loki:hover {
+    transform: skewY(-2deg) translateY(-8px);
+
+    border-color: #163A63;
+
+    box-shadow:    0 0 8px rgba(0, 207, 255, 0.7),
+    0 0 20px rgba(23, 105, 255, 0.45),
+    0 0 40px rgba(0, 207, 255, 0.2);
+
+    
+.card-loki:hover .personagem-loki {
+    transform: scale(1.05);
+}
+}
+
+
+.info2 {
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+    bottom: 65px;
+
+    z-index: 3;
+}
+
+.info2 div {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+    font-size: 10px;
+}
+
+.info2 span {
+    color: #FFFFFF;
+
+    font-weight: bold;
+}
+
+.info2 b {
+    padding: 5px 8px;
+    color: #FFFFFF;
+    border: 1px solid currentColor;
+    
+    font-size: 10px;
+}
+
+.info2 p {
+    color: #FFFFFF;
+}
+
+
+.butão-loki {
+    position: absolute;
+
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+
+    height: 38px;
+
+    background: transparent;
+
+    border: 1px solid ;
+
+    color: #65D9FF;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    z-index: 3;
+
+    transition: 0.3s ease;
+}
+
+.butão-loki:hover {
+    background: #163A63;
+
+    color: #090B13;
+
+    box-shadow:
+    
+     0 4px 15px rgba(23, 105, 255, 0.18);
+
+    transform: translateY(-2px);
+}
+
+
+
+
+.card-bunny {
+    position: relative;
+    width: 280px;
+    height: 320px;
+
+    background: #3A1622;
+    border: 2px solid;
+    border-radius: 8px;
+
+    overflow: hidden;
+    transform: skewY(-2deg);
+    position: absolute;
+    left: 55%;
+    bottom: 10%;
+    transition: .3s;
+}
+
+
+.personagem-bunny {
+    width: 100%;
+    height: 310px;
+    object-fit: cover;
+    object-position: center top;
+    left: -7.5%;
+}
+
+.card-bunny::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 25%,
+            rgba(9, 11, 19, 0.25) 40%,
+            rgba(9, 11, 19, 0.85) 65%,
+            #090B13 78%
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+.card-bunny:hover {
+    transform: skewY(-2deg) translateY(-8px);
+
+    border-color: #3A1622;
+
+    box-shadow:       0 0 8px rgba(255, 79, 154, 0.6),
+    0 0 20px rgba(229, 43, 63, 0.4),
+    0 0 40px rgba(185, 31, 53, 0.2);
+
+    
+.card-loki:hover .personagem-loki {
+    transform: scale(1.05);
+}
+}
+
+
+.info3 {
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+    bottom: 65px;
+
+    z-index: 3;
+}
+
+.info3 div {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+    font-size: 10px;
+}
+
+.info3 span {
+    color: #FFFFFF;
+
+    font-weight: bold;
+}
+
+.info3 b {
+    padding: 5px 8px;
+    color: #FFFFFF;
+    border: 1px solid currentColor;
+    
+    font-size: 10px;
+}
+
+.info3 p {
+    color: #FFFFFF;
+}
+
+
+.butão-bunny {
+    position: absolute;
+
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+
+    height: 38px;
+
+    background: transparent;
+
+    border: 1px solid ;
+
+    color: #FFCCD2;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    z-index: 3;
+
+    transition: 0.3s ease;
+}
+
+.butão-bunny:hover {
+    background: #7D1628;
+
+    color: #090B13;
+
+    box-shadow:
+    
+     0 0 15px rgba(229, 43, 63, 0.45);
+
+    transform: translateY(-2px);
 }
