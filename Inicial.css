@@ -1637,107 +1637,298 @@ flex-direction: column;
         0 0 8px rgba(0, 107, 255, 0.4);
 }
 
-.card-kaiser{
-position: relative; width: 90%; max-width: 800px; height: 300px; background-image: linear-gradient( 90deg, rgba(5, 8, 15, 0.95) 0%, rgba(5, 8, 15, 0.65) 45%, rgba(5, 8, 15, 0.15) 100% ), url(Rei.jpeg); background-size: cover; background-position: center; border-radius: 18px; overflow: hidden; border: solid 1px #FFFFFF; transition: 0.3s ease; position: absolute; bottom: 44%;
+
+.card-kaiser {
+    position: relative;
+    width: 280px;
+    height: 305px;
+
+    background: #0047AB;
+    border: 2px solid;
+    border-radius: 8px;
+
+    overflow: hidden;
+    transform: skewY(-2deg);
+    position: absolute;
+    left: 20%;
+    bottom: 44%;
+    transition: .3s;
+}
+
+
+.personagem-kaiser {
+    width: 100%;
+    height: 310px;
+    object-fit: cover;
+    object-position: center top;
+    left: -7.5%;
+}
+
+.card-kaiser::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 25%,
+            rgba(9, 11, 19, 0.25) 40%,
+            rgba(9, 11, 19, 0.85) 65%,
+            #090B13 78%
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+.macionalidade{
+color: #FFFFFF;
+display: flex;
 }
 
 .card-kaiser:hover {
-    transform: translateY(-8px);
+    transform: skewY(-2deg) translateY(-8px);
 
-    border-color: #00CFFF;
+    border-color: #006BFF;
 
     box-shadow:
-        0 0 15px rgba(0, 207, 255, 0.5),
-        0 0 35px rgba(0, 207, 255, 0.2);
+       0 0 8px #006BFF,
+    0 0 20px rgba(0, 107, 255, 0.7),
+    0 0 45px rgba(0, 140, 255, 0.4);
+
+    
+.card-kaiser:hover .personagem-kaiser {
+    transform: scale(1.05);
+}
 }
 
-.botao-newgen {
-    padding: 12px 24px;
 
-    border: 2px solid #FFFFFF;
-    border-radius: 6px;
+.info4 {
+    position: absolute;
 
-    background: transparent;
+    left: 15px;
+    right: 15px;
+    bottom: 65px;
+
+    z-index: 3;
+}
+
+.info4 div {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+    font-size: 10px;
+}
+
+.info4 span {
     color: #FFFFFF;
 
-     font-family: 'Bebas Neue', sans-serif;
-    font-size: 35px;
-    font-weight: 700;
+    font-weight: bold;
+}
+
+.info4 b {
+    padding: 5px 8px;
+    color: #FFFFFF;
+    border: 1px solid ;
+    
+    font-size: 10px;
+}
+
+.info4 p {
+    color: #FFFFFF;
+}
+
+
+.butão-kaiser {
+    position: absolute;
+
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+
+    height: 38px;
+
+    background: transparent;
+
+    border: 1px solid ;
+
+    color: #B8860B;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 18px;
     letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    margin-left: 10px;
+
+    cursor: pointer;
+
+    z-index: 3;
+
     transition: 0.3s ease;
 }
 
-.botao-newgen:hover {
-    background: #FFFFFF;
-    color: #0B1120;
+.butão-kaiser:hover {
+    background: #4169E1;
 
-    transform: translateX(5px);
+    color: #090B13;
+
+    box-shadow:
+    0 0 8px #006BFF,
+    0 0 20px rgba(0, 107, 255, 0.7),
+    0 0 45px rgba(0, 140, 255, 0.4);
+
+    transform: translateY(-2px);
 }
 
-.texto-newgen{
-color: #FFFFFF;
-font-family: 'Bebas Neue', sans-serif;
-font-size: 30px;
-margin-left: 10px;
+
+
+.card-sae {
+    position: relative;
+    width: 280px;
+    height: 305px;
+
+    background: #240B18;
+    border: 2px solid;
+    border-radius: 8px;
+
+    overflow: hidden;
+    transform: skewY(-2deg);
+    position: absolute;
+    left: 20%;
+    bottom: 10%;
+    transition: .3s;
 }
 
-.azul{
-color: #536DFF;
+
+.personagem-sae {
+    width: 100%;
+    height: 310px;
+    object-fit: cover;
+    object-position: center top;
+    left: -7.5%;
 }
 
-.card-sae{
-position: relative; width: 90%; max-width: 800px; height: 300px; background-image: linear-gradient( 90deg, rgba(5, 8, 15, 0.95) 0%, rgba(5, 8, 15, 0.65) 45%, rgba(5, 8, 15, 0.15) 100% ), url(Sae2.jpeg); background-size: cover; background-position: center; border-radius: 18px; overflow: hidden; border: solid 1px #FFFFFF; transition: 0.3s ease; position: absolute; bottom: 10%;
+.card-sae::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 25%,
+            rgba(9, 11, 19, 0.25) 40%,
+            rgba(9, 11, 19, 0.85) 65%,
+            #090B13 78%
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
 }
 
 .card-sae:hover {
-    transform: translateY(-8px);
-        transition: 0.3s ease;
-    border-color: #E91E63;
+    transform: skewY(-2deg) translateY(-8px);
 
-        box-shadow:
-        0 0 10px rgba(255, 255, 255, 0.8),
-        0 0 20px rgba(255, 77, 90, 0.65),
-        0 0 40px rgba(230, 57, 70, 0.35);
+    border-color: #FF4FA3;
+
+    box-shadow:
+    0 0 8px #FF4FA3,
+    0 0 20px rgba(255, 79, 163, 0.7),
+    0 0 45px rgba(230, 0, 115, 0.4);
+
+    
+.card-sae:hover .personagem-sae {
+    transform: scale(1.05);
+}
 }
 
-.botao-newgen {
-    padding: 12px 24px;
 
-    border: 2px solid #FFFFFF;
-    border-radius: 6px;
+.info5 {
+    position: absolute;
 
-    background: transparent;
+    left: 15px;
+    right: 15px;
+    bottom: 65px;
+
+    z-index: 3;
+}
+
+.info5 div {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+    font-size: 10px;
+}
+
+.info5 span {
     color: #FFFFFF;
 
-     font-family: 'Bebas Neue', sans-serif;
-    font-size: 35px;
-    font-weight: 700;
+    font-weight: bold;
+}
+
+.info5 b {
+    padding: 5px 8px;
+    color: #FFFFFF;
+    border: 1px solid ;
+    
+    font-size: 10px;
+}
+
+.info5 p {
+    color: #FFFFFF;
+}
+
+
+.butão-sae {
+    position: absolute;
+
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+
+    height: 38px;
+
+    background: transparent;
+
+    border: 1px solid ;
+
+    color: #FF4FA3;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 18px;
     letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    margin-left: 10px;
+
+    cursor: pointer;
+
+    z-index: 3;
+
     transition: 0.3s ease;
 }
 
-.botao-newgen:hover {
-    background: #FFFFFF;
-    color: #0B1120;
+.butão-sae:hover {
+    background: #FFC1DC;
 
-    transform: translateX(5px);
-}
+    color: #090B13;
 
-.texto-newgen{
-color: #FFFFFF;
-font-family: 'Bebas Neue', sans-serif;
-font-size: 30px;
-margin-left: 10px;
-}
+    box-shadow:
+      0 0 8px #FF4FA3,
+    0 0 20px rgba(255, 79, 163, 0.7),
+    0 0 45px rgba(230, 0, 115, 0.4);
 
-.rosa{
-color: #E91E63;
+    transform: translateY(-2px);
 }
 
 
@@ -1756,7 +1947,7 @@ color: #E91E63;
     overflow: hidden;
     transform: skewY(-2deg);
     position: absolute;
-    left: 55%;
+    left: 40%;
     bottom: 44%;
     transition: .3s;
 }
@@ -1897,7 +2088,7 @@ color: #E91E63;
     overflow: hidden;
     transform: skewY(-2deg);
     position: absolute;
-    left: 75%;
+    left: 60%;
     bottom: 44%;
     transition: .3s;
 }
@@ -1945,12 +2136,11 @@ color: #E91E63;
 }
 }
 
-.nome{
-color: #FFFFFF;
-}
+
 
 .numero{
 color: #FFFFFF;
+
 }
 
 .info1 {
@@ -2048,7 +2238,7 @@ color: #FFFFFF;
     overflow: hidden;
     transform: skewY(-2deg);
     position: absolute;
-    left: 75%;
+    left: 40%;
     bottom: 10%;
     transition: .3s;
 }
@@ -2192,7 +2382,7 @@ color: #FFFFFF;
     overflow: hidden;
     transform: skewY(-2deg);
     position: absolute;
-    left: 55%;
+    left: 60%;
     bottom: 10%;
     transition: .3s;
 }
