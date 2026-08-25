@@ -438,7 +438,7 @@ font-weight: 800;
         .informacoes{
 
             display: flex;
-
+            
             height: 42px;
 
             border: 1px solid #006BFF;
@@ -453,11 +453,11 @@ font-weight: 800;
         .posicao{
 
             width: 65px;
+            
 
             display: flex;
             align-items: center;
             justify-content: center;
-
             background: #006BFF;
 
             color: white;
