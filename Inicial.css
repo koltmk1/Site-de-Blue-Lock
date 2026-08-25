@@ -2508,3 +2508,610 @@ color: #FFFFFF;
 
     transform: translateY(-2px);
 }
+
+
+
+/* =========================================
+   MONTE SEU TIME
+========================================= */
+
+.Monte-Time {
+    min-height: 100vh;
+    padding: 120px 6%;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0, 107, 255, 0.08),
+            transparent 45%
+        ),
+        #07090f;
+
+    color: white;
+    background-image: url(fundo\ New\ gens.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+}
+
+.titulo-time {
+    margin-bottom: 60px;
+    transform: skewX(-5deg);
+}
+
+.titulo-time span {
+    display: block;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 38px;
+
+    letter-spacing: 8px;
+
+    color: #ffffff;
+}
+
+.titulo-time strong {
+    display: block;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 105px;
+
+    line-height: .8;
+
+    color: #006BFF;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 10px rgba(0, 107, 255, .8),
+        0 0 30px rgba(0, 107, 255, .45);
+}
+
+.titulo-time p {
+    margin-top: 25px;
+
+    font-family: "Rajdhani", sans-serif;
+
+    font-size: 15px;
+
+    letter-spacing: 2px;
+
+    color: #718096;
+}
+
+.team-builder {
+    display: grid;
+
+    grid-template-columns:
+        280px
+        minmax(500px, 1fr)
+        280px;
+
+    gap: 25px;
+
+    max-width: 1400px;
+
+    margin: auto;
+}
+
+.lista-jogadores,
+.info-time {
+
+    background: rgba(10, 15, 24, .95);
+
+    border: 1px solid #1b2a3d;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.35);
+}
+
+.lista-header span,
+.mini-titulo {
+
+    font-family: "Rajdhani", sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    color: #006BFF;
+}
+
+.lista-header h2,
+.info-time h2 {
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 32px;
+
+    margin: 5px 0 25px;
+
+    letter-spacing: 2px;
+}
+
+.player-option {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    margin-bottom: 10px;
+
+    background: #0f1722;
+
+    border: 1px solid #1c2b3d;
+
+    border-radius: 10px;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.player-option:hover {
+
+    transform: translateX(5px);
+
+    border-color: #006BFF;
+
+    background: #111d2c;
+
+    box-shadow:
+        0 0 15px rgba(0,107,255,.25);
+}
+
+.player-icon {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #06101e;
+
+    border: 1px solid #006BFF;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 12px;
+
+    color: #006BFF;
+}
+
+.player-icon.rosa {
+
+    color: #FF4FA3;
+
+    border-color: #FF4FA3;
+
+    box-shadow:
+        0 0 10px rgba(255,79,163,.25);
+}
+
+
+.player-icon.roxo {
+
+    color: #A855F7;
+
+    border-color: #A855F7;
+}
+
+
+.player-icon.amarelo {
+
+    color: #FFD166;
+
+    border-color: #FFD166;
+}
+
+
+.player-icon.vermelho {
+
+    color: #FF3D4D;
+
+    border-color: #FF3D4D;
+}
+
+.campo-container {
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.campo {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 650px;
+
+    aspect-ratio: 1 / .8;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            #0a3829,
+            #0b412e
+        );
+
+    border: 2px solid rgba(255,255,255,.25);
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 0 50px rgba(0,107,255,.12);
+}
+
+.linha-meio {
+
+    position: absolute;
+
+    width: 2px;
+
+    height: 100%;
+
+    background: rgba(255,255,255,.25);
+
+    left: 50%;
+
+    top: 0;
+}
+
+.circulo-meio {
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    border: 2px solid rgba(255,255,255,.25);
+
+    border-radius: 50%;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.posicao {
+
+    position: absolute;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 6px;
+
+    font-family: "Rajdhani", sans-serif;
+
+    font-size: 11px;
+
+    color: white;
+}
+
+.jogador-bola {
+
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #07101a;
+
+    border: 3px solid #006BFF;
+
+    color: white;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 9px;
+
+    box-shadow:
+        0 0 15px rgba(0,107,255,.5);
+
+    transition: .25s ease;
+}
+
+.jogador-bola:hover {
+
+    transform: scale(1.15);
+
+    box-shadow:
+        0 0 10px #006BFF,
+        0 0 30px rgba(0,107,255,.6);
+}
+
+.jogador-1 {
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.jogador-2 {
+    top: 25%;
+    left: 22%;
+}
+
+.jogador-3 {
+    top: 25%;
+    right: 22%;
+}
+
+.jogador-4 {
+    top: 42%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.jogador-5 {
+    top: 48%;
+    left: 27%;
+}
+
+.jogador-6 {
+    top: 48%;
+    right: 27%;
+}
+
+.jogador-7 {
+    top: 65%;
+    left: 15%;
+}
+
+.jogador-8 {
+    top: 70%;
+    left: 38%;
+}
+
+.jogador-9 {
+    top: 70%;
+    right: 38%;
+}
+
+.jogador-10 {
+    top: 65%;
+    right: 15%;
+}
+
+.jogador-11 {
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.info-time h2 {
+
+    font-family: "Bebas Neue", sans-serif;
+
+    color: white;
+}
+
+.formacao,
+.capitao,
+.rating {
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #1c2938;
+}
+
+.formacao span,
+.capitao span,
+.rating span {
+
+    display: block;
+
+    font-family: "Rajdhani", sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #68778a;
+}
+
+.formacao strong {
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 28px;
+
+    color: #006BFF;
+}
+
+.rating strong {
+
+    display: block;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 70px;
+
+    line-height: .9;
+
+    color: #00A8FF;
+
+    text-shadow:
+        0 0 15px rgba(0,168,255,.5);
+}
+
+.rating small {
+
+    color: #718096;
+
+    letter-spacing: 3px;
+}
+
+.atributo {
+
+    position: relative;
+
+    margin-top: 18px;
+}
+
+.atributo span {
+
+    font-family: "Rajdhani", sans-serif;
+
+    font-size: 11px;
+
+    color: #8a98aa;
+}
+
+.atributo strong {
+
+    float: right;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 11px;
+}
+
+.atributo > div {
+
+    width: 100%;
+
+    height: 5px;
+
+    margin-top: 7px;
+
+    background: #172231;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.atributo i {
+
+    display: block;
+
+    height: 100%;
+
+    background: #006BFF;
+
+    box-shadow:
+        0 0 10px rgba(0,107,255,.7);
+
+    border-radius: 10px;
+}
+
+.salvar-time {
+
+    width: 100%;
+
+    margin-top: 30px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #006BFF;
+
+    color: white;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.salvar-time:hover {
+
+    background: #008CFF;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 20px rgba(0,107,255,.55);
+}
+
+@media (max-width: 1100px) {
+
+    .team-builder {
+
+        grid-template-columns:
+            220px
+            1fr
+            220px;
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .team-builder {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .campo-container {
+
+        order: 1;
+    }
+
+    .lista-jogadores {
+
+        order: 2;
+    }
+
+    .info-time {
+
+        order: 3;
+    }
+
+    .titulo-time strong {
+
+        font-size: 75px;
+    }
+
+}
