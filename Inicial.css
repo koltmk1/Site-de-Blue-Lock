@@ -450,7 +450,7 @@ font-weight: 800;
             transition: 0.3s ease;
         }
 
-        .posicao{
+        .posicaooo{
 
             width: 65px;
 
@@ -2825,7 +2825,7 @@ color: #FFFFFF;
 
     width: 58px;
     height: 58px;
-
+    position: relative;
     display: flex;
 
     align-items: center;
@@ -2847,6 +2847,15 @@ color: #FFFFFF;
         0 0 15px rgba(0,107,255,.5);
 
     transition: .25s ease;
+}
+
+.jogador-bola img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+    object-fit: cover;
+    position: absolute;
+    object-position: top;
 }
 
 .jogador-bola:hover {
@@ -3112,6 +3121,486 @@ color: #FFFFFF;
     .titulo-time strong {
 
         font-size: 75px;
+    }
+
+}
+
+
+/* ==========================================
+   GACHA / DIAMANTES BRUTOS
+========================================== */
+
+.gacha {
+    width: 100%;
+    min-height: 100vh;
+    padding: 120px 6%;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(0, 107, 255, .12),
+            transparent 45%
+        ),
+        #06080e;
+
+    color: white;
+    background-image: url(Gacha-fundo.png);
+       background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 105vh;
+    
+}
+
+
+/* TÍTULO */
+
+.titulo-gacha {
+    margin-bottom: 30px;
+}
+
+.titulo-gacha span {
+    display: block;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 38px;
+
+    letter-spacing: 8px;
+
+    color: white;
+}
+
+.titulo-gacha h1 {
+    margin: 0;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 105px;
+
+    line-height: .8;
+
+    color: #006BFF;
+
+    text-shadow:
+        0 0 10px rgba(0,107,255,.8),
+        0 0 35px rgba(0,107,255,.4);
+}
+
+.titulo-gacha p {
+    margin-top: 25px;
+
+    color: #718096;
+
+    font-family: "Rajdhani", sans-serif;
+
+    letter-spacing: 2px;
+}
+
+
+/* CONTAINER PRINCIPAL */
+
+.gacha-container {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        .8fr
+        .8fr;
+
+    gap: 25px;
+
+    align-items: stretch;
+}
+
+
+/* ==========================================
+   RESULTADO
+========================================== */
+
+.resultado-gacha {
+    position: relative;
+
+    min-height: 520px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px;
+
+    box-sizing: border-box;
+
+    background: rgba(10,16,26,.95);
+
+    border: 1px solid #213149;
+
+    border-radius: 18px;
+}
+
+
+/* CARD */
+
+.card-gacha {
+    position: relative;
+
+    width: 330px;
+    height: 470px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #071426,
+            #02070d
+        );
+
+    border: 2px solid #006BFF;
+
+    box-shadow:
+        0 0 15px rgba(0,107,255,.7),
+        0 0 50px rgba(0,107,255,.3);
+}
+
+
+/* IMAGEM */
+
+.card-gacha img {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    z-index: 1;
+}
+
+
+/* GRADIENTE */
+
+.card-gacha::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            transparent 25%,
+            rgba(0,0,0,.15) 45%,
+            rgba(0,0,0,.95) 100%
+        );
+}
+
+
+/* INFORMAÇÕES DO CARD */
+
+.info-card {
+    position: absolute;
+
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 3;
+}
+
+.info-card span {
+    font-size: 12px;
+
+    color: #006BFF;
+
+    letter-spacing: 3px;
+}
+
+.info-card h2 {
+    margin: 8px 0;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 42px;
+
+    line-height: .9;
+
+    color: white;
+}
+
+.info-card p {
+    color: #9aa7b8;
+
+    font-family: "Rajdhani", sans-serif;
+}
+
+
+/* RARIDADE */
+
+.raridade-card {
+    position: absolute;
+
+    top: 25px;
+    left: 35px;
+
+    padding: 8px 15px;
+
+    background: #006BFF;
+
+    border-radius: 6px;
+
+    font-family: "Rajdhani", sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    z-index: 5;
+}
+
+
+/* ==========================================
+   SUMMON
+========================================== */
+
+.controle-gacha,
+.raridades {
+
+    padding: 35px;
+
+    background: rgba(10,16,26,.95);
+
+    border: 1px solid #213149;
+
+    border-radius: 18px;
+
+    box-sizing: border-box;
+}
+
+
+.controle-gacha > span {
+    color: #006BFF;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+
+.controle-gacha h2 {
+    margin: 8px 0 35px;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 40px;
+}
+
+
+/* DIAMANTES */
+
+.diamantes {
+    padding: 20px 0;
+
+    border-top: 1px solid #213149;
+    border-bottom: 1px solid #213149;
+}
+
+.diamantes span {
+    display: block;
+
+    font-size: 11px;
+
+    color: #718096;
+
+    letter-spacing: 2px;
+}
+
+.diamantes strong {
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 28px;
+
+    color: #59c8ff;
+}
+
+
+/* BOTÕES */
+
+.botao-roleta {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 17px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #006BFF;
+
+    color: white;
+
+    font-family: "Orbitron", sans-serif;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.botao-roleta:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 20px rgba(0,107,255,.7);
+}
+
+
+.botao-roleta.dez {
+
+    margin-top: 12px;
+
+    background: #101b29;
+
+    border: 1px solid #006BFF;
+}
+
+
+.botao-roleta small {
+
+    display: block;
+
+    margin-top: 5px;
+
+    opacity: .7;
+}
+
+
+/* ==========================================
+   RARIDADES
+========================================== */
+
+.raridades h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 30px;
+}
+
+
+.raridade {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    background: #101a27;
+
+    border: 1px solid;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+}
+
+
+.raridade.comum {
+    color: #8a96a6;
+    border-color: #8a96a6;
+}
+
+
+.raridade.raro {
+    color: #3ea7ff;
+    border-color: #3ea7ff;
+}
+
+
+.raridade.epico {
+    color: #a855f7;
+    border-color: #a855f7;
+}
+
+
+.raridade.newgen {
+    color: #ff4fa3;
+
+    border-color: #ff4fa3;
+
+    box-shadow:
+        0 0 15px rgba(255,79,163,.5);
+}
+
+
+/* ==========================================
+   RESPONSIVO
+========================================== */
+
+@media (max-width: 1100px) {
+
+    .gacha-container {
+
+        grid-template-columns:
+            1fr
+            1fr;
+    }
+
+    .resultado-gacha {
+
+        grid-column: 1 / -1;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .gacha {
+
+        padding: 90px 20px;
+    }
+
+    .titulo-gacha h1 {
+
+        font-size: 70px;
+    }
+
+    .gacha-container {
+
+        grid-template-columns: 1fr;
+    }
+
+    .resultado-gacha {
+
+        grid-column: auto;
     }
 
 }
