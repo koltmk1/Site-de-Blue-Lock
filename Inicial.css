@@ -3734,3 +3734,326 @@ color: #FFFFFF;
     }
 
 }
+
+
+/* =========================================================
+   RESPONSIVIDADE — TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    .FDP {
+        gap: 15px;
+    }
+
+    .A {
+        font-size: 19px;
+    }
+
+    .Logo {
+        width: 170px;
+        height: auto;
+    }
+
+    .TITULO {
+        width: 420px;
+        left: 5%;
+    }
+
+    .SUBTITULO {
+        left: 8%;
+        font-size: 26px;
+    }
+
+    .botao {
+        left: 10%;
+    }
+
+    .TITULO2 {
+        font-size: 75px;
+    }
+
+    .explicação {
+        max-width: 600px;
+        font-size: 16px;
+    }
+
+    .cards {
+        gap: 20px;
+    }
+
+    .card-jogador,
+    .card-jogador1 {
+        width: 240px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE — CELULAR
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* ---------- GERAL ---------- */
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+
+    /* ---------- NAVBAR ---------- */
+
+    .Inicial {
+        flex-direction: column;
+        padding: 15px 10px;
+        gap: 12px;
+    }
+
+    .Logo {
+        width: 150px;
+        height: auto;
+    }
+
+    .FDP {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        justify-content: center;
+    }
+
+    .A {
+        font-size: 17px;
+    }
+
+    .btn-nav {
+        padding: 8px 14px;
+    }
+
+
+    /* ---------- BANNER INICIAL ---------- */
+
+    .fundo {
+        height: 75vh;
+        min-height: 500px;
+        background-position: center;
+    }
+
+    .TITULO {
+        width: 80%;
+        max-width: 400px;
+        left: 10%;
+        top: 25%;
+    }
+
+    .SUBTITULO {
+        width: 80%;
+        left: 10%;
+        top: 52%;
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .botao {
+        top: 68%;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+    }
+
+    .botao:hover {
+        transform: translateX(-50%) scale(1.05);
+    }
+
+
+    /* ---------- PROJETO ---------- */
+
+    .Projeto {
+        height: auto;
+        min-height: 100vh;
+        padding: 70px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .Rokku {
+        position: static;
+        font-size: 17px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .TITULO2 {
+        position: static;
+        font-size: clamp(50px, 15vw, 75px);
+        text-align: center;
+        margin: 10px 0 25px;
+    }
+
+    .b1 {
+        font-size: inherit;
+    }
+
+    .explicação {
+        position: static;
+        width: 100%;
+        max-width: 600px;
+        font-size: 15px;
+        text-align: center;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    .conhecer {
+        position: static;
+        margin-bottom: 45px;
+    }
+
+    .Destaque {
+        position: static;
+        font-size: 23px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+
+    /* ---------- CARDS ---------- */
+
+    .cards {
+        width: 100%;
+        min-height: auto;
+        padding: 20px 10px 60px;
+
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .cartas {
+        width: 100%;
+        height: auto;
+        min-height: 170px;
+        padding: 12px;
+    }
+
+    .cartas h2 {
+        font-size: 30px;
+    }
+
+    .cartas h3 {
+        font-size: 19px;
+    }
+
+    .cartas p {
+        font-size: 12px;
+    }
+
+
+    /* ---------- JOGADORES ---------- */
+
+    .Jogadores {
+        height: auto;
+        min-height: 100vh;
+
+        padding: 80px 15px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .TITULO3 {
+        position: static;
+        font-size: clamp(45px, 12vw, 65px);
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .card-jogador,
+    .card-jogador1 {
+        width: 100%;
+        max-width: 300px;
+        height: 470px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .A {
+        font-size: 15px;
+    }
+
+    .FDP {
+        gap: 8px 12px;
+    }
+
+    .fundo {
+        min-height: 520px;
+    }
+
+    .TITULO {
+        width: 85%;
+        left: 7.5%;
+        top: 24%;
+    }
+
+    .SUBTITULO {
+        top: 51%;
+        font-size: 19px;
+    }
+
+    .botao {
+        top: 68%;
+        padding: 13px 25px;
+        font-size: 18px;
+    }
+
+    .Projeto {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .TITULO2 {
+        font-size: 48px;
+    }
+
+    .explicação {
+        font-size: 14px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: auto;
+    }
+
+    .cartas {
+        min-height: 160px;
+    }
+
+    .card-jogador,
+    .card-jogador1 {
+        max-width: 290px;
+    }
+
+    .foto-jogador,
+    .foto-jogador1 {
+        width: 230px;
+        height: 240px;
+    }
+
+}
