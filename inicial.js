@@ -15,3 +15,29 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     });
 
 });
+
+const personagens = [
+    {
+        nome: "Isagi Yoichi",
+        imagem: "Primeira fase.jpg",
+        raridade: "Raro"
+    },
+
+    {
+        nome: "Meguru Bachira",
+        imagem: "Linguinha.jpg",
+        raridade: "Raro"
+    },
+
+    {
+        nome: "Nagi Seishiro",
+        imagem: "Gênio Preguiçoso.jpg",
+        raridade: "Épico"
+    },
+
+    {
+        nome: "Hyoma Chigiri",
+        imagem: "Pantera Vermelha.jpg",
+        raridade: "Raro"
+    }
+];
