@@ -19,6 +19,7 @@ background-color: #0B0F19;
 
 }
 
+
 .FDP {
     flex: 1;
     display: flex;
@@ -165,6 +166,17 @@ font-weight: 100;
 font-style: normal;
 font-size: 18px;
 position: absolute;
+  bottom: 59%;
+    left: 3%;
+}
+
+.explicaçãoo{
+color: #FFFFFF;
+font-family: "Poppins", sans-serif;
+font-weight: 100;
+font-style: normal;
+font-size: 18px;
+position: absolute;
   bottom: 52%;
     left: 3%;
 }
@@ -207,6 +219,10 @@ font-size: 27px;
 
 .b2{
 color: #006BFF;
+}
+
+.b3{
+font-size: 20px;
 }
 
 .cards{
