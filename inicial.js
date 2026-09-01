@@ -1,103 +1,201 @@
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-
-    link.addEventListener("click", function (e) {
-
-        e.preventDefault();
-
-        const destino = document.querySelector(this.getAttribute("href"));
-
-        if (destino) {
-            destino.scrollIntoView({
-                behavior: "smooth"
-            });
-        }
-
-    });
-
-});
-
-const raridades = {
-    comum: ["Isagi", "Kunigami", "Chigiri"],
-    raro: ["Bachira", "Nagi"],
-    epico: ["Rin", "Barou"],
-    lendario: ["Shidou"],
-    newgen: ["Loki", "Hugo", "Bunny"]
-};
-
 const personagens = [
+
     {
         nome: "Isagi",
         raridade: "Comum",
-        chance: 60,
         imagem: "./img/Primeira fase.jpg"
     },
+
+    {
+        nome: "Kunigami",
+        raridade: "Comum",
+        imagem: "./img/Kunigami.jpg"
+    },
+
+    {
+        nome: "Chigiri",
+        raridade: "Comum",
+        imagem: "./img/Pantera Vermelha.jpg"
+    },
+
     {
         nome: "Bachira",
         raridade: "Raro",
-        chance: 25,
         imagem: "./img/Linguinha.jpg"
     },
+
+    {
+        nome: "Nagi",
+        raridade: "Raro",
+        imagem: "./img/Gênio Preguiçoso.jpg"
+    },
+
     {
         nome: "Rin",
         raridade: "Épico",
-        chance: 10,
         imagem: "./img/Corte de água.jpg"
     },
+
+    {
+        nome: "Barou",
+        raridade: "Épico",
+        imagem: "./img/Barou.jpg"
+    },
+
     {
         nome: "Shidou",
         raridade: "Lendário",
-        chance: 4,
         imagem: "./img/shidou.webp"
     },
+
     {
         nome: "Loki",
         raridade: "New Gen",
-        chance: 1,
-        imagem: "./img/loki pro site.jpg"
+        imagem: "./img/Loki pro site.jpeg"
+    },
+
+    {
+        nome: "Hugo",
+        raridade: "New Gen",
+        imagem: "./img/Hugo pro site.jpeg"
+    },
+
+    {
+        nome: "Bunny",
+        raridade: "New Gen",
+        imagem: "./img/Bunny pro site.jpeg"
+    },
+
+    {
+        nome: "Michael Kaiser",
+        raridade: "New Gen",
+        imagem: "./img/Kaiser pro site.jpeg"
     }
+
 ];
 
-function sortearPersonagem() {
-    let numero = Math.random() * 100;
-    let acumulado = 0;
 
-    for (let personagem of personagens) {
-        acumulado += personagem.chance;
+function sortearRaridade() {
 
-        if (numero <= acumulado) {
-            return personagem;
-        }
+    const numero = Math.random() * 100;
+
+    if (numero <= 60) {
+        return "Comum";
     }
+
+    if (numero <= 85) {
+        return "Raro";
+    }
+
+    if (numero <= 95) {
+        return "Épico";
+    }
+
+    if (numero <= 99) {
+        return "Lendário";
+    }
+
+    return "New Gen";
+}
+
+function sortearPersonagem() {
+
+    const raridadeSorteada = sortearRaridade();
+
+    const disponiveis = personagens.filter(
+        personagem => personagem.raridade === raridadeSorteada
+    );
+
+    const indice = Math.floor(
+        Math.random() * disponiveis.length
+    );
+
+    return disponiveis[indice];
+}
+
+
+function animarGacha(personagemFinal) {
+
+    const img = document.getElementById("imgPersonagem");
+
+    const personagensAnimacao = personagens.filter(
+        personagem => personagem !== personagemFinal
+    );
+
+    let quantidadeTrocas = 20;
+
+    let contador = 0;
+
+    function trocarImagem() {
+
+        if (contador >= quantidadeTrocas) {
+
+            finalizarGacha(personagemFinal);
+
+            return;
+        }
+
+        const aleatorio = Math.floor(
+            Math.random() * personagensAnimacao.length
+        );
+
+        const personagem =
+            personagensAnimacao[aleatorio];
+
+        img.src = personagem.imagem;
+
+        contador++;
+
+        let velocidade;
+
+        if (contador < 10) {
+            velocidade = 80;
+        }
+
+        else if (contador < 16) {
+            velocidade = 130;
+        }
+
+        else {
+            velocidade = 220;
+        }
+
+        setTimeout(trocarImagem, velocidade);
+    }
+
+    trocarImagem();
+}
+
+function finalizarGacha(personagem) {
+
+    const img = document.getElementById("imgPersonagem");
+
+    img.src = personagem.imagem;
+
+    document.getElementById("nomePersonagem").textContent =
+        personagem.nome;
+
+    document.getElementById("raridade").textContent =
+        personagem.raridade;
+
+    img.classList.add("resultado-final");
 }
 
 const botao = document.getElementById("girar");
 
-botao.addEventListener("click", revelar);
+botao.addEventListener("click", iniciarGacha);
 
-function revelar() {
-    const personagem = sortearPersonagem();
+function iniciarGacha() {
 
-    document.getElementById("imgPersonagem").src = personagem.imagem;
-    document.getElementById("nomePersonagem").textContent = personagem.nome;
-    document.getElementById("raridade").textContent = personagem.raridade;
-}
+    botao.disabled = true;
 
-function revelar() {
+    const personagemFinal = sortearPersonagem();
 
-    const img = document.getElementById("imgPersonagem");
-
-    img.classList.add("abrindo");
+    animarGacha(personagemFinal);
 
     setTimeout(() => {
 
-        const personagem = sortearPersonagem();
+        botao.disabled = false;
 
-        img.src = personagem.imagem;
-        document.getElementById("nomePersonagem").textContent = personagem.nome;
-        document.getElementById("raridade").textContent = personagem.raridade;
-
-        img.classList.remove("abrindo");
-
-    }, 2000);
-
+    }, 5000);
 }

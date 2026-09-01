@@ -3693,10 +3693,31 @@ color: #FFFFFF;
         0 0 15px rgba(255,79,163,.5);
 }
 
+.resultado-final {
 
-/* ==========================================
-   RESPONSIVO
-========================================== */
+    animation: revelarPersonagem 0.8s ease;
 
+}
 
+@keyframes revelarPersonagem {
+
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+        filter: brightness(3);
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+        filter: brightness(1.8);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        filter: brightness(1);
+    }
+
+}
 
