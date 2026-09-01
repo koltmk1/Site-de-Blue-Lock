@@ -3,84 +3,64 @@ const personagens = [
     {
         nome: "Isagi",
         raridade: "Comum",
-        imagem: "./img/Primeira fase.jpg"
-    },
-
-    {
-        nome: "Kunigami",
-        raridade: "Comum",
-        imagem: "./img/Kunigami.jpg"
+        imagem: "Primeira fase.jpg"
     },
 
     {
         nome: "Chigiri",
         raridade: "Comum",
-        imagem: "./img/Pantera Vermelha.jpg"
+        imagem: "Pantera Vermelha.jpg"
     },
 
     {
         nome: "Bachira",
         raridade: "Raro",
-        imagem: "./img/Linguinha.jpg"
+        imagem: "Linguinha.jpg"
     },
 
     {
         nome: "Nagi",
         raridade: "Raro",
-        imagem: "./img/Gênio Preguiçoso.jpg"
+        imagem: "Gênio Preguiçoso.jpg"
     },
 
     {
         nome: "Rin",
         raridade: "Épico",
-        imagem: "./img/Corte de água.jpg"
+        imagem: "Corte de água.jpg"
     },
 
     {
         nome: "Shidou",
         raridade: "Lendário",
-        imagem: "./img/shidou.webp"
+        imagem: "shidou.webp"
     },
 
     {
         nome: "Loki",
         raridade: "New Gen",
-        imagem: "./img/Loki pro site.jpeg"
+        imagem: "Loki pro site.jpeg"
     },
 
     {
         nome: "Hugo",
         raridade: "New Gen",
-        imagem: "./img/Hugo pro site.jpeg"
+        imagem: "Hugo pro site.jpeg"
     },
 
     {
         nome: "Bunny",
         raridade: "New Gen",
-        imagem: "./img/Bunny pro site.jpeg"
+        imagem: "Bunny pro site.jpeg"
     },
 
     {
         nome: "Michael Kaiser",
         raridade: "New Gen",
-        imagem: "./img/Kaiser pro site.jpeg"
+        imagem: "Kaiser pro site.jpeg"
     }
 
 ];
-
-let personagem; 
-
-do {
-
-    const aleatorio = Math.floor(
-        Math.random() * personagensAnimacao.length
-    );
-
-    personagem = personagensAnimacao[aleatorio];
-
-} while (personagem === ultimoPersonagem);
-
-ultimoPersonagem = personagem;
 
 
 function sortearRaridade() {

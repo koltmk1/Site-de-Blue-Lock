@@ -17,7 +17,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Oxanium:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rajdhani:wght@300;400;500;600;700&family=Teko:wght@300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="inicial.js">
+
+<script src="inicial.js" defer></script>
 </head>
 
 <body>
@@ -921,31 +922,41 @@
 
         <!-- RESULTADO -->
 
-        <div class="resultado-gacha">
+       <div class="resultado-gacha">
 
-            <div class="raridade-card">
+    <div class="raridade-card" id="raridade">
+        NEW GEN XI
+    </div>
+
+    <div class="card-gacha" id="cardGacha">
+
+        <div class="efeito-card"></div>
+
+        <img 
+            id="imgPersonagem"
+            src="Kaiser pro site.jpeg" 
+            alt="Michael Kaiser"
+        >
+
+        <div class="info-card">
+
+            <span id="raridadeTexto">
                 NEW GEN XI
-            </div>
+            </span>
 
-            <div class="card-gacha">
+            <h2 id="nomePersonagem">
+                MICHAEL<br>KAISER
+            </h2>
 
-                <div class="efeito-card"></div>
-
-                <img src="Kaiser pro site.jpeg" alt="Michael Kaiser">
-
-                <div class="info-card">
-
-                    <span>NEW GEN XI</span>
-
-                    <h2>MICHAEL<br>KAISER</h2>
-
-                    <p>FW · GERMANY</p>
-
-                </div>
-
-            </div>
+            <p id="infoPersonagem">
+                FW · GERMANY
+            </p>
 
         </div>
+
+    </div>
+
+</div>
 
 
         <!-- CONTROLES -->
