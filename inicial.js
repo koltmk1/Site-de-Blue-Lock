@@ -37,12 +37,6 @@ const personagens = [
     },
 
     {
-        nome: "Barou",
-        raridade: "Épico",
-        imagem: "./img/Barou.jpg"
-    },
-
-    {
         nome: "Shidou",
         raridade: "Lendário",
         imagem: "./img/shidou.webp"
@@ -73,6 +67,20 @@ const personagens = [
     }
 
 ];
+
+let personagem; 
+
+do {
+
+    const aleatorio = Math.floor(
+        Math.random() * personagensAnimacao.length
+    );
+
+    personagem = personagensAnimacao[aleatorio];
+
+} while (personagem === ultimoPersonagem);
+
+ultimoPersonagem = personagem;
 
 
 function sortearRaridade() {
@@ -148,17 +156,7 @@ function animarGacha(personagemFinal) {
 
         let velocidade;
 
-        if (contador < 10) {
-            velocidade = 80;
-        }
-
-        else if (contador < 16) {
-            velocidade = 130;
-        }
-
-        else {
-            velocidade = 220;
-        }
+        velocidade = 50 + (contador * 15);
 
         setTimeout(trocarImagem, velocidade);
     }
@@ -199,3 +197,13 @@ function iniciarGacha() {
 
     }, 5000);
 }
+
+img.src = personagem.imagem;
+
+document.getElementById("nomePersonagem").textContent =
+    personagem.nome;
+
+document.getElementById("raridade").textContent =
+    personagem.raridade;
+
+let ultimoPersonagem = null;
