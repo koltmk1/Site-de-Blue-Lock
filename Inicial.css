@@ -3824,3 +3824,18 @@ color: #FFFFFF;
 
 }
 
+.nome-animado {
+    animation: aparecerNome 0.3s ease;
+}
+
+@keyframes aparecerNome {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

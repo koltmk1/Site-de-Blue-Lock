@@ -116,25 +116,22 @@ function sortearDezPersonagens() {
     return resultados;
 }
 
-function criarCardsX10(resultados) {
+async function criarCardsX10(resultados) {
 
     const container =
         document.getElementById("resultadosX10");
 
     container.innerHTML = "";
 
-    resultados.forEach((personagem, index) => {
+    for (const personagem of resultados) {
 
         const card = document.createElement("div");
 
-        card.classList.add(
-            "card-resultado-x10"
-        );
+        card.classList.add("card-resultado-x10");
 
         card.innerHTML = `
-
             <img src="${personagem.imagem}" alt="${personagem.nome}">
-
+            
             <div class="info-x10">
 
                 <span class="raridade-x10">
@@ -146,36 +143,42 @@ function criarCardsX10(resultados) {
                 </h3>
 
             </div>
-
         `;
 
         container.appendChild(card);
-
-    });
+    }
 }
-
 const botao10 =
-    document.getElementById("girar10");
+    document.getElementById("girar10")
 
 botao10.addEventListener(
     "click",
     iniciarGacha10
 );
 
+
 async function iniciarGacha10() {
 
     botao10.disabled = true;
 
-    for (let i = 0; i < 10; i++) {
+    try {
 
-        const personagemFinal =
-            sortearPersonagem();
+        const resultados = sortearDezPersonagens();
 
-        await animarGacha10Vez(personagemFinal);
+        for (const personagem of resultados) {
 
+            await animarGacha10Vez(personagem);
+
+            await esperar(500);
+        }
+
+        await criarCardsX10(resultados);
+
+    } finally {
+
+        // Libera o botão novamente
+        botao10.disabled = false;
     }
-
-    botao10.disabled = false;
 }
 
 function animarGacha10Vez(personagemFinal) {
@@ -192,7 +195,7 @@ function animarGacha10Vez(personagemFinal) {
             );
 
         let contador = 0;
-        const quantidadeTrocas = 20;
+        const quantidadeTrocas = 10;
 
         function trocarImagem() {
 
@@ -214,12 +217,21 @@ function animarGacha10Vez(personagemFinal) {
             const personagem =
                 personagensAnimacao[aleatorio];
 
+            // TROCA A IMAGEM
             img.src = personagem.imagem;
+
+            // TROCA O NOME
+            document.getElementById("nomePersonagem").textContent =
+                personagem.nome;
+
+            // TROCA A RARIDADE
+            document.getElementById("raridadeTexto").textContent =
+                personagem.raridade;
 
             contador++;
 
             const velocidade =
-                50 + (contador * 15);
+                20 + (contador * 6);
 
             setTimeout(
                 trocarImagem,
@@ -228,10 +240,8 @@ function animarGacha10Vez(personagemFinal) {
         }
 
         trocarImagem();
-        
 
     });
-    
 }
 
 function esperar(ms) {
@@ -282,6 +292,8 @@ function animarGacha(personagemFinal) {
     trocarImagem();
 }
 
+
+
 function finalizarGacha(personagem) {
 
     const img = document.getElementById("imgPersonagem");
@@ -292,6 +304,9 @@ function finalizarGacha(personagem) {
         personagem.nome;
 
     document.getElementById("raridade").textContent =
+        personagem.raridade;
+
+    document.getElementById("raridadeTexto").textContent =
         personagem.raridade;
 
     img.classList.remove("resultado-final");
@@ -320,17 +335,3 @@ function iniciarGacha() {
     }, 5000);
 }
 
-function iniciarGacha() {
-
-    botao.disabled = true;
-
-    const personagemFinal = sortearPersonagem();
-
-    animarGacha(personagemFinal);
-
-    setTimeout(() => {
-
-        botao.disabled = false;
-
-    }, 5000);
-}
