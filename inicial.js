@@ -26,7 +26,7 @@ const personagens = [
 
     {
         nome: "Rin",
-        raridade: "Lendário",
+        raridade: "Épico",
         imagem: "Corte de água.jpg"
     },
 
@@ -166,60 +166,78 @@ async function iniciarGacha10() {
 
     botao10.disabled = true;
 
-    const resultados =
-        sortearDezPersonagens();
+    for (let i = 0; i < 10; i++) {
 
-    await animarGacha10(resultados);
+        const personagemFinal =
+            sortearPersonagem();
+
+        await animarGacha10Vez(personagemFinal);
+
+    }
 
     botao10.disabled = false;
 }
 
-async function animarGacha10(resultados) {
+function animarGacha10Vez(personagemFinal) {
 
-    const container =
-        document.getElementById("resultadosX10");
+    return new Promise(resolve => {
 
-    container.innerHTML = "";
+        const img =
+            document.getElementById("imgPersonagem");
 
-    for (let i = 0; i < 10; i++) {
+        const personagensAnimacao =
+            personagens.filter(
+                personagem =>
+                    personagem !== personagemFinal
+            );
 
-        const personagem =
-            resultados[i];
+        let contador = 0;
+        const quantidadeTrocas = 20;
 
-        const card =
-            document.createElement("div");
+        function trocarImagem() {
 
-        card.classList.add(
-            "card-resultado-x10"
-        );
+            if (contador >= quantidadeTrocas) {
 
-        card.innerHTML = `
+                finalizarGacha(personagemFinal);
 
-            <img src="${personagem.imagem}">
+                resolve();
 
-            <div class="info-x10">
+                return;
+            }
 
-                <span>
-                    ${personagem.raridade}
-                </span>
+            const aleatorio =
+                Math.floor(
+                    Math.random() *
+                    personagensAnimacao.length
+                );
 
-                <h3>
-                    ${personagem.nome}
-                </h3>
+            const personagem =
+                personagensAnimacao[aleatorio];
 
-            </div>
+            img.src = personagem.imagem;
 
-        `;
+            contador++;
 
-        container.appendChild(card);
+            const velocidade =
+                50 + (contador * 15);
 
+            setTimeout(
+                trocarImagem,
+                velocidade
+            );
+        }
+
+        trocarImagem();
         
-        await esperar(350);
 
-        card.classList.add("revelar-x10");
+    });
+    
+}
 
-    }
-
+function esperar(ms) {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
 }
 
 function animarGacha(personagemFinal) {
