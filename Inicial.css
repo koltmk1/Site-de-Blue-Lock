@@ -3561,12 +3561,7 @@ color: #FFFFFF;
 
 /* DIAMANTES */
 
-.diamantes {
-    padding: 20px 0;
 
-    border-top: 1px solid #213149;
-    border-bottom: 1px solid #213149;
-}
 
 .diamantes span {
     display: block;
@@ -3947,4 +3942,33 @@ color: #FFFFFF;
     text-shadow:
         0 0 8px #00cfff,
         0 0 15px #00cfff;
+}
+
+.diamantes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 18px;
+
+    background: #0b1120;
+    border: 1px solid #247cff;
+    border-radius: 10px;
+
+    color: white;
+
+    box-shadow: 0 0 15px rgba(36, 124, 255, 0.2);
+}
+
+.saldo-diamantes span {
+    font-size: 24px;
+}
+
+.saldo-diamantes strong {
+    color: #55bfff;
+    font-size: 22px;
+}
+
+.saldo-diamantes small {
+    color: #8b9bb5;
 }

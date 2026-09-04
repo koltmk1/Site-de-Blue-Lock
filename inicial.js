@@ -491,4 +491,76 @@ function animarNomesX1(personagemFinal) {
 
 }
 
+let estadoJogo = {
+    diamantes: 500,
+    vitorias: 0,
+    derrotas: 0,
+    empates: 0,
+    partidas: 0
+};
+
+function salvarEstado() {
+    localStorage.setItem(
+        "estadoJogo",
+        JSON.stringify(estadoJogo)
+    );
+}
+
+function carregarEstado() {
+    const dadosSalvos = localStorage.getItem("estadoJogo");
+
+    if (dadosSalvos) {
+        estadoJogo = JSON.parse(dadosSalvos);
+    }
+
+    atualizarDiamantes();
+}
+
+carregarEstado();
+
+function atualizarDiamantes() {
+    const elemento = document.getElementById("quantidadeDiamantes");
+
+    if (elemento) {
+        elemento.textContent = estadoJogo.diamantes;
+    }
+}
+
+function ganharDiamantes(valor) {
+    estadoJogo.diamantes += valor;
+
+    salvarEstado();
+    atualizarDiamantes();
+}
+
+function gastarDiamantes(valor) {
+    if (estadoJogo.diamantes < valor) {
+        alert("Você não possui diamantes suficientes!");
+        return false;
+    }
+
+    estadoJogo.diamantes -= valor;
+
+    salvarEstado();
+    atualizarDiamantes();
+
+    return true;
+}
+
+const CUSTO_ROLAGEM = 100;
+
+function iniciarGacha() {
+    if (!gastarDiamantes(CUSTO_ROLAGEM)) {
+        return;
+    }
+}
+
+const CUSTO_ROLAGEM_10 = 900;
+
+function iniciarGacha10() {
+    if (!gastarDiamantes(CUSTO_ROLAGEM_10)) {
+        return;
+    }
+
+}
 
