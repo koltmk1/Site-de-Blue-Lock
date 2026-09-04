@@ -224,26 +224,12 @@ function sortearRaridade() {
 
     const numero = Math.random() * 100;
 
-    if (numero <= 30) {
-        return "Comum";
-    }
+    if (numero <= 30) return "Comum";
+    if (numero <= 55) return "Raro";
+    if (numero <= 70) return "épico";
+    if (numero <= 80) return "Lendário";
 
-    if (numero <= 55) {
-        return "Raro";
-    }
-
-    if (numero <= 65) {
-        return "épico";
-    }
-
-    if (numero <= 70) {
-        return "Lendário";
-    }
-
-     if (numero <= 80) {
-        return "New Gen";
-    }
-    
+    return "New Gen";
 }
 
 function sortearPersonagem() {
@@ -320,20 +306,39 @@ botao10.addEventListener(
 
 async function iniciarGacha10() {
 
+    if (botao10.disabled) {
+        return;
+    }
+
     botao10.disabled = true;
 
     try {
 
         const resultados = sortearDezPersonagens();
 
+        console.log("Resultados X10:", resultados);
+
         for (const personagem of resultados) {
+
+            if (!personagem) {
+                throw new Error("Um dos personagens sorteados é inválido.");
+            }
 
             await animarGacha10Vez(personagem);
 
             await esperar(500);
         }
 
-        await criarCardsX10(resultados);
+        criarCardsX10(resultados);
+
+    } catch (erro) {
+
+        console.error("ERRO NO GACHA X10:", erro);
+
+        alert(
+            "Ocorreu um erro durante a rolagem X10. " +
+            "Abra o console (F12) para ver o erro."
+        );
 
     } finally {
 
@@ -341,67 +346,44 @@ async function iniciarGacha10() {
     }
 }
 
-function animarGacha10Vez(personagemFinal) {
+async function animarGacha10Vez(personagemFinal) {
 
-    return new Promise(resolve => {
+    if (!personagemFinal) {
+        throw new Error("Personagem inválido no Gacha X10.");
+    }
 
-        const img =
-            document.getElementById("imgPersonagem");
+    const img = document.getElementById("imgPersonagem");
+    const nome = document.getElementById("nomePersonagem");
+    const raridade = document.getElementById("raridadeTexto");
 
-        const personagensAnimacao =
-            personagens.filter(
-                personagem =>
-                    personagem !== personagemFinal
-            );
+    if (!img || !nome || !raridade) {
+        throw new Error("Elementos do Gacha não encontrados no HTML.");
+    }
 
-        let contador = 0;
-        const quantidadeTrocas = 10;
+    const personagensAnimacao = personagens.filter(
+        personagem => personagem !== personagemFinal
+    );
 
-        function trocarImagem() {
+    const quantidadeTrocas = 10;
 
-            if (contador >= quantidadeTrocas) {
+    for (let contador = 0; contador < quantidadeTrocas; contador++) {
 
-                finalizarGacha(personagemFinal);
+        const aleatorio = Math.floor(
+            Math.random() * personagensAnimacao.length
+        );
 
-                resolve();
+        const personagem = personagensAnimacao[aleatorio];
 
-                return;
-            }
+        img.src = personagem.imagem;
+        nome.textContent = personagem.nome;
+        raridade.textContent = personagem.raridade;
 
-            const aleatorio =
-                Math.floor(
-                    Math.random() *
-                    personagensAnimacao.length
-                );
+        const velocidade = 20 + ((contador + 1) * 10);
 
-            const personagem =
-                personagensAnimacao[aleatorio];
+        await esperar(velocidade);
+    }
 
-            // TROCA A IMAGEM
-            img.src = personagem.imagem;
-
-            // TROCA O NOME
-            document.getElementById("nomePersonagem").textContent =
-                personagem.nome;
-
-            // TROCA A RARIDADE
-            document.getElementById("raridadeTexto").textContent =
-                personagem.raridade;
-
-            contador++;
-
-            const velocidade =
-                20 + (contador * 6);
-
-            setTimeout(
-                trocarImagem,
-                velocidade
-            );
-        }
-
-        trocarImagem();
-
-    });
+    finalizarGacha(personagemFinal);
 }
 
 function esperar(ms) {
