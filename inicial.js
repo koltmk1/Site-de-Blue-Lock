@@ -1,40 +1,138 @@
 const personagens = [
 
     {
-        nome: "Isagi",
+        nome: "Isagi Yoichi",
         raridade: "Comum",
         imagem: "Gacha-Isagi.jpg"
     },
 
     {
-        nome: "Chigiri",
+        nome: "Hyoma Chigiri",
         raridade: "Comum",
         imagem: "Gacha-Chigiri.jpg"
     },
 
+     {
+        nome: "Gagamaru",
+        raridade: "Comum",
+        imagem: "Gacha-Gagamaru.jpg"
+    },
+
     {
-        nome: "Bachira",
+        nome: "Jingo Raichi",
+        raridade: "Comum",
+        imagem: "Gacha-Raichi.jpg"
+    },
+
+       {
+        nome: "Igarachi",
+        raridade: "Comum",
+        imagem: "Gacha-Igarachi.jpg"
+    },
+
+      {
+        nome: "Wataru Kuon",
+        raridade: "Comum",
+        imagem: "Gacha-Kuon.jpg"
+    },
+
+    // Personagens comuns
+
+    {
+        nome: "Meguru Bachira",
         raridade: "Raro",
         imagem: "Gacha-Bachira.jpg"
     },
 
-    {
-        nome: "Nagi",
+      {
+        nome: "Mikage Reo",
         raridade: "Raro",
+        imagem: "Gacha-Reo.jpg"
+    },
+
+      {
+        nome: "Yo Hiori",
+        raridade: "Raro",
+        imagem: "Gacha-Hiori.jpg"
+    },
+
+      {
+        nome: "Aoshi Tokimitsu",
+        raridade: "Raro",
+        imagem: "Gacha-Tokimitsu.jpg"
+    },
+
+      {
+        nome: "Zantetsu Tsurugi",
+        raridade: "Raro",
+        imagem: "Gacha-Zantetsu.jpg"
+    },
+
+    // Personagens Raros
+     {
+        nome: "Seishiro Nagi",
+        raridade: "épico",
         imagem: "Gacha-Nagi.jpg"
     },
 
-    {
-        nome: "Rin",
-        raridade: "Épico",
-        imagem: "Corte de água.jpg"
+     {
+        nome: "Barou Shoei",
+        raridade: "épico",
+        imagem: "Gacha-Barou.jpg"
     },
+
+    {
+        nome: "Kunigami Rensuke",
+        raridade: "épico",
+        imagem: "Gacha-Kunigami.jpg"
+    },
+
+     {
+        nome: "Jumbei Aryu",
+        raridade: "épico",
+        imagem: "Gacha-Aryu.jpg"
+    },
+
+     {
+        nome: "Eita Otoya",
+        raridade: "épico",
+        imagem: "Gacha-Otoya.jpg"
+    },
+
+     {
+        nome: "Kenyu Yukimiya",
+        raridade: "épico",
+        imagem: "Gacha-Yukimiya.jpg"
+    },
+
+    
+     {
+        nome: "Jin Kiyora",
+        raridade: "épico",
+        imagem: "Gacha-Kiyora.jpg"
+    },
+
+   // Personagens Épicos
 
     {
         nome: "Shidou",
         raridade: "Lendário",
         imagem: "shidou.webp"
     },
+
+     {
+        nome: "Itoshi Rin",
+        raridade: "Lendário",
+        imagem: "Corte de água.jpg"
+    },
+
+     {
+        nome: "Oliver Aiku",
+        raridade: "Lendário",
+        imagem: "Gacha-Aiku.jpg"
+    },
+
+    // Personagens Lendários
 
     {
         nome: "Loki",
@@ -59,6 +157,8 @@ const personagens = [
         raridade: "New Gen",
         imagem: "Kaiser pro site.jpeg"
     }
+
+    // Personagens da Nova geração
 
 ];
 
@@ -490,15 +590,6 @@ function animarNomesX1(personagemFinal) {
     });
 
 }
-
-let estadoJogo = {
-    diamantes: 500,
-    vitorias: 0,
-    derrotas: 0,
-    empates: 0,
-    partidas: 0
-};
-
 function salvarEstado() {
     localStorage.setItem(
         "estadoJogo",
@@ -526,41 +617,6 @@ function atualizarDiamantes() {
     }
 }
 
-function ganharDiamantes(valor) {
-    estadoJogo.diamantes += valor;
 
-    salvarEstado();
-    atualizarDiamantes();
-}
 
-function gastarDiamantes(valor) {
-    if (estadoJogo.diamantes < valor) {
-        alert("Você não possui diamantes suficientes!");
-        return false;
-    }
-
-    estadoJogo.diamantes -= valor;
-
-    salvarEstado();
-    atualizarDiamantes();
-
-    return true;
-}
-
-const CUSTO_ROLAGEM = 100;
-
-function iniciarGacha() {
-    if (!gastarDiamantes(CUSTO_ROLAGEM)) {
-        return;
-    }
-}
-
-const CUSTO_ROLAGEM_10 = 900;
-
-function iniciarGacha10() {
-    if (!gastarDiamantes(CUSTO_ROLAGEM_10)) {
-        return;
-    }
-
-}
 
