@@ -126,11 +126,7 @@ const personagens = [
         imagem: "Corte de água.jpg"
     },
 
-     {
-        nome: "Oliver Aiku",
-        raridade: "Lendário",
-        imagem: "Gacha-Aiku.jpg"
-    },
+    
 
     // Personagens Lendários
 
@@ -167,23 +163,26 @@ function sortearRaridade() {
 
     const numero = Math.random() * 100;
 
-    if (numero <= 60) {
+    if (numero <= 30) {
         return "Comum";
     }
 
-    if (numero <= 85) {
+    if (numero <= 55) {
         return "Raro";
     }
 
-    if (numero <= 95) {
+    if (numero <= 65) {
         return "Épico";
     }
 
-    if (numero <= 99) {
+    if (numero <= 70) {
         return "Lendário";
     }
 
-    return "New Gen";
+     if (numero <= 70) {
+        return "New Gen";
+    }
+    
 }
 
 function sortearPersonagem() {
