@@ -253,6 +253,7 @@ function sortearPersonagem() {
     const disponiveis = personagens.filter(
         personagem => personagem.raridade === raridadeSorteada
     );
+    
 
     const indice = Math.floor(
         Math.random() * disponiveis.length
@@ -336,7 +337,6 @@ async function iniciarGacha10() {
 
     } finally {
 
-        // Libera o botão novamente
         botao10.disabled = false;
     }
 }
@@ -410,47 +410,6 @@ function esperar(ms) {
     });
 }
 
-function animarGacha(personagemFinal) {
-
-    const img = document.getElementById("imgPersonagem");
-
-    const personagensAnimacao = personagens.filter(
-        personagem => personagem !== personagemFinal
-    );
-
-    let quantidadeTrocas = 20;
-
-    let contador = 0;
-
-    function trocarImagem() {
-
-        if (contador >= quantidadeTrocas) {
-
-            finalizarGacha(personagemFinal);
-
-            return;
-        }
-
-        const aleatorio = Math.floor(
-            Math.random() * personagensAnimacao.length
-        );
-
-        const personagem =
-            personagensAnimacao[aleatorio];
-
-        img.src = personagem.imagem;
-
-        contador++;
-
-        let velocidade;
-
-        velocidade = 50 + (contador * 15);
-
-        setTimeout(trocarImagem, velocidade);
-    }
-
-    trocarImagem();
-}
 
 async function animarGacha(personagemFinal) {
 
@@ -463,10 +422,6 @@ async function animarGacha(personagemFinal) {
     let quantidadeTrocas = 20;
     let contador = 0;
 
-    /*
-    Inicia a animação dos nomes ao mesmo tempo
-    que a animação das imagens.
-    */
 
     animarNomesX1(personagemFinal);
 
@@ -488,10 +443,10 @@ async function animarGacha(personagemFinal) {
 
         img.src = personagem.imagem;
 
-        /*
-        Continua atualizando o nome e a raridade
-        durante a animação.
-        */
+        personagens.forEach(personagem => {
+        const img = new Image();
+        img.src = personagem.imagem;
+        });
 
         document.getElementById("nomePersonagem").textContent =
             personagem.nome;
@@ -501,7 +456,7 @@ async function animarGacha(personagemFinal) {
 
         contador++;
 
-        const velocidade = 50 + (contador * 15);
+        const velocidade = 10 + (contador * 2);
 
         setTimeout(trocarImagem, velocidade);
 
@@ -539,19 +494,18 @@ const botao = document.getElementById("girar");
 
 botao.addEventListener("click", iniciarGacha);
 
-function iniciarGacha() {
+async function iniciarGacha() {
 
     botao.disabled = true;
 
-    const personagemFinal = sortearPersonagem();
+    try {
+        const personagemFinal = sortearPersonagem();
 
-    animarGacha(personagemFinal);
+        await animarGacha(personagemFinal);
 
-    setTimeout(() => {
-
+    } finally {
         botao.disabled = false;
-
-    }, 5000);
+    }
 }
 
 function animarNomesX1(personagemFinal) {
@@ -591,16 +545,11 @@ function animarNomesX1(personagemFinal) {
 
         let contador = 0;
 
-        const quantidadeTrocas = 20;
+        const quantidadeTrocas = 5;
 
         function passarNome() {
 
             if (contador >= quantidadeTrocas) {
-
-                /*
-                Mostra o nome final exatamente
-                no centro da faixa.
-                */
 
                 const nomeFinal = nomes[nomes.length - 1];
 
