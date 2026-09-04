@@ -292,11 +292,70 @@ function animarGacha(personagemFinal) {
     trocarImagem();
 }
 
+async function animarGacha(personagemFinal) {
+
+    const img = document.getElementById("imgPersonagem");
+
+    const personagensAnimacao = personagens.filter(
+        personagem => personagem !== personagemFinal
+    );
+
+    let quantidadeTrocas = 20;
+    let contador = 0;
+
+    /*
+    Inicia a animação dos nomes ao mesmo tempo
+    que a animação das imagens.
+    */
+
+    animarNomesX1(personagemFinal);
+
+    function trocarImagem() {
+
+        if (contador >= quantidadeTrocas) {
+
+            finalizarGacha(personagemFinal);
+
+            return;
+        }
+
+        const aleatorio = Math.floor(
+            Math.random() * personagensAnimacao.length
+        );
+
+        const personagem =
+            personagensAnimacao[aleatorio];
+
+        img.src = personagem.imagem;
+
+        /*
+        Continua atualizando o nome e a raridade
+        durante a animação.
+        */
+
+        document.getElementById("nomePersonagem").textContent =
+            personagem.nome;
+
+        document.getElementById("raridadeTexto").textContent =
+            personagem.raridade;
+
+        contador++;
+
+        const velocidade = 50 + (contador * 15);
+
+        setTimeout(trocarImagem, velocidade);
+
+    }
+
+    trocarImagem();
+
+}
+
 
 
 function finalizarGacha(personagem) {
 
-    const img = document.getElementById("imgPersonagem");
+   const img = document.getElementById("imgPersonagem");
 
     img.src = personagem.imagem;
 
@@ -334,4 +393,102 @@ function iniciarGacha() {
 
     }, 5000);
 }
+
+function animarNomesX1(personagemFinal) {
+
+    return new Promise(resolve => {
+
+        const faixa = document.getElementById("nomesPassando");
+
+        faixa.innerHTML = "";
+
+        /*
+        Cria vários nomes para dar a impressão
+        de que eles estão passando infinitamente.
+        */
+
+        const nomesAnimacao = [];
+
+        for (let i = 0; i < 5; i++) {
+            nomesAnimacao.push(...personagens);
+        }
+
+        nomesAnimacao.push(personagemFinal);
+
+        nomesAnimacao.forEach((personagem, indice) => {
+
+            const nome = document.createElement("span");
+
+            nome.classList.add("nome-roleta");
+
+            nome.textContent = personagem.nome;
+
+            faixa.appendChild(nome);
+
+        });
+
+        const nomes = faixa.querySelectorAll(".nome-roleta");
+
+        let contador = 0;
+
+        const quantidadeTrocas = 20;
+
+        function passarNome() {
+
+            if (contador >= quantidadeTrocas) {
+
+                /*
+                Mostra o nome final exatamente
+                no centro da faixa.
+                */
+
+                const nomeFinal = nomes[nomes.length - 1];
+
+                nomeFinal.classList.add("ativo");
+
+                const deslocamento =
+                    nomeFinal.offsetLeft -
+                    (faixa.parentElement.offsetWidth / 2) +
+                    (nomeFinal.offsetWidth / 2);
+
+                faixa.style.transform =
+                    `translateX(-${deslocamento}px)`;
+
+                resolve();
+
+                return;
+            }
+
+            const nomeAtual = nomes[contador];
+
+            const larguraFaixa =
+                faixa.parentElement.offsetWidth;
+
+            const deslocamento =
+                nomeAtual.offsetLeft -
+                (larguraFaixa / 2) +
+                (nomeAtual.offsetWidth / 2);
+
+            faixa.style.transform =
+                `translateX(-${deslocamento}px)`;
+
+            nomes.forEach(nome => {
+                nome.classList.remove("ativo");
+            });
+
+            nomeAtual.classList.add("ativo");
+
+            contador++;
+
+            const velocidade = 50 + contador * 15;
+
+            setTimeout(passarNome, velocidade);
+        }
+
+        passarNome();
+
+    });
+
+}
+
 
