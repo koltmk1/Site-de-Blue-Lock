@@ -13,7 +13,7 @@ const personagens = [
     },
 
      {
-        nome: "Gagamaru",
+        nome: "Gin Gagamaru",
         raridade: "Comum",
         imagem: "Gacha-Gagamaru.jpg"
     },
@@ -34,6 +34,18 @@ const personagens = [
         nome: "Wataru Kuon",
         raridade: "Comum",
         imagem: "Gacha-Kuon.jpg"
+    },
+
+    {
+        nome: "Nijiro Nanase",
+        raridade: "Comum",
+        imagem: "Gacha-Nanase.jpg"
+    },
+
+     {
+        nome: "Asahi Naruhaya",
+        raridade: "Comum",
+        imagem: "Gacha-Naruhaya.jpg"
     },
 
     // Personagens comuns
@@ -66,6 +78,12 @@ const personagens = [
         nome: "Zantetsu Tsurugi",
         raridade: "Raro",
         imagem: "Gacha-Zantetsu.jpg"
+    },
+
+        {
+        nome: "Ikki Niko",
+        raridade: "Raro",
+        imagem: "Gacha-Niko.jpg"
     },
 
     // Personagens Raros
@@ -111,21 +129,52 @@ const personagens = [
         raridade: "épico",
         imagem: "Gacha-Kiyora.jpg"
     },
+    
+      {
+        nome: "Kurona Ranze",
+        raridade: "épico",
+        imagem: "Gacha-Kurona.jpg"
+    },
+    
+
 
    // Personagens Épicos
 
     {
-        nome: "Shidou",
+        nome: "Ryusei Shidou",
         raridade: "Lendário",
-        imagem: "shidou.webp"
+        imagem: "Gacha-Shidou.jpg"
     },
 
      {
         nome: "Itoshi Rin",
         raridade: "Lendário",
-        imagem: "Corte de água.jpg"
+        imagem: "Gacha-Rin.jpg"
     },
 
+        {
+        nome: "Oliver Aiku",
+        raridade: "Lendário",
+        imagem: "Gacha-Aiku.jpg"
+    },
+
+       {
+        nome: "Tabito Karasu",
+        raridade: "Lendário",
+        imagem: "Gacha-Karasu.jpg"
+    },
+
+    {
+        nome: "Charles Chevalier",
+        raridade: "Lendário",
+        imagem: "Gacha-Charles.jpg"
+    },
+
+    {
+        nome: "Agi",
+        raridade: "Lendário",
+        imagem: "Gacha-Agi.jpg"
+    },
     
 
     // Personagens Lendários
@@ -152,6 +201,18 @@ const personagens = [
         nome: "Michael Kaiser",
         raridade: "New Gen",
         imagem: "Kaiser pro site.jpeg"
+    },
+
+    {
+        nome: "Itoshi Sae",
+        raridade: "New Gen",
+        imagem: "Gacha-Sae.jpg"
+    },
+
+    {
+        nome: "Dom Lorenzo",
+        raridade: "New Gen",
+        imagem: "Gacha-Lorenzo.jpg"
     }
 
     // Personagens da Nova geração
@@ -172,14 +233,14 @@ function sortearRaridade() {
     }
 
     if (numero <= 65) {
-        return "Épico";
+        return "épico";
     }
 
     if (numero <= 70) {
         return "Lendário";
     }
 
-     if (numero <= 70) {
+     if (numero <= 80) {
         return "New Gen";
     }
     
