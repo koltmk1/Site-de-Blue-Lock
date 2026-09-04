@@ -574,89 +574,46 @@
 
         <aside class="lista-jogadores">
 
-            <div class="lista-header">
-                <span>BLUE LOCK</span>
-                <h2>JOGADORES</h2>
-            </div>
+    <div class="lista-header">
+        <span>BLUE LOCK</span>
+        <h2>JOGADORES</h2>
+    </div>
 
-            <button class="player-option">
-                <div class="player-icon azul">
-                    01
-                </div>
+    <div class="busca-jogador">
+        <input
+            type="text"
+            id="buscarJogador"
+            placeholder="BUSCAR JOGADOR..."
+        >
+    </div>
 
-                <div class="player-info">
-                    <strong>ISAGI YOICHI</strong>
-                    <small>FW · BL 299</small>
-                </div>
+    <div class="filtros-posicao">
 
-                <span class="player-add">+</span>
-            </button>
+        <button class="filtro-posicao ativo" data-posicao="TODOS">
+            TODOS
+        </button>
 
+        <button class="filtro-posicao" data-posicao="ST">
+            ST
+        </button>
 
-            <button class="player-option">
+        <button class="filtro-posicao" data-posicao="MF">
+            MF
+        </button>
 
-                <div class="player-icon azul">
-                    02
-                </div>
+        <button class="filtro-posicao" data-posicao="DF">
+            DF
+        </button>
 
-                <div class="player-info">
-                    <strong>MICHAEL KAISER</strong>
-                    <small>FW · NEW GEN XI</small>
-                </div>
+        <button class="filtro-posicao" data-posicao="GK">
+            GK
+        </button>
 
-                <span class="player-add">+</span>
+    </div>
 
-            </button>
+    <div id="listaJogadores"></div>
 
-
-            <button class="player-option">
-
-                <div class="player-icon rosa">
-                    03
-                </div>
-
-                <div class="player-info">
-                    <strong>ITOSHI SAE</strong>
-                    <small>MF · NEW GEN XI</small>
-                </div>
-
-                <span class="player-add">+</span>
-
-            </button>
-
-
-            <button class="player-option">
-
-                <div class="player-icon roxo">
-                    04
-                </div>
-
-                <div class="player-info">
-                    <strong>ITOSHI RIN</strong>
-                    <small>ST · BL 01</small>
-                </div>
-
-                <span class="player-add">+</span>
-
-            </button>
-
-
-            <button class="player-option">
-
-                <div class="player-icon amarelo">
-                    05
-                </div>
-
-                <div class="player-info">
-                    <strong>BACHIRA</strong>
-                    <small>MF · BL 290</small>
-                </div>
-
-                <span class="player-add">+</span>
-
-            </button>
-
-        </aside>
+</aside>
 
 
         <!-- =========================
@@ -674,24 +631,44 @@
 
                 <!-- ATAQUE -->
 
-                <div class="posicao jogador-1">
-                    <div class="jogador-bola">
-                        ISAGI
-                        <img src="Primeira fase.jpg" alt="">
-                    </div>
+                <<div class="posicao jogador-1" data-posicao="ST">
 
-                    <span>ST</span>
-                </div>
+        <button class="jogador-bola" data-slot="1">
+
+        <img
+            src="Primeira fase.jpg"
+            alt="Isagi Yoichi"
+        >
+
+        <span class="nome-jogador-campo">
+            ISAGI
+        </span>
+
+        </button>
+
+        <span>ST</span>
+
+        </div>
 
 
-                <div class="posicao jogador-2">
-                    <div class="jogador-bola">
-                        RIN
-                        <img src="Corte de água.jpg" alt="">
-                    </div>
+         <div class="posicao jogador-2" data-posicao="LW">
 
-                    <span>LW</span>
-                </div>
+        <button class="jogador-bola" data-slot="2">
+
+        <img
+            src="Corte de água.jpg"
+            alt="Itoshi Rin"
+        >
+
+        <span class="nome-jogador-campo">
+            RIN
+        </span>
+
+        </button>
+
+        <span>LW</span>
+
+        </div>
 
 
                 <div class="posicao jogador-3">
@@ -901,6 +878,72 @@
         </aside>
 
     </div>
+
+        <div class="modal-jogadores1" id="modalJogadores">
+
+    <div class="modal-conteudo1">
+
+        <button
+            class="fechar-modal"
+            id="fecharModal"
+        >
+            ×
+        </button>
+
+        <div class="modal-header1">
+
+            <span>SELECT PLAYER</span>
+
+            <h2 id="tituloModal">
+                ESCOLHER JOGADOR
+            </h2>
+
+            <p id="posicaoSelecionada">
+                POSIÇÃO: ST
+            </p>
+
+        </div>
+
+        <div
+            class="melhores-posicoes1"
+            id="melhoresPosicoes1"
+        >
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card-selecao1">
+
+    <img src="Gacha-Isagi.jpg">
+
+    <div class="dados-selecao1">
+
+        <span>ST · FW</span>
+
+        <h3>ISAGI YOICHI</h3>
+
+        <div class="overall">
+            94
+            <small>OVR</small>
+        </div>
+
+        <div class="qualidades1">
+
+            <span>VISÃO</span>
+            <span>FINALIZAÇÃO</span>
+            <span>POSICIONAMENTO</span>
+
+        </div>
+
+        <button>
+            ESCOLHER
+        </button>
+
+    </div>
+
+</div>
 
 </section>
 

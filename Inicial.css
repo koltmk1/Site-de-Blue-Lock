@@ -3196,6 +3196,265 @@ color: #FFFFFF;
     border-radius: 10px;
 }
 
+/* =========================================
+   MODAL DE ESCOLHA DE JOGADOR
+========================================= */
+
+.modal-jogadores1 {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 9999;
+
+}
+
+.modal-jogadores1.aberto {
+
+    display: flex;
+
+}
+
+
+.modal-conteudo1 {
+
+    position: relative;
+
+    width: min(900px, 90%);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #11151d,
+            #080a0f
+        );
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    box-shadow:
+        0 0 50px rgba(0,0,0,0.7);
+
+}
+
+
+.fechar-modal1 {
+
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    font-size: 32px;
+
+    cursor: pointer;
+
+}
+
+
+.modal-header1 span {
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    color: #777;
+
+}
+
+
+.modal-header1 h2 {
+
+    margin: 5px 0;
+
+    font-size: 32px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.modal-header1 p {
+
+    color: #aaa;
+
+    font-size: 13px;
+
+}
+
+.melhores-posicoes {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 18px;
+
+    margin-top: 30px;
+
+}
+
+
+.card-selecao {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #151922;
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    transition: 0.25s;
+
+}
+
+
+.card-selecao:hover {
+
+    transform: translateY(-5px);
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.5);
+
+}
+
+
+.card-selecao > img {
+
+    width: 100%;
+
+    height: 230px;
+
+    object-fit: cover;
+
+}
+
+
+.dados-selecao {
+
+    padding: 18px;
+
+}
+
+
+.dados-selecao > span {
+
+    font-size: 11px;
+
+    color: #888;
+
+    letter-spacing: 2px;
+
+}
+
+
+.dados-selecao h3 {
+
+    margin: 8px 0;
+
+    font-size: 18px;
+
+}
+
+
+.overall {
+
+    font-size: 38px;
+
+    font-weight: bold;
+
+}
+
+
+.overall small {
+
+    font-size: 11px;
+
+    color: #777;
+
+}
+
+
+.qualidades {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    margin: 12px 0;
+
+}
+
+
+.qualidades span {
+
+    padding: 4px 7px;
+
+    font-size: 9px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+}
+
+
+.card-selecao button {
+
+    width: 100%;
+
+    padding: 10px;
+
+    background: transparent;
+
+    border: 1px solid rgba(255,255,255,0.3);
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.card-selecao button:hover {
+
+    background: white;
+
+    color: black;
+
+}
+
+
+
+
+
 .salvar-time {
 
     width: 100%;

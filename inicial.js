@@ -175,6 +175,12 @@ const personagens = [
         raridade: "Lendário",
         imagem: "Gacha-Agi.jpg"
     },
+
+     {
+        nome: "Alexis Ness",
+        raridade: "Lendário",
+        imagem: "Gacha-Ness.jpg"
+    },
     
 
     // Personagens Lendários
@@ -611,3 +617,96 @@ function atualizarDiamantes() {
 
 
 
+const jogadoresTime = [
+
+    {
+        id: "isagi",
+
+        nome: "Isagi Yoichi",
+
+        imagem: "Gacha-Isagi.jpg",
+
+        posicoes: ["ST", "CAM"],
+
+        overall: 94,
+
+        qualidades: [
+            "Visão de jogo",
+            "Posicionamento",
+            "Finalização"
+        ]
+    },
+
+    {
+        id: "rin",
+
+        nome: "Itoshi Rin",
+
+        imagem: "Corte de água.jpg",
+
+        posicoes: ["ST", "LW"],
+
+        overall: 97,
+
+        qualidades: [
+            "Finalização",
+            "Velocidade",
+            "Controle"
+        ]
+    },
+
+    {
+        id: "kaiser",
+
+        nome: "Michael Kaiser",
+
+        imagem: "Kaiser pro site.jpeg",
+
+        posicoes: ["ST", "RW"],
+
+        overall: 96,
+
+        qualidades: [
+            "Finalização",
+            "Precisão",
+            "Movimentação"
+        ]
+    },
+
+    {
+        id: "sae",
+
+        nome: "Itoshi Sae",
+
+        imagem: "Sae pro site.jpeg",
+
+        posicoes: ["CAM", "CM"],
+
+        overall: 95,
+
+        qualidades: [
+            "Passe",
+            "Visão",
+            "Controle"
+        ]
+    },
+
+    {
+        id: "bachira",
+
+        nome: "Meguru Bachira",
+
+        imagem: "Linguinha.jpg",
+
+        posicoes: ["RW", "CAM", "CM"],
+
+        overall: 91,
+
+        qualidades: [
+            "Drible",
+            "Criatividade",
+            "Velocidade"
+        ]
+    }
+
+];
