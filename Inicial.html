@@ -554,7 +554,791 @@
 
 <hr>
 
+<section class="Monte-Time" id="monte-seu-time">
 
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header class="time-header">
+
+        <div class="time-header-tag">
+            BLUE LOCK PROJECT
+        </div>
+
+        <h1>
+            CREATE YOUR
+            <strong>TEAM</strong>
+        </h1>
+
+        <p>
+            MONTE SUA ESCALAÇÃO E CRIE O TIME MAIS EGOÍSTA DO BLUE LOCK.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         CONSTRUTOR DO TIME
+    ========================== -->
+
+    <div class="team-builder">
+
+
+        <!-- =====================
+             PAINEL DE JOGADORES
+        ====================== -->
+
+        <aside class="players-panel">
+
+            <div class="panel-header">
+
+                <span>BLUE LOCK</span>
+
+                <h2>JOGADORES</h2>
+
+            </div>
+
+
+            <!-- BUSCA -->
+
+            <div class="players-search">
+
+                <input
+                    type="text"
+                    id="buscarJogador"
+                    placeholder="BUSCAR JOGADOR..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- FILTROS -->
+
+            <div class="players-filters">
+
+                <button
+                    class="player-filter active"
+                    data-filter="todos"
+                    type="button">
+                    TODOS
+                </button>
+
+                <button
+                    class="player-filter"
+                    data-filter="ataque"
+                    type="button">
+                    ATAQUE
+                </button>
+
+                <button
+                    class="player-filter"
+                    data-filter="meio"
+                    type="button">
+                    MEIO
+                </button>
+
+                <button
+                    class="player-filter"
+                    data-filter="defesa"
+                    type="button">
+                    DEFESA
+                </button>
+
+                <button
+                    class="player-filter"
+                    data-filter="goleiro"
+                    type="button">
+                    GK
+                </button>
+
+            </div>
+
+
+            <!--
+                O JAVASCRIPT VAI COLOCAR
+                OS JOGADORES AQUI
+            -->
+
+            <div
+                class="players-list"
+                id="listaJogadores">
+
+                <!--
+                EXEMPLO:
+
+                <article class="player-card">
+
+                    <img src="..." alt="Isagi Yoichi">
+
+                    <div class="player-card-info">
+
+                        <span>ST · FW</span>
+
+                        <h3>ISAGI YOICHI</h3>
+
+                        <strong>94</strong>
+
+                    </div>
+
+                </article>
+                -->
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =====================
+             CAMPO
+        ====================== -->
+
+        <main class="field-panel">
+
+            <div class="field">
+
+
+                <!-- LINHAS DO CAMPO -->
+
+                <div class="field-line field-center-line"></div>
+
+                <div class="field-center-circle"></div>
+
+                <div class="field-center-point"></div>
+
+
+                <!-- ÁREA ESQUERDA -->
+
+                <div class="field-box field-box-left"></div>
+
+
+                <!-- ÁREA DIREITA -->
+
+                <div class="field-box field-box-right"></div>
+
+
+
+                <!-- =================
+                     ATAQUE
+                ================== -->
+
+
+                <div
+                    class="field-position position-st"
+                    data-position="ST"
+                    data-slot="1">
+
+                    <button
+                        class="field-player"
+                        type="button"
+                        data-slot="1">
+
+                        <span class="field-player-empty">
+                            +
+                        </span>
+
+                        <img
+                            src=""
+                            alt=""
+                            class="field-player-image"
+                        >
+
+                        <span class="field-player-name">
+                            ST
+                        </span>
+
+                    </button>
+
+                    <span class="position-label">
+                        ST
+                    </span>
+
+                </div>
+
+
+
+                <div
+                    class="field-position position-lw"
+                    data-position="LW"
+                    data-slot="2">
+
+                    <button
+                        class="field-player"
+                        type="button"
+                        data-slot="2">
+
+                        <span class="field-player-empty">
+                            +
+                        </span>
+
+                        <img
+                            src=""
+                            alt=""
+                            class="field-player-image"
+                        >
+
+                        <span class="field-player-name">
+                            LW
+                        </span>
+
+                    </button>
+
+                    <span class="position-label">
+                        LW
+                    </span>
+
+                </div>
+
+
+
+                <div
+                    class="field-position position-rw"
+                    data-position="RW"
+                    data-slot="3">
+
+                    <button
+                        class="field-player"
+                        type="button"
+                        data-slot="3">
+
+                        <span class="field-player-empty">
+                            +
+                        </span>
+
+                        <img
+                            src=""
+                            alt=""
+                            class="field-player-image"
+                        >
+
+                        <span class="field-player-name">
+                            RW
+                        </span>
+
+                    </button>
+
+                    <span class="position-label">
+                        RW
+                    </span>
+
+                </div>
+
+
+
+                <!-- =================
+                     MEIO
+                ================== -->
+
+
+                <div
+                    class="field-position position-cam"
+                    data-position="CAM"
+                    data-slot="4">
+
+                    <button
+                        class="field-player"
+                        type="button"
+                        data-slot="4">
+
+                        <span class="field-player-empty">
+                            +
+                        </span>
+
+                        <img
+                            src=""
+                            alt=""
+                            class="field-player-image"
+                        >
+
+                        <span class="field-player-name">
+                            CAM
+                        </span>
+
+                    </button>
+
+                    <span class="position-label">
+                        CAM
+                    </span>
+
+                </div>
+
+
+
+                <div
+                    class="field-position position-cm-left"
+                    data-position="CM"
+                    data-slot="5">
+
+                    <button
+                        class="field-player"
+                        type="button"
+                        data-slot="5">
+
+                        <span class="field-player-empty">
+                            +
+                        </span>
+
+                        <img
+                            src=""
+                            alt=""
+                            class="field-player-image"
+                        >
+
+                        <span class="field-player-name">
+                            CM
+                        </span>
+
+                    </button>
+
+                    <span class="position-label">
+                        CM
+                    </span>
+
+                </div>
+
+
+
+                <div
+                    class="field-position position-cm-right"
+                    data-position="CM"
+                    data-slot="6">
+
+                    <button
+                        class="field-player"
+                        type="button"
+                        data-slot="6">
+
+                        <span class="field-player-empty">
+                            +
+                        </span>
+
+                        <img
+                            src=""
+                            alt=""
+                            class="field-player-image"
+                        >
+
+                        <span class="field-player-name">
+                            CM
+                        </span>
+
+                    </button>
+
+                    <span class="position-label">
+                        CM
+                    </span>
+
+                </div>
+
+
+
+                <!-- =================
+                     DEFESA
+                ================== -->
+
+
+                <div
+                    class="field-position position-lb"
+                    data-position="LB"
+                    data-slot="7">
+
+                    <button
+                        class="field-player"
+                        type="button"
+                        data-slot="7">
+
+                        <span class="field-player-empty">
+                            +
+                        </span>
+
+                        <img
+                            src=""
+                            alt=""
+                            class="field-player-image"
+                        >
+
+                        <span class="field-player-name">
+                            LB
+                        </span>
+
+                    </button>
+
+                    <span class="position-label">
+                        LB
+                    </span>
+
+                </div>
+
+
+
+                <div
+                    class="field-position position-cb-left"
+                    data-position="CB"
+                    data-slot="8">
+
+                    <button
+                        class="field-player"
+                        type="button"
+                        data-slot="8">
+
+                        <span class="field-player-empty">
+                            +
+                        </span>
+
+                        <img
+                            src=""
+                            alt=""
+                            class="field-player-image"
+                        >
+
+                        <span class="field-player-name">
+                            CB
+                        </span>
+
+                    </button>
+
+                    <span class="position-label">
+                        CB
+                    </span>
+
+                </div>
+
+
+
+                <div
+                    class="field-position position-cb-right"
+                    data-position="CB"
+                    data-slot="9">
+
+                    <button
+                        class="field-player"
+                        type="button"
+                        data-slot="9">
+
+                        <span class="field-player-empty">
+                            +
+                        </span>
+
+                        <img
+                            src=""
+                            alt=""
+                            class="field-player-image"
+                        >
+
+                        <span class="field-player-name">
+                            CB
+                        </span>
+
+                    </button>
+
+                    <span class="position-label">
+                        CB
+                    </span>
+
+                </div>
+
+
+
+                <div
+                    class="field-position position-rb"
+                    data-position="RB"
+                    data-slot="10">
+
+                    <button
+                        class="field-player"
+                        type="button"
+                        data-slot="10">
+
+                        <span class="field-player-empty">
+                            +
+                        </span>
+
+                        <img
+                            src=""
+                            alt=""
+                            class="field-player-image"
+                        >
+
+                        <span class="field-player-name">
+                            RB
+                        </span>
+
+                    </button>
+
+                    <span class="position-label">
+                        RB
+                    </span>
+
+                </div>
+
+
+
+                <!-- =================
+                     GOLEIRO
+                ================== -->
+
+
+                <div
+                    class="field-position position-gk"
+                    data-position="GK"
+                    data-slot="11">
+
+                    <button
+                        class="field-player"
+                        type="button"
+                        data-slot="11">
+
+                        <span class="field-player-empty">
+                            +
+                        </span>
+
+                        <img
+                            src=""
+                            alt=""
+                            class="field-player-image"
+                        >
+
+                        <span class="field-player-name">
+                            GK
+                        </span>
+
+                    </button>
+
+                    <span class="position-label">
+                        GK
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </main>
+
+
+
+        <!-- =====================
+             INFORMAÇÕES DO TIME
+        ====================== -->
+
+        <aside class="team-info-panel">
+
+
+            <div class="team-info-header">
+
+                <span>SUA ESCALAÇÃO</span>
+
+                <h2>
+                    BLUE LOCK XI
+                </h2>
+
+            </div>
+
+
+
+            <!-- FORMAÇÃO -->
+
+            <div class="team-info-row">
+
+                <span>FORMAÇÃO</span>
+
+                <strong id="formacaoTime">
+                    4 - 3 - 3
+                </strong>
+
+            </div>
+
+
+
+            <!-- CAPITÃO -->
+
+            <div class="team-info-row">
+
+                <span>CAPITÃO</span>
+
+                <strong id="capitaoTime">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <!-- OVERALL -->
+
+            <div class="team-rating">
+
+                <span>
+                    RATING DO TIME
+                </span>
+
+                <strong id="overallTime">
+                    0
+                </strong>
+
+                <small id="nivelTime">
+                    MONTE SEU TIME
+                </small>
+
+            </div>
+
+
+
+            <!-- ATRIBUTOS -->
+
+            <div class="team-attributes">
+
+
+                <div class="team-attribute">
+
+                    <div>
+
+                        <span>ATAQUE</span>
+
+                        <strong id="ataqueTime">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div class="attribute-bar">
+
+                        <i
+                            id="barraAtaque"
+                            style="width: 0%;">
+                        </i>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="team-attribute">
+
+                    <div>
+
+                        <span>TÉCNICA</span>
+
+                        <strong id="tecnicaTime">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div class="attribute-bar">
+
+                        <i
+                            id="barraTecnica"
+                            style="width: 0%;">
+                        </i>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="team-attribute">
+
+                    <div>
+
+                        <span>VELOCIDADE</span>
+
+                        <strong id="velocidadeTime">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div class="attribute-bar">
+
+                        <i
+                            id="barraVelocidade"
+                            style="width: 0%;">
+                        </i>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="team-attribute">
+
+                    <div>
+
+                        <span>VISÃO</span>
+
+                        <strong id="visaoTime">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div class="attribute-bar">
+
+                        <i
+                            id="barraVisao"
+                            style="width: 0%;">
+                        </i>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- JOGADOR DESTAQUE -->
+
+            <div class="team-highlight">
+
+                <span>JOGADOR EM DESTAQUE</span>
+
+                <strong id="jogadorDestaque">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <!-- SALVAR -->
+
+            <button
+                class="save-team"
+                id="salvarTime"
+                type="button">
+
+                SALVAR TIME
+                <span>→</span>
+
+            </button>
+
+
+            <!-- LIMPAR -->
+
+            <button
+                class="clear-team"
+                id="limparTime"
+                type="button">
+
+                LIMPAR ESCALAÇÃO
+
+            </button>
+
+
+        </aside>
+
+
+    </div>
+
+</section>
 
 <hr>
 
