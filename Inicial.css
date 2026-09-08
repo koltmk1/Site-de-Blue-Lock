@@ -2659,1290 +2659,913 @@ color: #FFFFFF;
     transform: translateY(-2px);
 }
 
-
-/* =========================================================
+/* =====================================================
    MONTE SEU TIME
-   ========================================================= */
+   Todas as classes possuem o prefixo mt-
+===================================================== */
 
-#monte-seu-time {
+.mt-section {
     position: relative;
-
     width: 100%;
     min-height: 100vh;
-
-    padding: 100px 5%;
-
-    background:
-        radial-gradient(
-            circle at 50% 40%,
-            rgba(0, 102, 255, 0.08),
-            transparent 45%
-        ),
-        #05080d;
-
+    padding: 80px 5%;
+    background: #0B0F19;
     color: #ffffff;
-
     overflow: hidden;
 }
 
 
-/* =========================================================
+/* =========================
    CABEÇALHO
-   ========================================================= */
+========================= */
 
-#monte-seu-time .team-header {
+.mt-header {
     text-align: center;
-
-    margin-bottom: 55px;
+    margin-bottom: 45px;
 }
 
-
-#monte-seu-time .team-header-tag {
-    display: inline-block;
-
+.mt-header-tag {
+    color: #007BFF;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
     margin-bottom: 12px;
-
-    font-size: 11px;
-    font-weight: 600;
-
-    letter-spacing: 5px;
-
-    color: #6f7a8a;
 }
 
-
-#monte-seu-time .team-header h1 {
+.mt-header h1 {
     margin: 0;
-
-    font-size: clamp(42px, 6vw, 82px);
-
+    font-size: clamp(35px, 5vw, 70px);
     font-weight: 300;
-
-    line-height: 0.9;
-
     letter-spacing: 4px;
+    line-height: 1;
 }
 
-
-#monte-seu-time .team-header h1 strong {
+.mt-header h1 strong {
     display: block;
-
-    margin-top: 8px;
-
+    color: #007BFF;
     font-weight: 900;
-
-    letter-spacing: -2px;
-
-    color: #0878ff;
 }
 
-
-#monte-seu-time .team-header p {
-    max-width: 650px;
-
-    margin: 25px auto 0;
-
-    font-size: 11px;
-
-    line-height: 1.8;
-
+.mt-header p {
+    margin-top: 20px;
+    color: #8d96a8;
+    font-size: 13px;
     letter-spacing: 2px;
-
-    color: #697383;
 }
 
 
-/* =========================================================
-   ESTRUTURA PRINCIPAL
-   ========================================================= */
+/* =========================
+   CONSTRUTOR
+========================= */
 
-#monte-seu-time .team-builder {
+.mt-builder {
     display: grid;
-
-    grid-template-columns:
-        minmax(230px, 280px)
-        minmax(450px, 1fr)
-        minmax(230px, 280px);
-
+    grid-template-columns: 280px minmax(400px, 1fr) 280px;
     gap: 25px;
-
+    align-items: stretch;
     max-width: 1500px;
-
     margin: 0 auto;
 }
 
 
-/* =========================================================
-   PAINÉIS
-   ========================================================= */
-
-#monte-seu-time .players-panel,
-#monte-seu-time .team-info-panel {
-
-    min-width: 0;
-
-    background: rgba(10, 15, 23, 0.95);
-
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.35);
-}
-
-
-/* =========================================================
+/* =========================
    PAINEL DE JOGADORES
-   ========================================================= */
+========================= */
 
-#monte-seu-time .players-panel {
+.mt-players-panel,
+.mt-info-panel {
+    background: #101827;
+    border: 1px solid rgba(0, 123, 255, 0.25);
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.mt-panel-header,
+.mt-info-header {
+    margin-bottom: 25px;
+}
+
+.mt-panel-header span,
+.mt-info-header span {
+    display: block;
+    color: #007BFF;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.mt-panel-header h2,
+.mt-info-header h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   BUSCA
+========================= */
+
+.mt-players-search input {
+    width: 100%;
+    padding: 13px 15px;
+    background: #0B1120;
+    border: 1px solid #26354d;
+    border-radius: 6px;
+    outline: none;
+    color: #ffffff;
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.mt-players-search input:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.15);
+}
+
+
+/* =========================
+   FILTROS
+========================= */
+
+.mt-players-filters {
     display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 18px 0;
+}
 
+.mt-player-filter {
+    padding: 8px 10px;
+    background: transparent;
+    border: 1px solid #26354d;
+    border-radius: 4px;
+    color: #8d96a8;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.mt-player-filter:hover,
+.mt-player-filter.mt-active {
+    background: #007BFF;
+    border-color: #007BFF;
+    color: #ffffff;
+}
+
+
+/* =========================
+   LISTA DE JOGADORES
+========================= */
+
+.mt-players-list {
+    display: flex;
     flex-direction: column;
+    gap: 10px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
 
-    min-height: 720px;
+.mt-player-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: #0B1120;
+    border: 1px solid #26354d;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.mt-player-card:hover {
+    border-color: #007BFF;
+    transform: translateX(4px);
+}
+
+.mt-player-card img {
+    width: 48px;
+    height: 58px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.mt-player-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mt-player-card-info span {
+    color: #007BFF;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.mt-player-card-info h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 11px;
+}
+
+.mt-player-card-info strong {
+    color: #8d96a8;
+    font-size: 12px;
 }
 
 
-#monte-seu-time .panel-header {
-    padding: 25px;
+/* =========================
+   CAMPO
+========================= */
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+.mt-field-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+}
+
+.mt-field {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    aspect-ratio: 1.45;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 123, 255, 0.04) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            rgba(0, 123, 255, 0.04) 1px,
+            transparent 1px
+        ),
+        #101827;
+    background-size: 35px 35px;
+    border: 2px solid #26354d;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 
-#monte-seu-time .panel-header span {
+/* =========================
+   LINHAS DO CAMPO
+========================= */
+
+.mt-field-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.mt-field-center-line {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    transform: translateX(-50%);
+}
+
+.mt-field-center-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mt-field-center-point {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: #ffffff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mt-field-box {
+    position: absolute;
+    top: 25%;
+    bottom: 25%;
+    width: 15%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mt-field-box-left {
+    left: 0;
+    border-left: none;
+}
+
+.mt-field-box-right {
+    right: 0;
+    border-right: none;
+}
+
+
+/* =========================
+   POSIÇÕES
+========================= */
+
+.mt-field-position {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    transform: translate(-50%, -50%);
+}
+
+.mt-position-st {
+    top: 17%;
+    left: 50%;
+}
+
+.mt-position-lw {
+    top: 30%;
+    left: 20%;
+}
+
+.mt-position-rw {
+    top: 30%;
+    left: 80%;
+}
+
+.mt-position-cam {
+    top: 45%;
+    left: 50%;
+}
+
+.mt-position-cm-left {
+    top: 55%;
+    left: 30%;
+}
+
+.mt-position-cm-right {
+    top: 55%;
+    left: 70%;
+}
+
+.mt-position-lb {
+    top: 72%;
+    left: 15%;
+}
+
+.mt-position-cb-left {
+    top: 75%;
+    left: 38%;
+}
+
+.mt-position-cb-right {
+    top: 75%;
+    left: 62%;
+}
+
+.mt-position-rb {
+    top: 72%;
+    left: 85%;
+}
+
+.mt-position-gk {
+    top: 90%;
+    left: 50%;
+}
+
+
+/* =========================
+   JOGADORES NO CAMPO
+========================= */
+
+.mt-field-player {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 52px;
+    height: 52px;
+    background: #0B1120;
+    border: 2px solid #007BFF;
+    border-radius: 50%;
+    color: #ffffff;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.mt-field-player:hover {
+    background: #007BFF;
+    transform: scale(1.08);
+}
+
+.mt-field-player-empty {
+    font-size: 25px;
+    color: #007BFF;
+}
+
+.mt-field-player-image {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mt-field-player-name {
+    position: absolute;
+    bottom: -22px;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.mt-position-label {
+    color: #8d96a8;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   INFORMAÇÕES DO TIME
+========================= */
+
+.mt-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #26354d;
+}
+
+.mt-info-row span {
+    color: #8d96a8;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.mt-info-row strong {
+    color: #ffffff;
+    font-size: 13px;
+}
+
+
+/* =========================
+   RATING
+========================= */
+
+.mt-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: #0B1120;
+    border: 1px solid #26354d;
+    border-radius: 8px;
+}
+
+.mt-rating span {
+    color: #8d96a8;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.mt-rating strong {
+    margin: 8px 0;
+    color: #007BFF;
+    font-size: 55px;
+    line-height: 1;
+}
+
+.mt-rating small {
+    color: #8d96a8;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   ATRIBUTOS
+========================= */
+
+.mt-attributes {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.mt-attribute {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mt-attribute > div:first-child {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mt-attribute span {
+    color: #8d96a8;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.mt-attribute strong {
+    color: #ffffff;
+    font-size: 11px;
+}
+
+.mt-attribute-bar {
+    width: 100%;
+    height: 5px;
+    background: #26354d;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.mt-attribute-bar i {
+    display: block;
+    height: 100%;
+    background: #007BFF;
+    border-radius: inherit;
+    transition: width 0.4s ease;
+}
+
+
+/* =========================
+   DESTAQUE
+========================= */
+
+.mt-highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 25px;
+    padding: 15px;
+    background: #0B1120;
+    border-left: 3px solid #007BFF;
+}
+
+.mt-highlight span {
+    color: #8d96a8;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.mt-highlight strong {
+    color: #ffffff;
+    font-size: 13px;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.mt-save-team,
+.mt-clear-team {
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.mt-save-team {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    padding: 14px;
+    background: #007BFF;
+    border: 1px solid #007BFF;
+    color: #ffffff;
+}
+
+.mt-save-team:hover {
+    background: #00CFFF;
+    border-color: #00CFFF;
+}
+
+.mt-clear-team {
+    margin-top: 10px;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #26354d;
+    color: #8d96a8;
+    font-size: 10px;
+}
+
+.mt-clear-team:hover {
+    border-color: #007BFF;
+    color: #ffffff;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 1100px) {
+    .mt-builder {
+        grid-template-columns: 240px minmax(350px, 1fr);
+    }
+
+    .mt-info-panel {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .mt-section {
+        padding: 50px 15px;
+    }
+
+    .mt-builder {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mt-field-panel {
+        order: 1;
+    }
+
+    .mt-players-panel {
+        order: 2;
+    }
+
+    .mt-info-panel {
+        order: 3;
+    }
+
+    .mt-field {
+        width: 100%;
+    }
+
+    .mt-players-list {
+        max-height: 350px;
+    }
+}
+
+
+
+
+
+/* ==========================================
+   GACHA / DIAMANTES BRUTOS
+========================================== */
+
+.gacha {
+    width: 100%;
+    min-height: 100vh;
+    padding: 120px 6%;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(0, 107, 255, .12),
+            transparent 45%
+        ),
+        #06080e;
+
+    color: white;
+    background-image: url(Gacha-fundo.png);
+       background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 105vh;
+    
+}
+
+
+/* TÍTULO */
+
+.titulo-gacha {
+    margin-bottom: 30px;
+}
+
+.titulo-gacha span {
     display: block;
 
-    margin-bottom: 6px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 38px;
 
-    font-size: 9px;
+    letter-spacing: 8px;
 
-    letter-spacing: 4px;
-
-    color: #0878ff;
+    color: white;
 }
 
-
-#monte-seu-time .panel-header h2 {
+.titulo-gacha h1 {
     margin: 0;
 
-    font-size: 22px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 105px;
+
+    line-height: .8;
+
+    color: #006BFF;
+
+    text-shadow:
+        0 0 10px rgba(0,107,255,.8),
+        0 0 35px rgba(0,107,255,.4);
+}
+
+.titulo-gacha p {
+    margin-top: 25px;
+
+    color: #718096;
+
+    font-family: "Rajdhani", sans-serif;
 
     letter-spacing: 2px;
 }
 
 
-/* =========================================================
-   BUSCA
-   ========================================================= */
+/* CONTAINER PRINCIPAL */
 
-#monte-seu-time .players-search {
-    padding: 18px 20px 10px;
-}
-
-
-#monte-seu-time .players-search input {
+.gacha-container {
     width: 100%;
+    max-width: 1400px;
 
-    box-sizing: border-box;
+    margin: auto;
 
-    padding: 13px 14px;
+    display: grid;
 
-    background: #080c13;
+    grid-template-columns:
+        1.5fr
+        .8fr
+        .8fr;
 
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 25px;
 
-    outline: none;
-
-    color: #ffffff;
-
-    font-family: inherit;
-
-    font-size: 10px;
-
-    letter-spacing: 1px;
-
-    transition: 0.25s;
+    align-items: stretch;
 }
 
 
-#monte-seu-time .players-search input::placeholder {
-    color: #555f6d;
-}
-
-
-#monte-seu-time .players-search input:focus {
-    border-color: #0878ff;
-
-    box-shadow:
-        0 0 15px rgba(8, 120, 255, 0.15);
-}
-
-
-/* =========================================================
-   FILTROS
-   ========================================================= */
-
-#monte-seu-time .players-filters {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 6px;
-
-    padding: 10px 20px 18px;
-}
-
-
-#monte-seu-time .player-filter {
-    padding: 7px 9px;
-
-    background: transparent;
-
-    border: 1px solid rgba(255, 255, 255, 0.1);
-
-    color: #707b89;
-
-    font-family: inherit;
-
-    font-size: 8px;
-
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-
-#monte-seu-time .player-filter:hover,
-#monte-seu-time .player-filter.active {
-    background: #0878ff;
-
-    border-color: #0878ff;
-
-    color: #ffffff;
-}
-
-
-/* =========================================================
-   LISTA DE JOGADORES
-   ========================================================= */
-
-#monte-seu-time .players-list {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-
-    padding: 0 15px 20px;
-
-    overflow-y: auto;
-}
-
-
-#monte-seu-time .players-list::-webkit-scrollbar {
-    width: 4px;
-}
-
-
-#monte-seu-time .players-list::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-
-#monte-seu-time .players-list::-webkit-scrollbar-thumb {
-    background: #0878ff;
-}
-
-
-/* =========================================================
-   CARD DO JOGADOR
-   ========================================================= */
-
-#monte-seu-time .player-card {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    width: 100%;
-
-    padding: 9px;
-
-    box-sizing: border-box;
-
-    background: #0c1119;
-
-    border: 1px solid rgba(255, 255, 255, 0.06);
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s,
-        border-color 0.2s,
-        background 0.2s;
-}
-
-
-#monte-seu-time .player-card:hover {
-
-    transform: translateX(4px);
-
-    background: #111925;
-
-    border-color: rgba(8, 120, 255, 0.55);
-}
-
-
-#monte-seu-time .player-card img {
-
-    width: 48px;
-
-    height: 58px;
-
-    flex-shrink: 0;
-
-    object-fit: cover;
-}
-
-
-#monte-seu-time .player-card-info {
-
-    min-width: 0;
-
-    flex: 1;
-}
-
-
-#monte-seu-time .player-card-info span {
-
-    display: block;
-
-    margin-bottom: 4px;
-
-    font-size: 8px;
-
-    letter-spacing: 1px;
-
-    color: #657181;
-}
-
-
-#monte-seu-time .player-card-info h3 {
-
-    margin: 0;
-
-    overflow: hidden;
-
-    white-space: nowrap;
-
-    text-overflow: ellipsis;
-
-    font-size: 11px;
-
-    letter-spacing: 0.5px;
-}
-
-
-#monte-seu-time .player-card-overall {
-
-    font-size: 21px;
-
-    font-weight: 900;
-
-    color: #ffffff;
-}
-
-
-#monte-seu-time .player-card-overall small {
-
-    display: block;
-
-    margin-top: -3px;
-
-    font-size: 7px;
-
-    font-weight: 400;
-
-    letter-spacing: 1px;
-
-    color: #596474;
-}
-
-
-/* =========================================================
-   CAMPO
-   ========================================================= */
-
-#monte-seu-time .field-panel {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-width: 0;
-
-    min-height: 720px;
-
-    padding: 25px;
-
-    background: #080d14;
-
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-
-#monte-seu-time .field {
-
+/* ==========================================
+   RESULTADO
+========================================== */
+
+.resultado-gacha {
     position: relative;
 
-    width: min(100%, 650px);
+    min-height: 520px;
 
-    aspect-ratio: 0.68;
+    display: flex;
 
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
 
-    background:
-        repeating-linear-gradient(
-            0deg,
-            rgba(255, 255, 255, 0.015) 0px,
-            rgba(255, 255, 255, 0.015) 2px,
-            transparent 2px,
-            transparent 70px
-        ),
-        #071b13;
+    padding: 35px;
 
-    border: 2px solid rgba(255, 255, 255, 0.55);
+    box-sizing: border-box;
 
-    box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.45);
+    background: rgba(10,16,26,.95);
 
+    border: 1px solid #213149;
+
+    border-radius: 18px;
 }
 
 
-/* =========================================================
-   LINHAS DO CAMPO
-   ========================================================= */
+/* CARD */
 
-#monte-seu-time .field::before {
+.card-gacha {
+    position: relative;
 
+    width: 330px;
+    height: 470px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #071426,
+            #02070d
+        );
+
+    border: 2px solid #006BFF;
+
+    box-shadow:
+        0 0 15px rgba(0,107,255,.7),
+        0 0 50px rgba(0,107,255,.3);
+}
+
+
+/* IMAGEM */
+
+.card-gacha img {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    z-index: 1;
+}
+
+
+/* GRADIENTE */
+
+.card-gacha::after {
     content: "";
 
     position: absolute;
 
-    inset: 8% 8%;
+    inset: 0;
 
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    z-index: 2;
 
-    pointer-events: none;
+    background:
+        linear-gradient(
+            transparent 25%,
+            rgba(0,0,0,.15) 45%,
+            rgba(0,0,0,.95) 100%
+        );
 }
 
 
-#monte-seu-time .field-center-line {
+/* INFORMAÇÕES DO CARD */
 
+.info-card {
     position: absolute;
 
-    top: 50%;
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
 
-    left: 8%;
+    z-index: 3;
+}
 
-    right: 8%;
+.info-card span {
+    font-size: 12px;
 
-    height: 1px;
+    color: #006BFF;
 
-    background: rgba(255, 255, 255, 0.5);
+    letter-spacing: 3px;
+}
+
+.info-card h2 {
+    margin: 8px 0;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 42px;
+
+    line-height: .9;
+
+    color: white;
+}
+
+.info-card p {
+    color: #9aa7b8;
+
+    font-family: "Rajdhani", sans-serif;
 }
 
 
-#monte-seu-time .field-center-circle {
+/* RARIDADE */
 
+.raridade-card {
     position: absolute;
 
-    top: 50%;
+    top: 25px;
+    left: 35px;
 
-    left: 50%;
+    padding: 8px 15px;
 
-    width: 18%;
+    background: #006BFF;
 
-    aspect-ratio: 1;
+    border-radius: 6px;
 
-    transform: translate(-50%, -50%);
+    font-family: "Rajdhani", sans-serif;
 
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    font-size: 12px;
 
-    border-radius: 50%;
-}
-
-
-#monte-seu-time .field-center-point {
-
-    position: absolute;
-
-    top: 50%;
-
-    left: 50%;
-
-    width: 5px;
-
-    height: 5px;
-
-    transform: translate(-50%, -50%);
-
-    background: #ffffff;
-
-    border-radius: 50%;
-}
-
-
-/* =========================================================
-   ÁREAS DO CAMPO
-   ========================================================= */
-
-#monte-seu-time .field-box {
-
-    position: absolute;
-
-    left: 27%;
-
-    width: 46%;
-
-    height: 14%;
-
-    border: 1px solid rgba(255, 255, 255, 0.45);
-}
-
-
-#monte-seu-time .field-box-left {
-    top: 8%;
-}
-
-
-#monte-seu-time .field-box-right {
-    bottom: 8%;
-}
-
-
-/* =========================================================
-   POSIÇÕES
-   ========================================================= */
-
-#monte-seu-time .field-position {
-
-    position: absolute;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 5px;
-
-    transform: translate(-50%, -50%);
+    letter-spacing: 2px;
 
     z-index: 5;
 }
-
-
-/* =========================================================
-   BOLA / JOGADOR
-   ========================================================= */
-
-#monte-seu-time .field-player {
-
-    position: relative;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    width: 62px;
-
-    height: 62px;
-
-    padding: 0;
-
-    overflow: hidden;
-
-    background: rgba(5, 10, 17, 0.9);
-
-    border: 2px solid rgba(255, 255, 255, 0.55);
-
-    border-radius: 50%;
-
-    color: #ffffff;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.25s,
-        border-color 0.25s,
-        box-shadow 0.25s;
-}
-
-
-#monte-seu-time .field-player:hover {
-
-    transform: scale(1.1);
-
-    border-color: #0878ff;
-
-    box-shadow:
-        0 0 25px rgba(8, 120, 255, 0.45);
-}
-
-
-#monte-seu-time .field-player-image {
-
-    display: none;
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-}
-
-
-#monte-seu-time .field-player.has-player .field-player-image {
-
-    display: block;
-}
-
-
-#monte-seu-time .field-player.has-player .field-player-empty {
-
-    display: none;
-}
-
-
-#monte-seu-time .field-player-empty {
-
-    font-size: 27px;
-
-    font-weight: 300;
-
-    color: #596575;
-}
-
-
-#monte-seu-time .field-player-name {
-
-    position: absolute;
-
-    bottom: 4px;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    max-width: 90%;
-
-    overflow: hidden;
-
-    white-space: nowrap;
-
-    text-overflow: ellipsis;
-
-    font-size: 7px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.5px;
-
-    text-shadow:
-        0 1px 4px #000;
-}
-
-
-#monte-seu-time .position-label {
-
-    padding: 3px 7px;
-
-    background: rgba(0, 0, 0, 0.75);
-
-    font-size: 8px;
-
-    font-weight: 700;
-
-    letter-spacing: 1px;
-
-    color: #ffffff;
-}
-
-
-/* =========================================================
-   POSIÇÕES NO CAMPO
-   ========================================================= */
-
-/* ATAQUE */
-
-#monte-seu-time .position-st {
-    top: 23%;
-    left: 50%;
-}
-
-#monte-seu-time .position-lw {
-    top: 31%;
-    left: 25%;
-}
-
-#monte-seu-time .position-rw {
-    top: 31%;
-    left: 75%;
-}
-
-
-/* MEIO */
-
-#monte-seu-time .position-cam {
-    top: 43%;
-    left: 50%;
-}
-
-#monte-seu-time .position-cm-left {
-    top: 51%;
-    left: 31%;
-}
-
-#monte-seu-time .position-cm-right {
-    top: 51%;
-    left: 69%;
-}
-
-
-/* DEFESA */
-
-#monte-seu-time .position-lb {
-    top: 68%;
-    left: 15%;
-}
-
-#monte-seu-time .position-cb-left {
-    top: 68%;
-    left: 39%;
-}
-
-#monte-seu-time .position-cb-right {
-    top: 68%;
-    left: 61%;
-}
-
-#monte-seu-time .position-rb {
-    top: 68%;
-    left: 85%;
-}
-
-
-/* GOLEIRO */
-
-#monte-seu-time .position-gk {
-    top: 86%;
-    left: 50%;
-}
-
-
-/* =========================================================
-   PAINEL DE INFORMAÇÕES
-   ========================================================= */
-
-#monte-seu-time .team-info-panel {
-
-    min-height: 720px;
-
-    padding: 25px;
-
-    box-sizing: border-box;
-}
-
-
-#monte-seu-time .team-info-header {
-
-    padding-bottom: 22px;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-
-#monte-seu-time .team-info-header span {
-
-    display: block;
-
-    margin-bottom: 7px;
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-    color: #0878ff;
-}
-
-
-#monte-seu-time .team-info-header h2 {
-
-    margin: 0;
-
-    font-size: 22px;
-
-    letter-spacing: 2px;
-}
-
-
-/* =========================================================
-   INFORMAÇÕES
-   ========================================================= */
-
-#monte-seu-time .team-info-row {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 17px 0;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-
-#monte-seu-time .team-info-row span {
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-
-    color: #687484;
-}
-
-
-#monte-seu-time .team-info-row strong {
-
-    font-size: 11px;
-
-    letter-spacing: 1px;
-}
-
-
-/* =========================================================
-   RATING
-   ========================================================= */
-
-#monte-seu-time .team-rating {
-
-    padding: 30px 0;
-
-    text-align: center;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-
-#monte-seu-time .team-rating > span {
-
-    display: block;
-
-    margin-bottom: 5px;
-
-    font-size: 8px;
-
-    letter-spacing: 3px;
-
-    color: #687484;
-}
-
-
-#monte-seu-time .team-rating > strong {
-
-    display: block;
-
-    font-size: 72px;
-
-    line-height: 1;
-
-    font-weight: 900;
-
-    color: #0878ff;
-}
-
-
-#monte-seu-time .team-rating small {
-
-    display: block;
-
-    margin-top: 8px;
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-    color: #7e8998;
-}
-
-
-/* =========================================================
-   ATRIBUTOS
-   ========================================================= */
-
-#monte-seu-time .team-attributes {
-
-    padding: 25px 0;
-}
-
-
-#monte-seu-time .team-attribute {
-
-    margin-bottom: 20px;
-}
-
-
-#monte-seu-time .team-attribute > div:first-child {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    margin-bottom: 7px;
-}
-
-
-#monte-seu-time .team-attribute span {
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-
-    color: #788493;
-}
-
-
-#monte-seu-time .team-attribute strong {
-
-    font-size: 11px;
-}
-
-
-#monte-seu-time .attribute-bar {
-
-    width: 100%;
-
-    height: 3px;
-
-    overflow: hidden;
-
-    background: #1b222c;
-}
-
-
-#monte-seu-time .attribute-bar i {
-
-    display: block;
-
-    height: 100%;
-
-    background: #0878ff;
-
-    transition: width 0.5s ease;
-}
-
-
-/* =========================================================
-   JOGADOR DESTAQUE
-   ========================================================= */
-
-#monte-seu-time .team-highlight {
-
-    padding: 18px 0;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-
-#monte-seu-time .team-highlight span {
-
-    display: block;
-
-    margin-bottom: 7px;
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-
-    color: #687484;
-}
-
-
-#monte-seu-time .team-highlight strong {
-
-    font-size: 13px;
-
-    letter-spacing: 1px;
-}
-
-
-/* =========================================================
-   BOTÕES
-   ========================================================= */
-
-#monte-seu-time .save-team {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    width: 100%;
-
-    margin-top: 25px;
-
-    padding: 15px;
-
-    background: #0878ff;
-
-    border: 1px solid #0878ff;
-
-    color: #ffffff;
-
-    font-family: inherit;
-
-    font-size: 10px;
-
-    font-weight: 700;
-
-    letter-spacing: 2px;
-
-    cursor: pointer;
-
-    transition: 0.25s;
-}
-
-
-#monte-seu-time .save-team:hover {
-
-    background: #ffffff;
-
-    border-color: #ffffff;
-
-    color: #05080d;
-}
-
-
-#monte-seu-time .save-team span {
-
-    font-size: 18px;
-
-    line-height: 0;
-}
-
-
-#monte-seu-time .clear-team {
-
-    width: 100%;
-
-    margin-top: 10px;
-
-    padding: 12px;
-
-    background: transparent;
-
-    border: 1px solid rgba(255, 255, 255, 0.1);
-
-    color: #596575;
-
-    font-family: inherit;
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-
-#monte-seu-time .clear-team:hover {
-
-    border-color: #ff3b3b;
-
-    color: #ff3b3b;
-}
-
-
-/* =========================================================
-   RESPONSIVIDADE — TABLET
-   ========================================================= */
-
-@media (max-width: 1200px) {
-
-    #monte-seu-time .team-builder {
-
-        grid-template-columns:
-            220px
-            minmax(400px, 1fr)
-            220px;
-
-        gap: 15px;
-    }
-
-    #monte-seu-time .field-panel,
-    #monte-seu-time .players-panel,
-    #monte-seu-time .team-info-panel {
-
-        min-height: 650px;
-    }
-
-    #monte-seu-time .field-player {
-
-        width: 54px;
-        height: 54px;
-    }
-
-}
-
-
-/* =========================================================
-   RESPONSIVIDADE — CELULAR
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-    #monte-seu-time {
-
-        padding: 80px 20px;
-    }
-
-
-    #monte-seu-time .team-builder {
-
-        grid-template-columns: 1fr;
-
-        max-width: 650px;
-    }
-
-
-    #monte-seu-time .field-panel {
-
-        order: 1;
-
-        min-height: auto;
-
-        padding: 20px;
-    }
-
-
-    #monte-seu-time .players-panel {
-
-        order: 2;
-
-        min-height: 450px;
-    }
-
-
-    #monte-seu-time .team-info-panel {
-
-        order: 3;
-
-        min-height: auto;
-    }
-
-
-    #monte-seu-time .field {
-
-        width: min(100%, 520px);
-    }
-
-}
-
-
-/* =========================================================
-   CELULAR PEQUENO
-   ========================================================= */
-
-@media (max-width: 500px) {
-
-    #monte-seu-time {
-
-        padding: 65px 12px;
-    }
-
-
-    #monte-seu-time .team-header {
-
-        margin-bottom: 35px;
-    }
-
-
-    #monte-seu-time .team-header h1 {
-
-        font-size: 42px;
-    }
-
-
-    #monte-seu-time .team-header p {
-
-        font-size: 9px;
-    }
-
-
-    #monte-seu-time .field-panel {
-
-        padding: 10px;
-    }
-
-
-    #monte-seu-time .field-player {
-
-        width: 44px;
-
-        height: 44px;
-    }
-
-
-    #monte-seu-time .field-player-empty {
-
-        font-size: 20px;
-    }
-
-
-    #monte-seu-time .position-label {
-
-        font-size: 6px;
-
-        padding: 2px 5px;
-    }
-
-
-    #monte-seu-time .position-lw {
-        left: 22%;
-    }
-
-    #monte-seu-time .position-rw {
-        left: 78%;
-    }
-
-    #monte-seu-time .position-lb {
-        left: 12%;
-    }
-
-    #monte-seu-time .position-rb {
-        left: 88%;
-    }
-
-}
-
 
 
 /* ==========================================
@@ -3984,7 +3607,12 @@ color: #FFFFFF;
 
 /* DIAMANTES */
 
+.diamantes {
+    padding: 20px 0;
 
+    border-top: 1px solid #213149;
+    border-bottom: 1px solid #213149;
+}
 
 .diamantes span {
     display: block;
@@ -4127,167 +3755,48 @@ color: #FFFFFF;
         0 0 15px rgba(255,79,163,.5);
 }
 
-.resultado-final {
 
-    animation: revelarPersonagem 0.8s ease;
+/* ==========================================
+   RESPONSIVO
+========================================== */
 
-}
+@media (max-width: 1100px) {
 
-.resultados-x10 {
+    .gacha-container {
 
-    display: grid;
-
-    grid-template-columns:
-        repeat(5, 1fr);
-
-    gap: 15px;
-
-    width: 100%;
-
-    margin-top: 30px;
-
-}
-
-.card-resultado-x10 {
-
-    position: relative;
-
-    height: 220px;
-
-    background: #080E1C;
-
-    border: 1px solid #213149;
-
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    opacity: 0;
-
-    transform:
-        translateY(20px)
-        scale(.9);
-
-    transition:
-        .4s ease;
-
-}
-
-.card-resultado-x10.revelar-x10 {
-
-    opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
-    border-color: #006BFF;
-
-    box-shadow:
-        0 0 15px rgba(0, 107, 255, .35);
-
-}
-
-.card-resultado-x10 img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-}
-
-.info-x10 {
-
-    position: absolute;
-
-    bottom: 0;
-
-    left: 0;
-
-    width: 100%;
-
-    padding: 15px;
-
-    box-sizing: border-box;
-
-    background:
-        linear-gradient(
-            transparent,
-            rgba(0,0,0,.95)
-        );
-
-}
-
-@keyframes revelarPersonagem {
-
-    0% {
-        transform: scale(0.7);
-        opacity: 0;
-        filter: brightness(3);
+        grid-template-columns:
+            1fr
+            1fr;
     }
 
-    50% {
-        transform: scale(1.08);
-        opacity: 1;
-        filter: brightness(1.8);
-    }
+    .resultado-gacha {
 
-    100% {
-        transform: scale(1);
-        opacity: 1;
-        filter: brightness(1);
+        grid-column: 1 / -1;
     }
 
 }
 
-.nome-animado {
-    animation: aparecerNome 0.3s ease;
-}
 
-@keyframes aparecerNome {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
+@media (max-width: 700px) {
+
+    .gacha {
+
+        padding: 90px 20px;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    .titulo-gacha h1 {
+
+        font-size: 70px;
     }
-}
 
+    .gacha-container {
 
-.diamantes {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+        grid-template-columns: 1fr;
+    }
 
-    padding: 12px 18px;
+    .resultado-gacha {
 
-    background: #0b1120;
-    border: 1px solid #247cff;
-    border-radius: 10px;
+        grid-column: auto;
+    }
 
-    color: white;
-
-    box-shadow: 0 0 15px rgba(36, 124, 255, 0.2);
-}
-
-.saldo-diamantes span {
-    font-size: 24px;
-}
-
-.saldo-diamantes strong {
-    color: #55bfff;
-    font-size: 22px;
-}
-
-.saldo-diamantes small {
-    color: #8b9bb5;
-}
-
-.nomes-passando{
-color: black;
 }
