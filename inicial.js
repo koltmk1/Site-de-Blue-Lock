@@ -610,3 +610,4 @@ function atualizarDiamantes() {
         elemento.textContent = estadoJogo.diamantes;
     }
 }
+

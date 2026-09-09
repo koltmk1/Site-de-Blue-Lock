@@ -3800,3 +3800,28 @@ color: #FFFFFF;
     }
 
 }
+
+#imgPersonagem.resultado-final {
+    animation: revelarPersonagem 0.8s ease-out;
+}
+
+@keyframes revelarPersonagem {
+    0% {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-10px);
+    }
+
+    75% {
+        transform: translateY(5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
