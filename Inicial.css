@@ -2723,7 +2723,7 @@ color: #FFFFFF;
     grid-template-columns: 280px minmax(400px, 1fr) 280px;
     gap: 25px;
     align-items: stretch;
-    max-width: 1500px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -2737,7 +2737,7 @@ color: #FFFFFF;
     background: #101827;
     border: 1px solid rgba(0, 123, 255, 0.25);
     border-radius: 12px;
-    padding: 22px;
+    padding: 34px;
 }
 
 .mt-panel-header,
@@ -2777,8 +2777,9 @@ color: #FFFFFF;
     outline: none;
     color: #ffffff;
     font-size: 11px;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     transition: 0.3s;
+    
 }
 
 .mt-players-search input:focus {
@@ -3824,4 +3825,248 @@ color: #FFFFFF;
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* =========================================
+   CONTAINER DA MINI TABELA X10
+========================================= */
+
+.resultado-x10-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 15px auto;
+    padding: 12px;
+
+    background: #0B1120;
+    border: 1px solid #006BFF;
+    border-radius: 14px;
+
+    box-shadow:
+        0 0 15px rgba(0, 107, 255, 0.15);
+
+    animation: aparecerTabela 0.5s ease;
+}
+
+.resultado-x10-container h2 {
+    margin: 0 0 20px;
+
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 2px;
+
+    border-bottom: 1px solid rgba(0, 107, 255, 0.4);
+    padding-bottom: 15px;
+}
+
+
+/* =========================================
+   TABELA
+========================================= */
+
+.tabela-x10 {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+
+    color: white;
+    font-size: 15px;
+}
+
+
+/* Cabeçalho */
+
+.tabela-x10 thead {
+    background: #006BFF;
+}
+
+.tabela-x10 th {
+    padding: 14px 12px;
+
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* Linhas */
+
+.tabela-x10 tbody tr {
+    background: #111A2E;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    transition: 0.2s ease;
+}
+
+.tabela-x10 tbody tr:nth-child(even) {
+    background: #0D1628;
+}
+
+.tabela-x10 tbody tr:hover {
+    background: #172743;
+    transform: scale(1.01);
+}
+
+.tabela-x10 td {
+    padding: 12px;
+    vertical-align: middle;
+}
+
+
+/* =========================================
+   NÚMERO DA LINHA
+========================================= */
+
+.numero-tabela-x10 {
+    width: 45px;
+
+    color: #6FAEFF;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* =========================================
+   IMAGEM DO PERSONAGEM
+========================================= */
+
+.imagem-tabela-x10 {
+    width: 45px;
+    height: 45px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+    border: 1px solid #006BFF;
+
+    display: block;
+}
+
+
+/* =========================================
+   NOME DO PERSONAGEM
+========================================= */
+
+.nome-tabela-x10 {
+    font-weight: bold;
+    color: white;
+}
+
+
+/* =========================================
+   RARIDADES
+========================================= */
+
+.raridade-tabela-x10 {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+/* Cores das raridades */
+
+.raridade-comum {
+    color: #D5D5D5;
+    background: rgba(180, 180, 180, 0.15);
+    border: 1px solid #888;
+}
+
+.raridade-raro {
+    color: #4DA3FF;
+    background: rgba(0, 123, 255, 0.15);
+    border: 1px solid #007BFF;
+}
+
+.raridade-épico {
+    color: #C084FC;
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid #A855F7;
+}
+
+.raridade-lendário {
+    color: #FFD166;
+    background: rgba(255, 193, 7, 0.15);
+    border: 1px solid #FFD166;
+}
+
+.raridade-new-gen {
+    color: #FF4DFF;
+    background: rgba(255, 0, 255, 0.15);
+    border: 1px solid #FF4DFF;
+}
+
+
+/* =========================================
+   ANIMAÇÃO
+========================================= */
+
+@keyframes aparecerTabela {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 600px) {
+    .resultado-x10-container {
+        width: calc(100% - 30px);
+        padding: 15px;
+    }
+
+    .resultado-x10-container h2 {
+        font-size: 17px;
+    }
+
+    .tabela-x10 {
+        font-size: 13px;
+    }
+
+    .tabela-x10 th,
+    .tabela-x10 td {
+         padding: 4px 6px;
+    }
+
+    .imagem-tabela-x10 {
+        width: 36px;
+        height: 36px;
+    }
+
+    .numero-tabela-x10 {
+        width: 25px;
+    }
+
+    .raridade-tabela-x10 {
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+.resultado-x10-container {
+    display: none;
 }

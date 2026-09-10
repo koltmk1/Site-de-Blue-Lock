@@ -154,17 +154,17 @@ const personagens = [
 
     // Personagens New Gen
     {
-        nome: "Loki",
+        nome: "Julian Loki",
         raridade: "New Gen",
         imagem: "Gacha-Loki.jpg"
     },
     {
-        nome: "Hugo",
+        nome: "Vivian Hugo",
         raridade: "New Gen",
         imagem: "Gacha-Hugo.jpg"
     },
     {
-        nome: "Bunny",
+        nome: "Bunny Iglesias",
         raridade: "New Gen",
         imagem: "Gacha-Bunny.jpg"
     },
@@ -249,37 +249,20 @@ function sortearDezPersonagens() {
 // SISTEMA DE DIAMANTES
 // =====================================================
 
+// =====================================================
+// SISTEMA DE DIAMANTES
+// =====================================================
+
 let diamantes = 12450;
-
-// Use true apenas uma vez para resetar os diamantes
-const resetarDiamantes = true;
-
-if (resetarDiamantes) {
-    localStorage.removeItem("diamantes");
-}
 
 const custoRoleta1 = 150;
 const custoRoleta10 = 1350;
 
 
-// Desconta os diamantes e atualiza a tela
-function gastarDiamantes(custo) {
-    if (diamantes < custo) {
-        alert("Você não possui diamantes suficientes!");
-        return false;
-    }
+// =====================================================
+// ATUALIZAR DIAMANTES NA TELA
+// =====================================================
 
-    diamantes -= custo;
-
-    atualizarDiamantes();
-
-    salvarEstado();
-
-    return true;
-}
-
-
-// Atualiza a quantidade exibida no HTML
 function atualizarDiamantes() {
     const elemento = document.getElementById(
         "quantidadeDiamantes"
@@ -291,6 +274,84 @@ function atualizarDiamantes() {
     }
 }
 
+
+// =====================================================
+// GASTAR DIAMANTES
+// =====================================================
+
+function gastarDiamantes(custo) {
+    // Garante que os valores sejam números
+    diamantes = Number(diamantes);
+    custo = Number(custo);
+
+    console.log("Diamantes disponíveis:", diamantes);
+    console.log("Custo da roleta:", custo);
+
+    if (!Number.isFinite(diamantes)) {
+        console.error("Quantidade de diamantes inválida:", diamantes);
+
+        diamantes = 12450;
+        atualizarDiamantes();
+        salvarEstado();
+    }
+
+    if (!Number.isFinite(custo)) {
+        console.error("Custo da roleta inválido:", custo);
+        return false;
+    }
+
+    if (diamantes < custo) {
+        alert(
+            "Você não possui diamantes suficientes!\n" +
+            "Diamantes: " + diamantes +
+            "\nCusto: " + custo
+        );
+
+        return false;
+    }
+
+    diamantes -= custo;
+
+    atualizarDiamantes();
+    salvarEstado();
+
+    return true;
+}
+
+
+// =====================================================
+// SALVAR DIAMANTES
+// =====================================================
+
+function salvarEstado() {
+    localStorage.setItem(
+        "diamantes",
+        String(diamantes)
+    );
+}
+
+
+// =====================================================
+// CARREGAR DIAMANTES
+// =====================================================
+
+function carregarEstado() {
+    const dadosSalvos = localStorage.getItem(
+        "diamantes"
+    );
+
+    if (dadosSalvos !== null) {
+        const valorSalvo = Number(dadosSalvos);
+
+        if (Number.isFinite(valorSalvo)) {
+            diamantes = valorSalvo;
+        } else {
+            diamantes = 12450;
+        }
+    }
+
+    atualizarDiamantes();
+}
 
 // =====================================================
 // SALVAR E CARREGAR DIAMANTES
@@ -334,34 +395,61 @@ async function criarCardsX10(resultados) {
 
     container.innerHTML = "";
 
-    for (const personagem of resultados) {
-        const card = document.createElement("div");
+    const tabela = document.createElement("table");
 
-        card.classList.add(
-            "card-resultado-x10"
-        );
+    tabela.classList.add("tabela-x10");
 
-        card.innerHTML = `
-            <img 
-                src="${personagem.imagem}" 
-                alt="${personagem.nome}"
-            >
+    tabela.innerHTML = `
+        <thead>
+            <tr>
+                <th>Nº</th>
+                <th>Personagem</th>
+                <th>Nome</th>
+                <th>Raridade</th>
+            </tr>
+        </thead>
 
-            <div class="info-x10">
-                <span class="raridade-x10">
+        <tbody></tbody>
+    `;
+
+    const corpoTabela = tabela.querySelector("tbody");
+
+    resultados.forEach((personagem, indice) => {
+        const linha = document.createElement("tr");
+
+        const raridadeClasse = personagem.raridade
+            .toLowerCase()
+            .replaceAll(" ", "-");
+
+        linha.innerHTML = `
+            <td class="numero-tabela-x10">
+                ${String(indice + 1).padStart(2, "0")}
+            </td>
+
+            <td>
+                <img
+                    class="imagem-tabela-x10"
+                    src="${personagem.imagem}"
+                    alt="${personagem.nome}"
+                >
+            </td>
+
+            <td class="nome-tabela-x10">
+                ${personagem.nome}
+            </td>
+
+            <td>
+                <span class="raridade-tabela-x10 raridade-${raridadeClasse}">
                     ${personagem.raridade}
                 </span>
-
-                <h3>
-                    ${personagem.nome}
-                </h3>
-            </div>
+            </td>
         `;
 
-        container.appendChild(card);
-    }
-}
+        corpoTabela.appendChild(linha);
+    });
 
+    container.appendChild(tabela);
+}
 
 // =====================================================
 // BOTÕES DA ROLETA
@@ -376,6 +464,7 @@ const botao10 = document.getElementById("girar10");
 // =====================================================
 
 async function iniciarGacha() {
+    esconderResultadoX10();
     if (botao.disabled) {
         return;
     }
@@ -411,12 +500,29 @@ async function iniciarGacha() {
 // ROLETA X10
 // =====================================================
 
+// =====================================================
+// ROLETA X10
+// =====================================================
+
+// =====================================================
+// ROLETA X10
+// =====================================================
+
 async function iniciarGacha10() {
+     esconderResultadoX10();
+    if (!botao10) {
+        console.error(
+            'O botão com id="girar10" não foi encontrado.'
+        );
+
+        return;
+    }
+
     if (botao10.disabled) {
         return;
     }
 
-    // Verifica e desconta 1.350 diamantes
+    // No seu computador, o modo administrador permite roletar
     if (!gastarDiamantes(custoRoleta10)) {
         return;
     }
@@ -434,20 +540,20 @@ async function iniciarGacha10() {
         for (const personagem of resultados) {
             if (!personagem) {
                 throw new Error(
-                    "Um dos personagens sorteados é inválido."
+                    "Personagem inválido na roleta X10."
                 );
             }
 
+            // Executa a mesma animação da X1
             await animarGacha10Vez(personagem);
-
-            await esperar(500);
         }
 
+        // Depois das 10 animações, cria os cards
         await criarCardsX10(resultados);
 
     } catch (erro) {
         console.error(
-            "ERRO NO GACHA X10:",
+            "ERRO REAL DA ROLETA X10:",
             erro
         );
 
@@ -460,8 +566,6 @@ async function iniciarGacha10() {
         botao10.disabled = false;
     }
 }
-
-
 // =====================================================
 // EVENTOS DOS BOTÕES
 // =====================================================
@@ -485,97 +589,102 @@ if (botao10) {
 // ANIMAÇÃO DA ROLETA X1
 // =====================================================
 
+// =====================================================
+// ANIMAÇÃO DA ROLETA X1
+// =====================================================
+
 function animarGacha(personagemFinal) {
-    const img = document.getElementById(
-        "imgPersonagem"
-    );
+    return new Promise(resolve => {
+        const img = document.getElementById("imgPersonagem");
+        const faixa = document.getElementById("nomesPassando");
 
-    const personagensAnimacao = [
-        ...personagens
-    ];
+        const personagensAnimacao = [...personagens];
 
-    let contador = 0;
+        let contador = 0;
+        const quantidadeTrocas = 20;
 
-    const quantidadeTrocas = 20;
+        // Inicia a animação dos nomes
+        animarNomesX1(personagemFinal);
 
-    // Inicia a animação dos nomes
-    animarNomesX1(personagemFinal);
-
-
-    function trocarImagem() {
-        if (contador >= quantidadeTrocas) {
-
-            // Remove qualquer nome que ainda esteja aparecendo
-            const faixa = document.getElementById(
-                "nomesPassando"
-            );
-
-            if (faixa) {
-                faixa.innerHTML = "";
-
-                faixa.style.transform =
-                    "translateX(0)";
-
-                faixa.style.display = "none";
-            }
-
-            // Mostra o personagem sorteado
-            finalizarGacha(personagemFinal);
-
-            return;
+        // Mostra a faixa de nomes novamente
+        if (faixa) {
+            faixa.style.display = "flex";
+            faixa.style.transform = "translateX(0)";
         }
 
+        function trocarImagem() {
+            if (contador >= quantidadeTrocas) {
+                // Esconde a faixa de nomes
+                if (faixa) {
+                    faixa.innerHTML = "";
+                    faixa.style.transform = "translateX(0)";
+                    faixa.style.display = "none";
+                }
 
-        const aleatorio = Math.floor(
-            Math.random() *
-            personagensAnimacao.length
-        );
+                // Mostra o personagem sorteado
+                finalizarGacha(personagemFinal);
 
-        const personagem =
-            personagensAnimacao[aleatorio];
+                // Informa que a animação terminou
+                resolve();
 
+                return;
+            }
 
-        // Troca a imagem durante a animação
-        img.src = personagem.imagem;
+            const aleatorio = Math.floor(
+                Math.random() * personagensAnimacao.length
+            );
 
+            const personagem =
+                personagensAnimacao[aleatorio];
 
-        // Atualiza o nome e a raridade temporariamente
-        document.getElementById(
-            "nomePersonagem"
-        ).textContent = personagem.nome;
+            // Troca a imagem
+            if (img) {
+                img.src = personagem.imagem;
+            }
 
-        document.getElementById(
-            "raridadeTexto"
-        ).textContent = personagem.raridade;
+            // Atualiza o nome temporário
+            const nomeElemento =
+                document.getElementById("nomePersonagem");
 
+            if (nomeElemento) {
+                nomeElemento.textContent =
+                    personagem.nome;
+            }
 
-        contador++;
+            // Atualiza a raridade temporária
+            const raridadeElemento =
+                document.getElementById("raridadeTexto");
 
+            if (raridadeElemento) {
+                raridadeElemento.textContent =
+                    personagem.raridade;
+            }
 
-        // A animação fica mais lenta no final
-        const velocidade = 10 + contador * 2;
+            contador++;
 
-        setTimeout(
-            trocarImagem,
-            velocidade
-        );
-    }
+            // A animação desacelera no final
+            const velocidade = 10 + contador * 2;
 
+            setTimeout(
+                trocarImagem,
+                velocidade
+            );
+        }
 
-    // Garante que a faixa de nomes apareça
-    const faixa = document.getElementById(
-        "nomesPassando"
-    );
+        trocarImagem();
+    });
+}
 
-    if (faixa) {
-        faixa.style.display = "flex";
+// =====================================================
+// ANIMAÇÃO DA ROLETA X10
+// =====================================================
 
-        faixa.style.transform =
-            "translateX(0)";
-    }
+async function animarGacha10Vez(personagem) {
+    // Usa exatamente a mesma animação da roleta X1
+    await animarGacha(personagem);
 
-
-    trocarImagem();
+    // Pequena pausa entre um personagem e outro
+    await esperar(500);
 }
 
 
@@ -737,9 +846,114 @@ function animarNomesX1(personagemFinal) {
     });
 }
 
+// =====================================================
+// ESPERAR UM TEMPO
+// =====================================================
+
+function esperar(tempo) {
+    return new Promise(resolve => {
+        setTimeout(resolve, tempo);
+    });
+}
+
+
+// =====================================================
+// ANIMAÇÃO DE CADA PERSONAGEM DA X10
+// =====================================================
+
+async function animarGacha10Vez(personagem) {
+    const img = document.getElementById("imgPersonagem");
+    const nome = document.getElementById("nomePersonagem");
+    const raridade = document.getElementById("raridade");
+    const raridadeTexto = document.getElementById("raridadeTexto");
+
+    if (!personagem) {
+        throw new Error("Personagem inválido na roleta X10.");
+    }
+
+    if (img) {
+        img.src = personagem.imagem;
+
+        img.classList.remove("resultado-final");
+
+        void img.offsetWidth;
+
+        img.classList.add("resultado-final");
+    }
+
+    if (nome) {
+        nome.textContent = personagem.nome;
+    }
+
+    if (raridade) {
+        raridade.textContent = personagem.raridade;
+    }
+
+    if (raridadeTexto) {
+        raridadeTexto.textContent = personagem.raridade;
+    }
+
+    // Tempo em que cada personagem fica aparecendo
+    await esperar(800);
+}
+
 
 // =====================================================
 // INICIAR O SISTEMA
 // =====================================================
 
 carregarEstado();
+
+// =====================================================
+// DIAMANTES INFINITOS APENAS PARA O ADMINISTRADOR
+// =====================================================
+
+const modoAdministrador =
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname === "localhost";
+
+function gastarDiamantes(custo) {
+
+    // No computador do administrador, não desconta diamantes
+    if (modoAdministrador) {
+        console.log(
+            "Modo administrador ativado: diamantes infinitos."
+        );
+
+        atualizarDiamantes();
+
+        return true;
+    }
+
+    // Para os jogadores, o sistema funciona normalmente
+    if (diamantes < custo) {
+        alert("Você não possui diamantes suficientes!");
+        return false;
+    }
+
+    diamantes -= custo;
+
+    atualizarDiamantes();
+    salvarEstado();
+
+    return true;
+}
+
+function esperar(tempo) {
+    return new Promise(resolve => {
+        setTimeout(resolve, tempo);
+    });
+}
+
+function esconderResultadoX10() {
+    const container = document.querySelector(".resultado-x10-container");
+    const resultados = document.getElementById("resultadosX10");
+
+    if (container) {
+        container.style.display = "none";
+    }
+
+    if (resultados) {
+        resultados.innerHTML = "";
+    }
+}
