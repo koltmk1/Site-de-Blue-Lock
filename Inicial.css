@@ -2664,6 +2664,10 @@ color: #FFFFFF;
    Todas as classes possuem o prefixo mt-
 ===================================================== */
 
+* {
+    box-sizing: border-box;
+}
+
 .mt-section {
     position: relative;
     width: 100%;
