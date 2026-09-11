@@ -4074,3 +4074,134 @@ body {
 .resultado-x10-container {
     display: none;
 }
+
+.player-card {
+    width: 92%;
+    height: 58px;
+    min-height: 58px;
+
+    background: #0B1120;
+    border: 1px solid #1c2a3d;
+    border-radius: 0;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    transition: 0.3s ease;
+}
+
+.player-card:hover {
+    transform: translateY(-6px);
+    border-color: #2d8cff;
+    box-shadow: 0 0 20px rgba(0, 107, 255, 0.35);
+}
+
+.player-card-image {
+    width: 55px;
+    height: 55px;
+
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.player-card-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+}
+
+.player-card-info {
+    flex: 1;
+
+    height: 100%;
+    padding: 6px 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-align: left;
+}
+
+.player-rarity {
+    font-size: 7px;
+    letter-spacing: 1px;
+    color: #5bbcff;
+}
+
+.player-card-info h3 {
+    margin: 0;
+
+    font-size: 11px;
+    color: white;
+
+    white-space: nowrap;
+}
+
+.player-overall {
+    margin: 0;
+    margin-left: auto;
+
+    font-size: 8px;
+    color: #9daac0;
+
+    white-space: nowrap;
+}
+
+.player-overall strong {
+    color: #00cfff;
+    font-size: 14px;
+}
+
+.button-add-team {
+    display: none;
+}
+
+.players-list {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+
+    overflow: visible;
+}
+
+.botao-ver-jogadores {
+    display: block;
+
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+
+    background: transparent;
+    border: 1px solid #006BFF;
+    border-radius: 5px;
+
+    color: white;
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.botao-ver-jogadores:hover {
+    background: #006BFF;
+    box-shadow: 0 0 15px rgba(0, 107, 255, 0.35);
+}
+
+.player-card:hover .button-add-team {
+    display: block;
+}
+
+.player-position {
+    display: none !important;
+}

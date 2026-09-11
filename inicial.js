@@ -244,6 +244,60 @@ function sortearDezPersonagens() {
     return resultados;
 }
 
+function adicionarJogadorAoElenco(personagem) {
+    const lista = document.getElementById("listaJogadores");
+
+    if (!lista || !personagem) {
+        return;
+    }
+
+    // Evita adicionar o mesmo jogador duas vezes
+    const jogadorJaExiste = [...lista.children].some(card => {
+        return card.dataset.nome === personagem.nome;
+    });
+
+    if (jogadorJaExiste) {
+        return;
+    }
+
+    const card = document.createElement("article");
+
+    card.classList.add("player-card");
+
+    // Guarda o nome do personagem no próprio card
+    card.dataset.nome = personagem.nome;
+
+    card.innerHTML = `
+        <div class="player-card-image">
+            <img
+                src="${personagem.imagem}"
+                alt="${personagem.nome}"
+            >
+        </div>
+
+        <div class="player-card-info">
+            <span class="player-rarity">
+                ${personagem.raridade}
+            </span>
+
+            
+
+            <p class="player-overall">
+                OVERALL: <strong>??</strong>
+            </p>
+
+            <button
+                class="button-add-team"
+                type="button"
+            >
+                COLOCAR NO TIME
+            </button>
+        </div>
+    `;
+
+    lista.appendChild(card);
+}
+
 
 // =====================================================
 // SISTEMA DE DIAMANTES
@@ -480,6 +534,9 @@ async function iniciarGacha() {
         const personagemFinal = sortearPersonagem();
 
         await animarGacha(personagemFinal);
+
+        // Adiciona o personagem à seção JOGADORES
+        adicionarJogadorAoElenco(personagemFinal);
     } catch (erro) {
         console.error(
             "ERRO NO GACHA X1:",
@@ -509,7 +566,7 @@ async function iniciarGacha() {
 // =====================================================
 
 async function iniciarGacha10() {
-     esconderResultadoX10();
+    esconderResultadoX10();
     if (!botao10) {
         console.error(
             'O botão com id="girar10" não foi encontrado.'
@@ -537,19 +594,18 @@ async function iniciarGacha10() {
             resultados
         );
 
-        for (const personagem of resultados) {
-            if (!personagem) {
-                throw new Error(
-                    "Personagem inválido na roleta X10."
-                );
-            }
+      for (const personagem of resultados) {
+    if (!personagem) {
+        throw new Error("Um dos personagens sorteados é inválido.");
+    }
 
-            // Executa a mesma animação da X1
-            await animarGacha10Vez(personagem);
-        }
+    await animarGacha10Vez(personagem);
 
-        // Depois das 10 animações, cria os cards
-        await criarCardsX10(resultados);
+    // Adiciona cada personagem à seção JOGADORES
+    adicionarJogadorAoElenco(personagem);
+
+    await esperar(200);
+}
 
     } catch (erro) {
         console.error(
@@ -957,3 +1013,49 @@ function esconderResultadoX10() {
         resultados.innerHTML = "";
     }
 }
+
+const LIMITE_JOGADORES = 6;
+
+const botaoVerTodos = document.getElementById("verTodosJogadores");
+
+let mostrandoTodos = false;
+
+function atualizarListaJogadores() {
+
+    const lista = document.getElementById("listaJogadores");
+    const jogadores = [...lista.children];
+
+    jogadores.forEach((card, indice) => {
+
+        if (!mostrandoTodos && indice >= LIMITE_JOGADORES) {
+            card.style.display = "none";
+        } else {
+            card.style.display = "";
+        }
+
+    });
+
+    if (jogadores.length > LIMITE_JOGADORES) {
+
+        botaoVerTodos.style.display = "block";
+
+        if (mostrandoTodos) {
+            botaoVerTodos.textContent = "OCULTAR JOGADORES";
+        } else {
+            botaoVerTodos.textContent = "VER TODOS OS JOGADORES";
+        }
+
+    } else {
+
+        botaoVerTodos.style.display = "none";
+
+    }
+}
+
+botaoVerTodos.addEventListener("click", () => {
+
+    mostrandoTodos = !mostrandoTodos;
+
+    atualizarListaJogadores();
+
+});
