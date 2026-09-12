@@ -1,3 +1,6 @@
+// =====================================================
+// PERSONAGENS
+// =====================================================
 
 const personagens = [
 
@@ -649,7 +652,7 @@ const personagens = [
         id: "bunny",
         nome: "Bunny Iglesias",
         raridade: "New Gen",
-        imagem: "Gacha-Bunny.jpeg",
+        imagem: "Gacha-Bunny.jpg",
         posicoes: ["ST", "FW"],
         overall: 88,
         atributos: {
@@ -728,18 +731,17 @@ const personagens = [
 ];
 
 
-
-
 // =====================================================
 // SISTEMA DE RARIDADES
 // =====================================================
 
 function sortearRaridade() {
+
     const numero = Math.random() * 100;
 
     if (numero <= 30) return "Comum";
     if (numero <= 55) return "Raro";
-    if (numero <= 70) return "épico";
+    if (numero <= 70) return "Épico";
     if (numero <= 80) return "Lendário";
 
     return "New Gen";
@@ -751,6 +753,7 @@ function sortearRaridade() {
 // =====================================================
 
 function sortearPersonagem() {
+
     const raridadeSorteada = sortearRaridade();
 
     const disponiveis = personagens.filter(
@@ -758,12 +761,15 @@ function sortearPersonagem() {
     );
 
     if (disponiveis.length === 0) {
+
         console.error(
             "Nenhum personagem encontrado para a raridade:",
             raridadeSorteada
         );
 
-        return personagens[0];
+        return personagens[
+            Math.floor(Math.random() * personagens.length)
+        ];
     }
 
     const indice = Math.floor(
@@ -777,58 +783,77 @@ function sortearPersonagem() {
 // =====================================================
 // SORTEIO DE 10 PERSONAGENS
 // =====================================================
-```
+
 function sortearDezPersonagens() {
+
     const resultados = [];
 
     for (let i = 0; i < 10; i++) {
-        resultados.push(sortearPersonagem());
+
+        resultados.push(
+            sortearPersonagem()
+        );
+
     }
 
     return resultados;
 }
 
+
+// =====================================================
+// ADICIONAR JOGADOR AO ELENCO
+// =====================================================
+
 function adicionarJogadorAoElenco(personagem) {
-    const lista = document.getElementById("listaJogadores");
+
+    const lista = document.getElementById(
+        "listaJogadores"
+    );
 
     if (!lista || !personagem) {
         return;
     }
 
     // Evita adicionar o mesmo jogador duas vezes
-    const jogadorJaExiste = [...lista.children].some(card => {
-        return card.dataset.nome === personagem.nome;
-    });
+    const jogadorJaExiste = [...lista.children].some(
+        card => card.dataset.nome === personagem.nome
+    );
 
     if (jogadorJaExiste) {
         return;
     }
 
-    const card = document.createElement("article");
+    const card = document.createElement(
+        "article"
+    );
 
-    card.classList.add("player-card");
+    card.classList.add(
+        "player-card"
+    );
 
     // Guarda o nome do personagem no próprio card
     card.dataset.nome = personagem.nome;
 
-    card.innerHTML = 
+    card.innerHTML = `
 
         <div class="player-card-image">
+
             <img
                 src="${personagem.imagem}"
                 alt="${personagem.nome}"
             >
+
         </div>
 
         <div class="player-card-info">
+
             <span class="player-rarity">
                 ${personagem.raridade}
             </span>
 
-            
-
             <p class="player-overall">
-                OVERALL: <strong>??</strong>
+                OVERALL:
+                <strong>${personagem.overall}</strong>
             </p>
 
             <button
@@ -837,16 +862,16 @@ function adicionarJogadorAoElenco(personagem) {
             >
                 COLOCAR NO TIME
             </button>
+
         </div>
+
     `;
 
     lista.appendChild(card);
 
+    atualizarListaJogadores();
+}
 
-
-// =====================================================
-// SISTEMA DE DIAMANTES
-// =====================================================
 
 // =====================================================
 // SISTEMA DE DIAMANTES
@@ -863,13 +888,16 @@ const custoRoleta10 = 1350;
 // =====================================================
 
 function atualizarDiamantes() {
+
     const elemento = document.getElementById(
         "quantidadeDiamantes"
     );
 
     if (elemento) {
+
         elemento.textContent =
             diamantes.toLocaleString("pt-BR") + " ◆";
+
     }
 }
 
@@ -879,27 +907,48 @@ function atualizarDiamantes() {
 // =====================================================
 
 function gastarDiamantes(custo) {
-    // Garante que os valores sejam números
+
     diamantes = Number(diamantes);
     custo = Number(custo);
 
-    console.log("Diamantes disponíveis:", diamantes);
-    console.log("Custo da roleta:", custo);
-
     if (!Number.isFinite(diamantes)) {
-        console.error("Quantidade de diamantes inválida:", diamantes);
+
+        console.error(
+            "Quantidade de diamantes inválida:",
+            diamantes
+        );
 
         diamantes = 12450;
+
         atualizarDiamantes();
         salvarEstado();
     }
 
     if (!Number.isFinite(custo)) {
-        console.error("Custo da roleta inválido:", custo);
+
+        console.error(
+            "Custo da roleta inválido:",
+            custo
+        );
+
         return false;
     }
 
+    // Modo administrador
+    if (modoAdministrador) {
+
+        console.log(
+            "Modo administrador ativado: diamantes infinitos."
+        );
+
+        atualizarDiamantes();
+
+        return true;
+    }
+
+    // Verifica se possui diamantes suficientes
     if (diamantes < custo) {
+
         alert(
             "Você não possui diamantes suficientes!\n" +
             "Diamantes: " + diamantes +
@@ -923,6 +972,7 @@ function gastarDiamantes(custo) {
 // =====================================================
 
 function salvarEstado() {
+
     localStorage.setItem(
         "diamantes",
         String(diamantes)
@@ -935,58 +985,43 @@ function salvarEstado() {
 // =====================================================
 
 function carregarEstado() {
-    const dadosSalvos = localStorage.getItem(
-        "diamantes"
-    );
+
+    const dadosSalvos =
+        localStorage.getItem("diamantes");
 
     if (dadosSalvos !== null) {
-        const valorSalvo = Number(dadosSalvos);
+
+        const valorSalvo =
+            Number(dadosSalvos);
 
         if (Number.isFinite(valorSalvo)) {
+
             diamantes = valorSalvo;
+
         } else {
+
             diamantes = 12450;
+
         }
     }
 
     atualizarDiamantes();
 }
 
-// =====================================================
-// SALVAR E CARREGAR DIAMANTES
-// =====================================================
-
-function salvarEstado() {
-    localStorage.setItem(
-        "diamantes",
-        diamantes
-    );
-}
-
-
-function carregarEstado() {
-    const dadosSalvos = localStorage.getItem("diamantes");
-
-    if (dadosSalvos !== null) {
-        diamantes = Number(dadosSalvos);
-    }
-
-    atualizarDiamantes();
-}
-
 
 // =====================================================
-// CRIAÇÃO DOS CARDS DA ROLETAX10
+// CRIAÇÃO DA TABELA DA ROLETA X10
 // =====================================================
 
-async function criarCardsX10(resultados) {
-    const container = document.getElementById(
-        "resultadosX10"
-    );
+function criarCardsX10(resultados) {
+
+    const container =
+        document.getElementById("resultadosX10");
 
     if (!container) {
+
         console.error(
-            "O elemento #resultadosX10 não foi encontrado."
+            'O elemento #resultadosX10 não foi encontrado.'
         );
 
         return;
@@ -994,68 +1029,107 @@ async function criarCardsX10(resultados) {
 
     container.innerHTML = "";
 
-    const tabela = document.createElement("table");
+    const tabela =
+        document.createElement("table");
 
-    tabela.classList.add("tabela-x10");
+    tabela.classList.add(
+        "tabela-x10"
+    );
 
     tabela.innerHTML = `
+
         <thead>
+
             <tr>
+
                 <th>Nº</th>
                 <th>Personagem</th>
                 <th>Nome</th>
                 <th>Raridade</th>
+
             </tr>
+
         </thead>
 
         <tbody></tbody>
+
     `;
 
-    const corpoTabela = tabela.querySelector("tbody");
+    const corpoTabela =
+        tabela.querySelector("tbody");
 
-    resultados.forEach((personagem, indice) => {
-        const linha = document.createElement("tr");
+    resultados.forEach(
+        (personagem, indice) => {
 
-        const raridadeClasse = personagem.raridade
-            .toLowerCase()
-            .replaceAll(" ", "-");
+            const linha =
+                document.createElement("tr");
 
-        linha.innerHTML = `
-            <td class="numero-tabela-x10">
-                ${String(indice + 1).padStart(2, "0")}
-            </td>
+            const raridadeClasse =
+                personagem.raridade
+                    .toLowerCase()
+                    .replaceAll(" ", "-");
 
-            <td>
-                <img
-                    class="imagem-tabela-x10"
-                    src="${personagem.imagem}"
-                    alt="${personagem.nome}"
-                >
-            </td>
+            linha.innerHTML = `
 
-            <td class="nome-tabela-x10">
-                ${personagem.nome}
-            </td>
+                <td class="numero-tabela-x10">
 
-            <td>
-                <span class="raridade-tabela-x10 raridade-${raridadeClasse}">
-                    ${personagem.raridade}
-                </span>
-            </td>
-        `;
+                    ${String(indice + 1).padStart(2, "0")}
 
-        corpoTabela.appendChild(linha);
-    });
+                </td>
 
-    container.appendChild(tabela);
+                <td>
+
+                    <img
+                        class="imagem-tabela-x10"
+                        src="${personagem.imagem}"
+                        alt="${personagem.nome}"
+                    >
+
+                </td>
+
+                <td class="nome-tabela-x10">
+
+                    ${personagem.nome}
+
+                </td>
+
+                <td>
+
+                    <span
+                        class="raridade-tabela-x10
+                        raridade-${raridadeClasse}"
+                    >
+
+                        ${personagem.raridade}
+
+                    </span>
+
+                </td>
+
+            `;
+
+            corpoTabela.appendChild(
+                linha
+            );
+
+        }
+    );
+
+    container.appendChild(
+        tabela
+    );
 }
+
 
 // =====================================================
 // BOTÕES DA ROLETA
 // =====================================================
 
-const botao = document.getElementById("girar");
-const botao10 = document.getElementById("girar10");
+const botao =
+    document.getElementById("girar");
+
+const botao10 =
+    document.getElementById("girar10");
 
 
 // =====================================================
@@ -1063,7 +1137,18 @@ const botao10 = document.getElementById("girar10");
 // =====================================================
 
 async function iniciarGacha() {
+
     esconderResultadoX10();
+
+    if (!botao) {
+
+        console.error(
+            'O botão com id="girar" não foi encontrado.'
+        );
+
+        return;
+    }
+
     if (botao.disabled) {
         return;
     }
@@ -1076,13 +1161,21 @@ async function iniciarGacha() {
     botao.disabled = true;
 
     try {
-        const personagemFinal = sortearPersonagem();
 
-        await animarGacha(personagemFinal);
+        const personagemFinal =
+            sortearPersonagem();
+
+        await animarGacha(
+            personagemFinal
+        );
 
         // Adiciona o personagem à seção JOGADORES
-        adicionarJogadorAoElenco(personagemFinal);
+        adicionarJogadorAoElenco(
+            personagemFinal
+        );
+
     } catch (erro) {
+
         console.error(
             "ERRO NO GACHA X1:",
             erro
@@ -1092,8 +1185,11 @@ async function iniciarGacha() {
             "Ocorreu um erro durante a rolagem X1. " +
             "Abra o console (F12) para ver o erro."
         );
+
     } finally {
+
         botao.disabled = false;
+
     }
 }
 
@@ -1102,17 +1198,12 @@ async function iniciarGacha() {
 // ROLETA X10
 // =====================================================
 
-// =====================================================
-// ROLETA X10
-// =====================================================
-
-// =====================================================
-// ROLETA X10
-// =====================================================
-
 async function iniciarGacha10() {
+
     esconderResultadoX10();
+
     if (!botao10) {
+
         console.error(
             'O botão com id="girar10" não foi encontrado.'
         );
@@ -1124,7 +1215,7 @@ async function iniciarGacha10() {
         return;
     }
 
-    // No seu computador, o modo administrador permite roletar
+    // Verifica e desconta 1350 diamantes
     if (!gastarDiamantes(custoRoleta10)) {
         return;
     }
@@ -1132,27 +1223,47 @@ async function iniciarGacha10() {
     botao10.disabled = true;
 
     try {
-        const resultados = sortearDezPersonagens();
+
+        const resultados =
+            sortearDezPersonagens();
 
         console.log(
             "Resultados X10:",
             resultados
         );
 
-        for (const personagem of resultados) {
+        for (
+            const personagem of resultados
+        ) {
+
             if (!personagem) {
-                throw new Error("Um dos personagens sorteados é inválido.");
+
+                throw new Error(
+                    "Um dos personagens sorteados é inválido."
+                );
+
             }
 
-            await animarGacha10Vez(personagem);
+            await animarGacha10Vez(
+                personagem
+            );
 
             // Adiciona cada personagem à seção JOGADORES
-            adicionarJogadorAoElenco(personagem);
+            adicionarJogadorAoElenco(
+                personagem
+            );
 
             await esperar(200);
+
         }
 
+        // Cria a tabela com os 10 resultados
+        criarCardsX10(
+            resultados
+        );
+
     } catch (erro) {
+
         console.error(
             "ERRO REAL DA ROLETA X10:",
             erro
@@ -1164,128 +1275,192 @@ async function iniciarGacha10() {
         );
 
     } finally {
+
         botao10.disabled = false;
+
     }
 }
+
+
 // =====================================================
 // EVENTOS DOS BOTÕES
 // =====================================================
 
 if (botao) {
+
     botao.addEventListener(
         "click",
         iniciarGacha
     );
+
 }
 
 if (botao10) {
+
     botao10.addEventListener(
         "click",
         iniciarGacha10
     );
+
 }
 
-
-// =====================================================
-// ANIMAÇÃO DA ROLETA X1
-// =====================================================
 
 // =====================================================
 // ANIMAÇÃO DA ROLETA X1
 // =====================================================
 
 function animarGacha(personagemFinal) {
-    return new Promise(resolve => {
-        const img = document.getElementById("imgPersonagem");
-        const faixa = document.getElementById("nomesPassando");
 
-        const personagensAnimacao = [...personagens];
+    return new Promise(resolve => {
+
+        const img =
+            document.getElementById(
+                "imgPersonagem"
+            );
+
+        const faixa =
+            document.getElementById(
+                "nomesPassando"
+            );
+
+        const personagensAnimacao =
+            [...personagens];
 
         let contador = 0;
+
         const quantidadeTrocas = 20;
 
         // Inicia a animação dos nomes
-        animarNomesX1(personagemFinal);
+        animarNomesX1(
+            personagemFinal
+        );
 
         // Mostra a faixa de nomes novamente
         if (faixa) {
+
             faixa.style.display = "flex";
-            faixa.style.transform = "translateX(0)";
+            faixa.style.transform =
+                "translateX(0)";
+
         }
 
         function trocarImagem() {
-            if (contador >= quantidadeTrocas) {
+
+            if (
+                contador >= quantidadeTrocas
+            ) {
+
                 // Esconde a faixa de nomes
                 if (faixa) {
+
                     faixa.innerHTML = "";
-                    faixa.style.transform = "translateX(0)";
-                    faixa.style.display = "none";
+
+                    faixa.style.transform =
+                        "translateX(0)";
+
+                    faixa.style.display =
+                        "none";
+
                 }
 
                 // Mostra o personagem sorteado
-                finalizarGacha(personagemFinal);
+                finalizarGacha(
+                    personagemFinal
+                );
 
-                // Informa que a animação terminou
                 resolve();
 
                 return;
             }
 
-            const aleatorio = Math.floor(
-                Math.random() * personagensAnimacao.length
-            );
+            const aleatorio =
+                Math.floor(
+                    Math.random() *
+                    personagensAnimacao.length
+                );
 
             const personagem =
-                personagensAnimacao[aleatorio];
+                personagensAnimacao[
+                    aleatorio
+                ];
 
             // Troca a imagem
             if (img) {
-                img.src = personagem.imagem;
+
+                img.src =
+                    personagem.imagem;
+
             }
 
             // Atualiza o nome temporário
             const nomeElemento =
-                document.getElementById("nomePersonagem");
+                document.getElementById(
+                    "nomePersonagem"
+                );
 
             if (nomeElemento) {
+
                 nomeElemento.textContent =
                     personagem.nome;
+
             }
 
             // Atualiza a raridade temporária
             const raridadeElemento =
-                document.getElementById("raridadeTexto");
+                document.getElementById(
+                    "raridadeTexto"
+                );
 
             if (raridadeElemento) {
+
                 raridadeElemento.textContent =
                     personagem.raridade;
+
             }
 
             contador++;
 
             // A animação desacelera no final
-            const velocidade = 10 + contador * 2;
+            const velocidade =
+                10 + contador * 2;
 
             setTimeout(
                 trocarImagem,
                 velocidade
             );
+
         }
 
         trocarImagem();
+
     });
 }
 
+
 // =====================================================
-// ANIMAÇÃO DA ROLETA X10
+// ANIMAÇÃO DE CADA PERSONAGEM DA X10
 // =====================================================
 
-async function animarGacha10Vez(personagem) {
-    // Usa exatamente a mesma animação da roleta X1
-    await animarGacha(personagem);
+async function animarGacha10Vez(
+    personagem
+) {
 
-    // Pequena pausa entre um personagem e outro
+    if (!personagem) {
+
+        throw new Error(
+            "Personagem inválido na roleta X10."
+        );
+
+    }
+
+    // Usa a mesma animação da X1
+    await animarGacha(
+        personagem
+    );
+
+    // Pequena pausa entre personagens
     await esperar(500);
+
 }
 
 
@@ -1293,36 +1468,69 @@ async function animarGacha10Vez(personagem) {
 // MOSTRAR O PERSONAGEM FINAL
 // =====================================================
 
-function finalizarGacha(personagem) {
-    const img = document.getElementById(
-        "imgPersonagem"
-    );
+function finalizarGacha(
+    personagem
+) {
 
-    img.src = personagem.imagem;
+    const img =
+        document.getElementById(
+            "imgPersonagem"
+        );
 
-    document.getElementById(
-        "nomePersonagem"
-    ).textContent = personagem.nome;
+    const nome =
+        document.getElementById(
+            "nomePersonagem"
+        );
 
-    document.getElementById(
-        "raridade"
-    ).textContent = personagem.raridade;
+    const raridade =
+        document.getElementById(
+            "raridade"
+        );
 
-    document.getElementById(
-        "raridadeTexto"
-    ).textContent = personagem.raridade;
+    const raridadeTexto =
+        document.getElementById(
+            "raridadeTexto"
+        );
 
+    if (img) {
 
-    // Reinicia a animação visual do resultado
-    img.classList.remove(
-        "resultado-final"
-    );
+        img.src =
+            personagem.imagem;
 
-    void img.offsetWidth;
+        // Reinicia a animação visual
+        img.classList.remove(
+            "resultado-final"
+        );
 
-    img.classList.add(
-        "resultado-final"
-    );
+        void img.offsetWidth;
+
+        img.classList.add(
+            "resultado-final"
+        );
+
+    }
+
+    if (nome) {
+
+        nome.textContent =
+            personagem.nome;
+
+    }
+
+    if (raridade) {
+
+        raridade.textContent =
+            personagem.raridade;
+
+    }
+
+    if (raridadeTexto) {
+
+        raridadeTexto.textContent =
+            personagem.raridade;
+
+    }
+
 }
 
 
@@ -1330,62 +1538,90 @@ function finalizarGacha(personagem) {
 // ANIMAÇÃO DOS NOMES DA ROLETA X1
 // =====================================================
 
-function animarNomesX1(personagemFinal) {
+function animarNomesX1(
+    personagemFinal
+) {
+
     return new Promise(resolve => {
-        const faixa = document.getElementById(
-            "nomesPassando"
-        );
+
+        const faixa =
+            document.getElementById(
+                "nomesPassando"
+            );
 
         if (!faixa) {
+
             resolve();
+
             return;
         }
 
         faixa.innerHTML = "";
 
-
         const nomesAnimacao = [];
 
         for (let i = 0; i < 5; i++) {
+
             nomesAnimacao.push(
                 ...personagens
             );
+
         }
 
+        // Garante que o personagem sorteado
+        // fique no final da animação
         nomesAnimacao.push(
             personagemFinal
         );
 
+        nomesAnimacao.forEach(
+            personagem => {
 
-        nomesAnimacao.forEach(personagem => {
-            const nome = document.createElement(
-                "span"
-            );
+                const nome =
+                    document.createElement(
+                        "span"
+                    );
 
-            nome.classList.add(
-                "nome-roleta"
-            );
+                nome.classList.add(
+                    "nome-roleta"
+                );
 
-            nome.textContent =
-                personagem.nome;
+                nome.textContent =
+                    personagem.nome;
 
-            faixa.appendChild(nome);
-        });
+                faixa.appendChild(
+                    nome
+                );
 
-
-        const nomes = faixa.querySelectorAll(
-            ".nome-roleta"
+            }
         );
+
+        const nomes =
+            faixa.querySelectorAll(
+                ".nome-roleta"
+            );
 
         let contador = 0;
 
         const quantidadeTrocas = 5;
 
-
         function passarNome() {
-            if (contador >= quantidadeTrocas) {
+
+            if (
+                contador >= quantidadeTrocas
+            ) {
+
                 const nomeFinal =
-                    nomes[nomes.length - 1];
+                    nomes[
+                        nomes.length - 1
+                    ];
+
+                if (!nomeFinal) {
+
+                    resolve();
+
+                    return;
+                }
 
                 nomeFinal.classList.add(
                     "ativo"
@@ -1404,9 +1640,15 @@ function animarNomesX1(personagemFinal) {
                 return;
             }
 
-
             const nomeAtual =
                 nomes[contador];
+
+            if (!nomeAtual) {
+
+                resolve();
+
+                return;
+            }
 
             const larguraFaixa =
                 faixa.parentElement.offsetWidth;
@@ -1419,17 +1661,19 @@ function animarNomesX1(personagemFinal) {
             faixa.style.transform =
                 `translateX(-${deslocamento}px)`;
 
+            nomes.forEach(
+                nome => {
 
-            nomes.forEach(nome => {
-                nome.classList.remove(
-                    "ativo"
-                );
-            });
+                    nome.classList.remove(
+                        "ativo"
+                    );
+
+                }
+            );
 
             nomeAtual.classList.add(
                 "ativo"
             );
-
 
             contador++;
 
@@ -1440,63 +1684,183 @@ function animarNomesX1(personagemFinal) {
                 passarNome,
                 velocidade
             );
+
         }
 
-
         passarNome();
+
     });
 }
+
 
 // =====================================================
 // ESPERAR UM TEMPO
 // =====================================================
 
 function esperar(tempo) {
-    return new Promise(resolve => {
-        setTimeout(resolve, tempo);
-    });
+
+    return new Promise(
+        resolve => {
+
+            setTimeout(
+                resolve,
+                tempo
+            );
+
+        }
+    );
+
 }
 
 
 // =====================================================
-// ANIMAÇÃO DE CADA PERSONAGEM DA X10
+// ESCONDER RESULTADO DA X10
 // =====================================================
 
-async function animarGacha10Vez(personagem) {
-    const img = document.getElementById("imgPersonagem");
-    const nome = document.getElementById("nomePersonagem");
-    const raridade = document.getElementById("raridade");
-    const raridadeTexto = document.getElementById("raridadeTexto");
+function esconderResultadoX10() {
 
-    if (!personagem) {
-        throw new Error("Personagem inválido na roleta X10.");
+    const container =
+        document.querySelector(
+            ".resultado-x10-container"
+        );
+
+    const resultados =
+        document.getElementById(
+            "resultadosX10"
+        );
+
+    if (container) {
+
+        container.style.display =
+            "none";
+
     }
 
-    if (img) {
-        img.src = personagem.imagem;
+    if (resultados) {
 
-        img.classList.remove("resultado-final");
+        resultados.innerHTML =
+            "";
 
-        void img.offsetWidth;
-
-        img.classList.add("resultado-final");
     }
 
-    if (nome) {
-        nome.textContent = personagem.nome;
-    }
-
-    if (raridade) {
-        raridade.textContent = personagem.raridade;
-    }
-
-    if (raridadeTexto) {
-        raridadeTexto.textContent = personagem.raridade;
-    }
-
-    // Tempo em que cada personagem fica aparecendo
-    await esperar(800);
 }
+
+
+// =====================================================
+// LIMITE DE JOGADORES VISÍVEIS
+// =====================================================
+
+const LIMITE_JOGADORES = 6;
+
+const botaoVerTodos =
+    document.getElementById(
+        "verTodosJogadores"
+    );
+
+let mostrandoTodos = false;
+
+
+// =====================================================
+// ATUALIZAR LISTA DE JOGADORES
+// =====================================================
+
+function atualizarListaJogadores() {
+
+    const lista =
+        document.getElementById(
+            "listaJogadores"
+        );
+
+    if (!lista) {
+        return;
+    }
+
+    const jogadores =
+        [...lista.children];
+
+    jogadores.forEach(
+        (card, indice) => {
+
+            if (
+                !mostrandoTodos &&
+                indice >= LIMITE_JOGADORES
+            ) {
+
+                card.style.display =
+                    "none";
+
+            } else {
+
+                card.style.display =
+                    "";
+
+            }
+
+        }
+    );
+
+    if (!botaoVerTodos) {
+        return;
+    }
+
+    if (
+        jogadores.length >
+        LIMITE_JOGADORES
+    ) {
+
+        botaoVerTodos.style.display =
+            "block";
+
+        if (mostrandoTodos) {
+
+            botaoVerTodos.textContent =
+                "OCULTAR JOGADORES";
+
+        } else {
+
+            botaoVerTodos.textContent =
+                "VER TODOS OS JOGADORES";
+
+        }
+
+    } else {
+
+        botaoVerTodos.style.display =
+            "none";
+
+    }
+
+}
+
+
+// =====================================================
+// BOTÃO VER TODOS OS JOGADORES
+// =====================================================
+
+if (botaoVerTodos) {
+
+    botaoVerTodos.addEventListener(
+        "click",
+        () => {
+
+            mostrandoTodos =
+                !mostrandoTodos;
+
+            atualizarListaJogadores();
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// MODO ADMINISTRADOR
+// =====================================================
+
+const modoAdministrador =
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname === "localhost";
 
 
 // =====================================================
@@ -1505,102 +1869,4 @@ async function animarGacha10Vez(personagem) {
 
 carregarEstado();
 
-// =====================================================
-// DIAMANTES INFINITOS APENAS PARA O ADMINISTRADOR
-// =====================================================
-
-const modoAdministrador =
-    window.location.hostname === "127.0.0.1" ||
-    window.location.hostname === "localhost";
-
-function gastarDiamantes(custo) {
-
-    // No computador do administrador, não desconta diamantes
-    if (modoAdministrador) {
-        console.log(
-            "Modo administrador ativado: diamantes infinitos."
-        );
-
-        atualizarDiamantes();
-
-        return true;
-    }
-
-    // Para os jogadores, o sistema funciona normalmente
-    if (diamantes < custo) {
-        alert("Você não possui diamantes suficientes!");
-        return false;
-    }
-
-    diamantes -= custo;
-
-    atualizarDiamantes();
-    salvarEstado();
-
-    return true;
-}
-
-function esperar(tempo) {
-    return new Promise(resolve => {
-        setTimeout(resolve, tempo);
-    });
-}
-
-function esconderResultadoX10() {
-    const container = document.querySelector(".resultado-x10-container");
-    const resultados = document.getElementById("resultadosX10");
-
-    if (container) {
-        container.style.display = "none";
-    }
-
-    if (resultados) {
-        resultados.innerHTML = "";
-    }
-}
-
-const LIMITE_JOGADORES = 6;
-
-const botaoVerTodos = document.getElementById("verTodosJogadores");
-
-let mostrandoTodos = false;
-
-function atualizarListaJogadores() {
-
-    const lista = document.getElementById("listaJogadores");
-    const jogadores = [...lista.children];
-
-    jogadores.forEach((card, indice) => {
-
-        if (!mostrandoTodos && indice >= LIMITE_JOGADORES) {
-            card.style.display = "none";
-        } else {
-            card.style.display = "";
-        }
-
-    });
-
-    if (jogadores.length > LIMITE_JOGADORES) {
-
-        botaoVerTodos.style.display = "block";
-
-        if (mostrandoTodos) {
-            botaoVerTodos.textContent = "OCULTAR JOGADORES";
-        } else {
-            botaoVerTodos.textContent = "VER TODOS OS JOGADORES";
-        }
-
-    } else {
-
-        botaoVerTodos.style.display = "none";
-
-    }
-}
-
-botaoVerTodos.addEventListener("click", () => {
-
-    mostrandoTodos = !mostrandoTodos;
-
-    atualizarListaJogadores();
-
-});
+atualizarListaJogadores();

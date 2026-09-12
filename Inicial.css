@@ -2671,6 +2671,7 @@ color: #FFFFFF;
 .mt-section {
     position: relative;
     width: 100%;
+    
     min-height: 100vh;
     padding: 80px 5%;
     background: #0B0F19;
