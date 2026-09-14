@@ -744,6 +744,8 @@ const escalação = {
     GK: null
 };
 
+let jogadoresObtidos = [];
+
 
 // =====================================================
 // SISTEMA DE RARIDADES
@@ -1885,235 +1887,389 @@ carregarEstado();
 
 atualizarListaJogadores();
 
+
+// =====================================================
+// SISTEMA DE MONTAR O TIME
+// =====================================================
+
+let slotSelecionado = null;
+
+
+// -----------------------------------------------------
+// COMPATIBILIDADE DE POSIÇÕES
+// -----------------------------------------------------
+
 function jogadorPodeJogar(personagem, posicao) {
 
     const compatibilidade = {
+
         ST: ["ST", "FW"],
+
         LW: ["LW", "FW"],
+
         RW: ["RW", "FW"],
+
         CAM: ["CAM", "MF"],
+
         CM: ["CM", "MF"],
+
         LB: ["LB", "DF"],
+
         CB: ["CB", "DF"],
+
         RB: ["RB", "DF"],
+
         GK: ["GK"]
+
     };
+
+    if (!personagem || !personagem.posicoes) {
+        return false;
+    }
 
     return personagem.posicoes.some(pos =>
         compatibilidade[posicao]?.includes(pos)
     );
 }
 
-document.querySelectorAll(".slot-jogador").forEach(slot => {
 
-    slot.addEventListener("click", () => {
+// -----------------------------------------------------
+// CLICAR EM UMA POSIÇÃO DO CAMPO
+// -----------------------------------------------------
 
-        const slotId = slot.dataset.slot;
-        const posicao = slot.dataset.posicao;
+document.querySelectorAll(".mt-field-player").forEach(botao => {
 
-        abrirSelecaoDeJogador(slotId, posicao);
+    botao.addEventListener("click", () => {
+
+        const campo =
+            botao.closest(".mt-field-position");
+
+        if (!campo) {
+            return;
+        }
+
+        const posicao =
+            campo.dataset.position;
+
+        const slot =
+            campo.dataset.slot;
+
+        slotSelecionado = {
+            slot: slot,
+            posicao: posicao,
+            botao: botao
+        };
+
+        abrirSelecaoDeJogador(posicao);
 
     });
 
 });
 
-function abrirSelecaoDeJogador(slotId, posicao) {
 
-    const jogadoresCompativeis = personagensObtidos.filter(jogador =>
-        jogadorPodeJogar(jogador, posicao)
-    );
+// -----------------------------------------------------
+// MOSTRAR JOGADORES COMPATÍVEIS
+// -----------------------------------------------------
 
-    console.log("Posição escolhida:", posicao);
-    console.log("Jogadores disponíveis:", jogadoresCompativeis);
+function abrirSelecaoDeJogador(posicao) {
 
-}
-
-function colocarJogadorNoTime(jogador, slotId) {
-
-    // Verifica se o jogador já está em outro lugar
-    const jaEstaNoTime = Object.entries(escalação)
-        .find(([slot, jogadorAtual]) =>
-            jogadorAtual?.id === jogador.id
+    const jogadoresCompativeis =
+        jogadoresObtidos.filter(jogador =>
+            jogadorPodeJogar(jogador, posicao)
         );
 
-    if (jaEstaNoTime) {
-        alert("Esse jogador já está no time!");
+    console.log(
+        "Posição selecionada:",
+        posicao
+    );
+
+    console.log(
+        "Jogadores compatíveis:",
+        jogadoresCompativeis
+    );
+
+    if (jogadoresCompativeis.length === 0) {
+
+        alert(
+            "Você não possui jogadores para a posição " +
+            posicao
+        );
+
         return;
     }
 
-    // Coloca o jogador na posição
-    escalação[slotId] = jogador;
+    mostrarJogadoresParaEscolha(
+        jogadoresCompativeis
+    );
+}
+
+
+// -----------------------------------------------------
+// MOSTRAR OS JOGADORES DA LISTA
+// -----------------------------------------------------
+
+function mostrarJogadoresParaEscolha(jogadores) {
+
+    const lista =
+        document.getElementById("listaJogadores");
+
+    if (!lista) {
+        return;
+    }
+
+    [...lista.children].forEach(card => {
+
+        const nome =
+            card.dataset.nome;
+
+        const jogador =
+            jogadores.find(
+                jogador => jogador.nome === nome
+            );
+
+        if (jogador) {
+
+            card.style.display = "";
+
+            card.classList.add(
+                "jogador-selecionavel"
+            );
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+function selecionarJogadorParaTime(jogador) {
+
+    if (!slotSelecionado) {
+
+        alert(
+            "Primeiro escolha uma posição no campo."
+        );
+
+        return;
+    }
+
+    const posicao =
+        slotSelecionado.posicao;
+
+    if (!jogadorPodeJogar(jogador, posicao)) {
+
+        alert(
+            jogador.nome +
+            " não pode jogar como " +
+            posicao
+        );
+
+        return;
+    }
+
+    colocarJogadorNoTime(
+        jogador,
+        slotSelecionado
+    );
+
+}
+
+function colocarJogadorNoTime(jogador, slotInfo) {
+
+    const slotId =
+        encontrarSlotPorBotao(slotInfo.botao);
+
+    if (!slotId) {
+        return;
+    }
+
+    // Impede o mesmo jogador em duas posições
+    const jaEstaNoTime =
+        Object.values(escalação).some(
+            jogadorAtual =>
+                jogadorAtual?.id === jogador.id
+        );
+
+    if (jaEstaNoTime) {
+
+        alert(
+            "Esse jogador já está no seu time!"
+        );
+
+        return;
+    }
+
+    escalação[slotId] =
+        jogador;
 
     renderizarEscalação();
 
     atualizarPainelTime();
 
+    atualizarDestaque();
+
     salvarEscalação();
+
+    slotSelecionado = null;
+
+}
+
+function encontrarSlotPorBotao(botao) {
+
+    const campo =
+        botao.closest(".mt-field-position");
+
+    if (!campo) {
+        return null;
+    }
+
+    const numero =
+        campo.dataset.slot;
+
+    const slots = {
+
+        "1": "ST",
+        "2": "LW",
+        "3": "RW",
+        "4": "CAM",
+
+        "5": "CM_ESQ",
+        "6": "CM_DIR",
+
+        "7": "LB",
+        "8": "CB_ESQ",
+        "9": "CB_DIR",
+        "10": "RB",
+
+        "11": "GK"
+
+    };
+
+    return slots[numero];
 }
 
 function renderizarEscalação() {
 
-    document.querySelectorAll(".slot-jogador").forEach(slot => {
+    document.querySelectorAll(
+        ".mt-field-position"
+    ).forEach(campo => {
 
-        const slotId = slot.dataset.slot;
-        const jogador = escalação[slotId];
+        const numero =
+            campo.dataset.slot;
+
+        const slotId =
+            encontrarSlotPorCampo(numero);
+
+        const jogador =
+            escalação[slotId];
+
+        const botao =
+            campo.querySelector(
+                ".mt-field-player"
+            );
+
+        if (!botao) {
+            return;
+        }
+
+        const vazio =
+            botao.querySelector(
+                ".mt-field-player-empty"
+            );
+
+        const imagem =
+            botao.querySelector(
+                ".mt-field-player-image"
+            );
+
+        const nome =
+            botao.querySelector(
+                ".mt-field-player-name"
+            );
 
         if (!jogador) {
 
-            slot.innerHTML = `
-                <span>+</span>
-                <small>${slot.dataset.posicao}</small>
-            `;
+            if (vazio) {
+                vazio.style.display = "flex";
+            }
 
-            slot.classList.remove("ocupado");
+            if (imagem) {
+                imagem.src = "";
+                imagem.style.display = "none";
+            }
+
+            if (nome) {
+                nome.textContent =
+                    campo.dataset.position;
+            }
 
             return;
         }
 
-        slot.innerHTML = `
-            <img 
-                src="${jogador.imagem}" 
-                alt="${jogador.nome}"
-            >
+        if (vazio) {
+            vazio.style.display = "none";
+        }
 
-            <strong>${jogador.nome}</strong>
+        if (imagem) {
 
-            <span class="overall-slot">
-                ${jogador.overall}
-            </span>
-        `;
+            imagem.src =
+                jogador.imagem;
 
-        slot.classList.add("ocupado");
+            imagem.alt =
+                jogador.nome;
+
+            imagem.style.display =
+                "block";
+        }
+
+        if (nome) {
+
+            nome.textContent =
+                jogador.nome;
+
+        }
+
     });
+
 }
 
-function atualizarPainelTime() {
+function encontrarSlotPorCampo(numero) {
 
-    const jogadores = Object.values(escalação)
-        .filter(jogador => jogador !== null);
+    const slots = {
 
-    if (jogadores.length === 0) {
+        "1": "ST",
+        "2": "LW",
+        "3": "RW",
+        "4": "CAM",
+        "5": "CM_ESQ",
+        "6": "CM_DIR",
+        "7": "LB",
+        "8": "CB_ESQ",
+        "9": "CB_DIR",
+        "10": "RB",
+        "11": "GK"
 
-        document.querySelector("#overallTime").textContent = "0";
-        document.querySelector("#ataqueTime").textContent = "0";
-        document.querySelector("#tecnicaTime").textContent = "0";
-        document.querySelector("#velocidadeTime").textContent = "0";
-        document.querySelector("#visaoTime").textContent = "0";
-
-        return;
-    }
-
-    const media = (atributo) => {
-
-        const total = jogadores.reduce(
-            (soma, jogador) =>
-                soma + jogador.atributos[atributo],
-            0
-        );
-
-        return Math.round(total / jogadores.length);
     };
 
-    const overall = Math.round(
-        jogadores.reduce(
-            (soma, jogador) =>
-                soma + jogador.overall,
-            0
-        ) / jogadores.length
-    );
-
-    document.querySelector("#overallTime").textContent = overall;
-
-    document.querySelector("#ataqueTime").textContent =
-        media("ataque");
-
-    document.querySelector("#tecnicaTime").textContent =
-        media("tecnica");
-
-    document.querySelector("#velocidadeTime").textContent =
-        media("velocidade");
-
-    document.querySelector("#visaoTime").textContent =
-        media("visao");
+    return slots[numero];
 }
 
-function atualizarDestaque() {
-
-    const jogadores = Object.values(escalação)
-        .filter(jogador => jogador !== null);
-
-    if (jogadores.length === 0) {
-        document.querySelector("#jogadorDestaque").textContent = "—";
-        return;
-    }
-
-    const destaque = jogadores.reduce((melhor, jogador) => {
-
-        return jogador.overall > melhor.overall
-            ? jogador
-            : melhor;
-
-    });
-
-    document.querySelector("#jogadorDestaque").textContent =
-        destaque.nome;
-}
-
-function salvarEscalação() {
-
-    const dados = {};
-
-    for (const slot in escalação) {
-
-        dados[slot] = escalação[slot]
-            ? escalação[slot].id
-            : null;
-    }
-
-    localStorage.setItem(
-        "escalaçãoBlueLock",
-        JSON.stringify(dados)
-    );
-}
-
-function carregarEscalação() {
-
-    const dadosSalvos =
-        localStorage.getItem("escalaçãoBlueLock");
-
-    if (!dadosSalvos) return;
-
-    const dados = JSON.parse(dadosSalvos);
-
-    for (const slot in dados) {
-
-        const idJogador = dados[slot];
-
-        if (!idJogador) continue;
-
-        const jogador = personagens.find(
-            personagem => personagem.id === idJogador
-        );
-
-        if (jogador) {
-            escalação[slot] = jogador;
-        }
-    }
-
-    renderizarEscalação();
-    atualizarPainelTime();
-    atualizarDestaque();
-}
-
-document.querySelector("#limparEscalacao")
-    .addEventListener("click", () => {
+document.querySelector("#limparTime")
+    ?.addEventListener("click", () => {
 
         for (const slot in escalação) {
+
             escalação[slot] = null;
+
         }
 
         renderizarEscalação();
         atualizarPainelTime();
         atualizarDestaque();
         salvarEscalação();
+
     });
