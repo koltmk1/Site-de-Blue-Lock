@@ -3325,6 +3325,86 @@ color: #FFFFFF;
 }
 
 
+/* =====================================================
+   JOGADOR PREENCHIDO NO CAMPO
+===================================================== */
+
+.mt-field-player {
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+}
+
+/* Imagem do jogador */
+
+.mt-field-player-image {
+
+    width: 58px;
+
+    height: 58px;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 50%;
+
+    border: 2px solid #008cff;
+
+    background: #0b1424;
+
+    display: none;
+
+}
+
+/* Nome do jogador */
+
+.mt-field-player-name {
+
+    font-size: 10px;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    max-width: 100px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+/* Slot preenchido */
+
+.mt-field-player.slot-preenchido {
+
+    border-color: #008cff;
+
+}
+
+/* Remove o + quando estiver preenchido */
+
+.mt-field-player.slot-preenchido
+.mt-field-player-empty {
+
+    display: none;
+
+}
 
 
 

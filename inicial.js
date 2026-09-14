@@ -730,22 +730,6 @@ const personagens = [
 
 ];
 
-const escalação = {
-    ST: null,
-    LW: null,
-    RW: null,
-    CAM: null,
-    CM_ESQ: null,
-    CM_DIR: null,
-    LB: null,
-    CB_ESQ: null,
-    CB_DIR: null,
-    RB: null,
-    GK: null
-};
-
-let jogadoresObtidos = [];
-
 
 // =====================================================
 // SISTEMA DE RARIDADES
@@ -1892,89 +1876,441 @@ atualizarListaJogadores();
 // SISTEMA DE MONTAR O TIME
 // =====================================================
 
+
+
+
+/* =====================================================
+   SISTEMA DE MONTAR O TIME - BLUE LOCK
+===================================================== */
+
+// NÃO declare jogadoresObtidos novamente em outro lugar.
+// Se a declaração já existir antes deste bloco,
+// mantenha apenas uma declaração.
+
+let jogadoresObtidos = [];
+
+let escalação = {
+    ST: null,
+    LW: null,
+    RW: null,
+    CAM: null,
+    CM_ESQ: null,
+    CM_DIR: null,
+    LB: null,
+    CB_ESQ: null,
+    CB_DIR: null,
+    RB: null,
+    GK: null
+};
+
 let slotSelecionado = null;
 
-// -----------------------------------------------------
-// COMPATIBILIDADE DE POSIÇÕES
-// -----------------------------------------------------
+const CHAVE_ELENCO = "blueLockJogadoresObtidos";
+const CHAVE_ESCALACAO = "blueLockEscalacao";
+
+const compatibilidade = {
+
+    ST: ["ST", "FW"],
+    LW: ["LW", "FW"],
+    RW: ["RW", "FW"],
+
+    CAM: ["CAM", "MF"],
+    CM: ["CM", "MF"],
+
+    LB: ["LB", "DF"],
+    CB: ["CB", "DF"],
+    RB: ["RB", "DF"],
+
+    GK: ["GK"]
+
+};
 
 function jogadorPodeJogar(personagem, posicao) {
 
-    const compatibilidade = {
-
-        ST: ["ST", "FW"],
-
-        LW: ["LW", "FW"],
-
-        RW: ["RW", "FW"],
-
-        CAM: ["CAM", "MF"],
-
-        CM: ["CM", "MF"],
-
-        LB: ["LB", "DF"],
-
-        CB: ["CB", "DF"],
-
-        RB: ["RB", "DF"],
-
-        GK: ["GK"]
-
-    };
-
-    if (!personagem || !personagem.posicoes) {
+    if (!personagem || !Array.isArray(personagem.posicoes)) {
         return false;
     }
 
-    return personagem.posicoes.some(pos =>
-        compatibilidade[posicao]?.includes(pos)
+    const posicoesAceitas =
+        compatibilidade[posicao] || [];
+
+    return personagem.posicoes.some(
+        pos => posicoesAceitas.includes(pos)
     );
+
+}
+
+/* =====================================================
+   SALVAR ELENCO
+===================================================== */
+
+function salvarElenco() {
+
+    localStorage.setItem(
+        CHAVE_ELENCO,
+        JSON.stringify(jogadoresObtidos)
+    );
+
+}
+
+/* =====================================================
+   CARREGAR ELENCO
+===================================================== */
+
+function carregarElenco() {
+
+    const dados =
+        localStorage.getItem(CHAVE_ELENCO);
+
+    if (!dados) {
+        jogadoresObtidos = [];
+        return;
+    }
+
+    try {
+
+        const jogadores =
+            JSON.parse(dados);
+
+        jogadoresObtidos =
+            Array.isArray(jogadores)
+                ? jogadores
+                : [];
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao carregar elenco:",
+            erro
+        );
+
+        jogadoresObtidos = [];
+
+    }
+
+}
+
+/* =====================================================
+   SALVAR ESCALAÇÃO
+===================================================== */
+
+function salvarEscalação() {
+
+    localStorage.setItem(
+        CHAVE_ESCALACAO,
+        JSON.stringify(escalação)
+    );
+
+}
+
+/* =====================================================
+   CARREGAR ESCALAÇÃO
+===================================================== */
+
+function carregarEscalação() {
+
+    const dados =
+        localStorage.getItem(CHAVE_ESCALACAO);
+
+    if (!dados) {
+        return;
+    }
+
+    try {
+
+        const escalaçãoSalva =
+            JSON.parse(dados);
+
+        if (
+            escalaçãoSalva &&
+            typeof escalaçãoSalva === "object"
+        ) {
+
+            Object.keys(escalação).forEach(
+                slot => {
+
+                    escalação[slot] =
+                        escalaçãoSalva[slot] || null;
+
+                }
+            );
+
+        }
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao carregar escalação:",
+            erro
+        );
+
+    }
+
 }
 
 
-// -----------------------------------------------------
-// CLICAR EM UMA POSIÇÃO DO CAMPO
-// -----------------------------------------------------
+/* =====================================================
+   ADICIONAR JOGADOR AO ELENCO
+===================================================== */
 
-document.querySelectorAll(".mt-field-player").forEach(botao => {
+function adicionarJogadorAoElenco(personagem) {
 
-    botao.addEventListener("click", () => {
+    const lista =
+        document.getElementById("listaJogadores");
 
-        const campo =
-            botao.closest(".mt-field-position");
+    if (!personagem) {
+        return;
+    }
 
-        if (!campo) {
-            return;
+    if (!lista) {
+        console.error(
+            "Elemento #listaJogadores não encontrado."
+        );
+
+        return;
+    }
+
+    // Verifica se o jogador já está no elenco
+    const jogadorJaExiste =
+        jogadoresObtidos.some(
+            jogador => jogador.id === personagem.id
+        );
+
+    if (jogadorJaExiste) {
+        return;
+    }
+
+    // Registra o jogador no elenco
+    jogadoresObtidos.push(personagem);
+
+    // Salva o elenco
+    salvarElenco();
+
+    // Cria o card visual
+    const card =
+        document.createElement("article");
+
+    card.classList.add("player-card");
+
+    card.dataset.nome =
+        personagem.nome;
+
+    card.dataset.id =
+        personagem.id;
+
+    card.innerHTML = `
+
+        <div class="player-card-image">
+
+            <img
+                src="${personagem.imagem}"
+                alt="${personagem.nome}"
+            >
+
+        </div>
+
+        <div class="player-card-info">
+
+            <span class="player-rarity">
+                ${personagem.raridade}
+            </span>
+
+            <h3>
+                ${personagem.nome}
+            </h3>
+
+            <p class="player-overall">
+                OVERALL:
+                <strong>${personagem.overall}</strong>
+            </p>
+
+            <button
+                class="button-add-team"
+                type="button"
+            >
+                COLOCAR NO TIME
+            </button>
+
+        </div>
+
+    `;
+
+    lista.appendChild(card);
+
+    // Liga o botão ao jogador correto
+    const botaoAdicionar =
+        card.querySelector(".button-add-team");
+
+    botaoAdicionar.addEventListener(
+        "click",
+        () => {
+
+            selecionarJogadorParaTime(
+                personagem
+            );
+
         }
+    );
 
-        const posicao =
-            campo.dataset.position;
+    atualizarListaJogadores();
 
-        const slot =
-            campo.dataset.slot;
+}
 
-        slotSelecionado = {
-            slot: slot,
-            posicao: posicao,
-            botao: botao
-        };
 
-        abrirSelecaoDeJogador(posicao);
+/* =====================================================
+   RENDERIZAR ELENCO
+===================================================== */
+
+function renderizarElenco() {
+
+    const lista =
+        document.getElementById("listaJogadores");
+
+    if (!lista) {
+        return;
+    }
+
+    lista.innerHTML = "";
+
+    jogadoresObtidos.forEach(
+        jogador => {
+
+            const card =
+                document.createElement("article");
+
+            card.classList.add("player-card");
+
+            card.dataset.nome =
+                jogador.nome;
+
+            card.dataset.id =
+                jogador.id;
+
+            card.innerHTML = `
+
+                <div class="player-card-image">
+
+                    <img
+                        src="${jogador.imagem}"
+                        alt="${jogador.nome}"
+                    >
+
+                </div>
+
+                <div class="player-card-info">
+
+                    <span class="player-rarity">
+                        ${jogador.raridade}
+                    </span>
+
+                    <h3>
+                        ${jogador.nome}
+                    </h3>
+
+                    <p class="player-overall">
+                        OVERALL:
+                        <strong>${jogador.overall}</strong>
+                    </p>
+
+                    <button
+                        class="button-add-team"
+                        type="button"
+                    >
+                        COLOCAR NO TIME
+                    </button>
+
+                </div>
+
+            `;
+
+            lista.appendChild(card);
+
+            const botaoAdicionar =
+                card.querySelector(
+                    ".button-add-team"
+                );
+
+            botaoAdicionar.addEventListener(
+                "click",
+                () => {
+
+                    selecionarJogadorParaTime(
+                        jogador
+                    );
+
+                }
+            );
+
+        }
+    );
+
+    atualizarListaJogadores();
+
+}
+
+
+/* =====================================================
+   CLICAR NO CAMPO
+===================================================== */
+
+function iniciarEventosCampo() {
+
+    document.querySelectorAll(
+        ".mt-field-player"
+    ).forEach(botao => {
+
+        botao.addEventListener(
+            "click",
+            () => {
+
+                const campo =
+                    botao.closest(
+                        ".mt-field-position"
+                    );
+
+                if (!campo) {
+                    return;
+                }
+
+                const posicao =
+                    campo.dataset.position;
+
+                const slot =
+                    campo.dataset.slot;
+
+                slotSelecionado = {
+
+                    slot: slot,
+                    posicao: posicao,
+                    botao: botao
+
+                };
+
+                abrirSelecaoDeJogador(
+                    posicao
+                );
+
+            }
+        );
 
     });
 
-});
+}
 
 
-// -----------------------------------------------------
-// MOSTRAR JOGADORES COMPATÍVEIS
-// -----------------------------------------------------
+/* =====================================================
+   ABRIR SELEÇÃO DE JOGADORES
+===================================================== */
 
 function abrirSelecaoDeJogador(posicao) {
 
     const jogadoresCompativeis =
-        jogadoresObtidos.filter(jogador =>
-            jogadorPodeJogar(jogador, posicao)
+        jogadoresObtidos.filter(
+            jogador =>
+                jogadorPodeJogar(
+                    jogador,
+                    posicao
+                )
         );
 
     console.log(
@@ -1995,55 +2331,70 @@ function abrirSelecaoDeJogador(posicao) {
         );
 
         return;
+
     }
 
     mostrarJogadoresParaEscolha(
         jogadoresCompativeis
     );
+
 }
 
-
-// -----------------------------------------------------
-// MOSTRAR OS JOGADORES DA LISTA
-// -----------------------------------------------------
+/* =====================================================
+   MOSTRAR JOGADORES NA LISTA
+===================================================== */
 
 function mostrarJogadoresParaEscolha(jogadores) {
 
     const lista =
-        document.getElementById("listaJogadores");
+        document.getElementById(
+            "listaJogadores"
+        );
 
     if (!lista) {
         return;
     }
 
-    [...lista.children].forEach(card => {
+    const idsCompativeis =
+        new Set(
+            jogadores.map(
+                jogador => jogador.id
+            )
+        );
 
-        const nome =
-            card.dataset.nome;
+    [...lista.children].forEach(
+        card => {
 
-        const jogador =
-            jogadores.find(
-                jogador => jogador.nome === nome
-            );
+            const id =
+                card.dataset.id;
 
-        if (jogador) {
+            if (idsCompativeis.has(id)) {
 
-            card.style.display = "";
+                card.style.display = "";
 
-            card.classList.add(
-                "jogador-selecionavel"
-            );
+                card.classList.add(
+                    "jogador-selecionavel"
+                );
 
-        } else {
+            } else {
 
-            card.style.display = "none";
+                card.style.display = "none";
+
+                card.classList.remove(
+                    "jogador-selecionavel"
+                );
+
+            }
 
         }
-
-    });
+    );
 
 }
 
+
+/* =====================================================
+   SELECIONAR JOGADOR
+===================================================== */
 
 function selecionarJogadorParaTime(jogador) {
 
@@ -2054,12 +2405,18 @@ function selecionarJogadorParaTime(jogador) {
         );
 
         return;
+
     }
 
     const posicao =
         slotSelecionado.posicao;
 
-    if (!jogadorPodeJogar(jogador, posicao)) {
+    if (
+        !jogadorPodeJogar(
+            jogador,
+            posicao
+        )
+    ) {
 
         alert(
             jogador.nome +
@@ -2068,6 +2425,7 @@ function selecionarJogadorParaTime(jogador) {
         );
 
         return;
+
     }
 
     colocarJogadorNoTime(
@@ -2077,26 +2435,30 @@ function selecionarJogadorParaTime(jogador) {
 
 }
 
-function colocarJogadorNoTime(jogador, slotInfo) {
+/* =====================================================
+   COLOCAR JOGADOR NO TIME
+===================================================== */
 
 
-    const lista = document.getElementById(
-        "listaJogadores"
-    );
+function colocarJogadorNoTime(
+    jogador,
+    slotInfo
+) {
 
-    if (!jogadoresObtidos.some(jogador => jogador.id === personagem.id)) {
-        jogadoresObtidos.push(personagem);
+    if (!jogador || !slotInfo) {
+        return;
     }
 
-
     const slotId =
-        encontrarSlotPorBotao(slotInfo.botao);
+        encontrarSlotPorBotao(
+            slotInfo.botao
+        );
 
     if (!slotId) {
         return;
     }
 
-    // Impede o mesmo jogador em duas posições
+    // Confere se o jogador já está no time
     const jaEstaNoTime =
         Object.values(escalação).some(
             jogadorAtual =>
@@ -2110,29 +2472,71 @@ function colocarJogadorNoTime(jogador, slotInfo) {
         );
 
         return;
+
     }
+
+    // Confere se o jogador pode jogar nessa posição
+    if (
+        !jogadorPodeJogar(
+            jogador,
+            slotInfo.posicao
+        )
+    ) {
+
+        alert(
+            "Esse jogador não pode jogar nessa posição."
+        );
+
+        return;
+
+    }
+
+    // =========================================
+    // COLOCA O JOGADOR NO SLOT
+    // =========================================
 
     escalação[slotId] =
         jogador;
 
+    // Atualiza visual do campo
     renderizarEscalação();
 
-    atualizarPainelTime();
+    // Atualiza painel do time
+    if (
+        typeof atualizarPainelTime === "function"
+    ) {
 
-    atualizarDestaque();
+        atualizarPainelTime();
 
+    }
+
+    if (
+        typeof atualizarDestaque === "function"
+    ) {
+
+        atualizarDestaque();
+
+    }
+
+    // Salva a escalação
     salvarEscalação();
 
+    // Limpa a seleção
     slotSelecionado = null;
 
-    let jogadoresObtidos = [];
-
 }
+
+
+/* =====================================================
+   ENCONTRAR SLOT
+===================================================== */
 
 function encontrarSlotPorBotao(botao) {
 
     const campo =
-        botao.closest(".mt-field-position");
+        botao.closest(
+            ".mt-field-position"
+        );
 
     if (!campo) {
         return null;
@@ -2160,8 +2564,13 @@ function encontrarSlotPorBotao(botao) {
 
     };
 
-    return slots[numero];
+    return slots[numero] || null;
+
 }
+
+/* =====================================================
+   RENDERIZAR ESCALAÇÃO
+===================================================== */
 
 function renderizarEscalação() {
 
@@ -2187,66 +2596,72 @@ function renderizarEscalação() {
             return;
         }
 
-        const vazio =
-            botao.querySelector(
-                ".mt-field-player-empty"
-            );
-
-        const imagem =
-            botao.querySelector(
-                ".mt-field-player-image"
-            );
-
-        const nome =
-            botao.querySelector(
-                ".mt-field-player-name"
-            );
+        // =================================================
+        // SLOT VAZIO
+        // =================================================
 
         if (!jogador) {
 
-            if (vazio) {
-                vazio.style.display = "flex";
-            }
+            botao.innerHTML = `
 
-            if (imagem) {
-                imagem.src = "";
-                imagem.style.display = "none";
-            }
+                <span class="mt-field-player-empty">
+                    +
+                </span>
 
-            if (nome) {
-                nome.textContent =
-                    campo.dataset.position;
-            }
+                <img
+                    class="mt-field-player-image"
+                    alt=""
+                    style="display: none;"
+                >
+
+                <span class="mt-field-player-name">
+                    ${campo.dataset.position}
+                </span>
+
+            `;
+
+            botao.classList.remove(
+                "mt-field-player-filled"
+            );
 
             return;
         }
 
-        if (vazio) {
-            vazio.style.display = "none";
-        }
+        // =================================================
+        // SLOT COM JOGADOR
+        // =================================================
 
-        if (imagem) {
+        botao.innerHTML = `
 
-            imagem.src =
-                jogador.imagem;
+            <img
+                class="mt-field-player-image"
+                src="${jogador.imagem}"
+                alt="${jogador.nome}"
+            >
 
-            imagem.alt =
-                jogador.nome;
+            <span class="mt-field-player-name">
+                ${jogador.nome}
+            </span>
 
-            imagem.style.display =
-                "block";
-        }
+            <span class="mt-field-player-position">
+                ${campo.dataset.position}
+            </span>
 
-        if (nome) {
+        `;
 
-            nome.textContent =
-                jogador.nome;
-
-        }
+        botao.classList.add(
+            "mt-field-player-filled"
+        );
 
     });
 
 }
+
+
+
+/* =====================================================
+   ENCONTRAR SLOT PELO NÚMERO
+===================================================== */
 
 function encontrarSlotPorCampo(numero) {
 
@@ -2256,32 +2671,92 @@ function encontrarSlotPorCampo(numero) {
         "2": "LW",
         "3": "RW",
         "4": "CAM",
+
         "5": "CM_ESQ",
         "6": "CM_DIR",
+
         "7": "LB",
         "8": "CB_ESQ",
         "9": "CB_DIR",
         "10": "RB",
+
         "11": "GK"
 
     };
 
-    return slots[numero];
+    return slots[numero] || null;
+
 }
 
-document.querySelector("#limparTime")
-    ?.addEventListener("click", () => {
 
-        for (const slot in escalação) {
+/* =====================================================
+   LIMPAR ESCALAÇÃO
+===================================================== */
+
+function limparEscalação() {
+
+    Object.keys(escalação).forEach(
+        slot => {
 
             escalação[slot] = null;
 
         }
+    );
 
-        renderizarEscalação();
+    renderizarEscalação();
+
+    if (
+        typeof atualizarPainelTime === "function"
+    ) {
+
         atualizarPainelTime();
+
+    }
+
+    if (
+        typeof atualizarDestaque === "function"
+    ) {
+
         atualizarDestaque();
-        salvarEscalação();
 
-    });
+    }
 
+    salvarEscalação();
+
+}
+
+const botaoLimpar =
+    document.querySelector(
+        "#limparTime"
+    );
+
+if (botaoLimpar) {
+
+    botaoLimpar.addEventListener(
+        "click",
+        limparEscalação
+    );
+
+}
+
+
+
+/* =====================================================
+   INICIALIZAR SISTEMA
+===================================================== */
+
+function inicializarMonteSeuTime() {
+
+    carregarElenco();
+
+    carregarEscalação();
+
+    renderizarElenco();
+
+    renderizarEscalação();
+
+    iniciarEventosCampo();
+
+}
+
+inicializarMonteSeuTime();
