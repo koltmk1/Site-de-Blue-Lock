@@ -92,7 +92,7 @@ const personagens = [
         id: "igarashi",
         nome: "Igarashi Gurimu",
         raridade: "Comum",
-        imagem: "Gacha-Igarashi.jpg",
+        imagem: "Gacha-Igarachi.jpg",
         posicoes: ["FW"],
         overall: 57,
         atributos: {
@@ -729,6 +729,20 @@ const personagens = [
     }
 
 ];
+
+const escalação = {
+    ST: null,
+    LW: null,
+    RW: null,
+    CAM: null,
+    CM_ESQ: null,
+    CM_DIR: null,
+    LB: null,
+    CB_ESQ: null,
+    CB_DIR: null,
+    RB: null,
+    GK: null
+};
 
 
 // =====================================================
@@ -1870,3 +1884,236 @@ const modoAdministrador =
 carregarEstado();
 
 atualizarListaJogadores();
+
+function jogadorPodeJogar(personagem, posicao) {
+
+    const compatibilidade = {
+        ST: ["ST", "FW"],
+        LW: ["LW", "FW"],
+        RW: ["RW", "FW"],
+        CAM: ["CAM", "MF"],
+        CM: ["CM", "MF"],
+        LB: ["LB", "DF"],
+        CB: ["CB", "DF"],
+        RB: ["RB", "DF"],
+        GK: ["GK"]
+    };
+
+    return personagem.posicoes.some(pos =>
+        compatibilidade[posicao]?.includes(pos)
+    );
+}
+
+document.querySelectorAll(".slot-jogador").forEach(slot => {
+
+    slot.addEventListener("click", () => {
+
+        const slotId = slot.dataset.slot;
+        const posicao = slot.dataset.posicao;
+
+        abrirSelecaoDeJogador(slotId, posicao);
+
+    });
+
+});
+
+function abrirSelecaoDeJogador(slotId, posicao) {
+
+    const jogadoresCompativeis = personagensObtidos.filter(jogador =>
+        jogadorPodeJogar(jogador, posicao)
+    );
+
+    console.log("Posição escolhida:", posicao);
+    console.log("Jogadores disponíveis:", jogadoresCompativeis);
+
+}
+
+function colocarJogadorNoTime(jogador, slotId) {
+
+    // Verifica se o jogador já está em outro lugar
+    const jaEstaNoTime = Object.entries(escalação)
+        .find(([slot, jogadorAtual]) =>
+            jogadorAtual?.id === jogador.id
+        );
+
+    if (jaEstaNoTime) {
+        alert("Esse jogador já está no time!");
+        return;
+    }
+
+    // Coloca o jogador na posição
+    escalação[slotId] = jogador;
+
+    renderizarEscalação();
+
+    atualizarPainelTime();
+
+    salvarEscalação();
+}
+
+function renderizarEscalação() {
+
+    document.querySelectorAll(".slot-jogador").forEach(slot => {
+
+        const slotId = slot.dataset.slot;
+        const jogador = escalação[slotId];
+
+        if (!jogador) {
+
+            slot.innerHTML = `
+                <span>+</span>
+                <small>${slot.dataset.posicao}</small>
+            `;
+
+            slot.classList.remove("ocupado");
+
+            return;
+        }
+
+        slot.innerHTML = `
+            <img 
+                src="${jogador.imagem}" 
+                alt="${jogador.nome}"
+            >
+
+            <strong>${jogador.nome}</strong>
+
+            <span class="overall-slot">
+                ${jogador.overall}
+            </span>
+        `;
+
+        slot.classList.add("ocupado");
+    });
+}
+
+function atualizarPainelTime() {
+
+    const jogadores = Object.values(escalação)
+        .filter(jogador => jogador !== null);
+
+    if (jogadores.length === 0) {
+
+        document.querySelector("#overallTime").textContent = "0";
+        document.querySelector("#ataqueTime").textContent = "0";
+        document.querySelector("#tecnicaTime").textContent = "0";
+        document.querySelector("#velocidadeTime").textContent = "0";
+        document.querySelector("#visaoTime").textContent = "0";
+
+        return;
+    }
+
+    const media = (atributo) => {
+
+        const total = jogadores.reduce(
+            (soma, jogador) =>
+                soma + jogador.atributos[atributo],
+            0
+        );
+
+        return Math.round(total / jogadores.length);
+    };
+
+    const overall = Math.round(
+        jogadores.reduce(
+            (soma, jogador) =>
+                soma + jogador.overall,
+            0
+        ) / jogadores.length
+    );
+
+    document.querySelector("#overallTime").textContent = overall;
+
+    document.querySelector("#ataqueTime").textContent =
+        media("ataque");
+
+    document.querySelector("#tecnicaTime").textContent =
+        media("tecnica");
+
+    document.querySelector("#velocidadeTime").textContent =
+        media("velocidade");
+
+    document.querySelector("#visaoTime").textContent =
+        media("visao");
+}
+
+function atualizarDestaque() {
+
+    const jogadores = Object.values(escalação)
+        .filter(jogador => jogador !== null);
+
+    if (jogadores.length === 0) {
+        document.querySelector("#jogadorDestaque").textContent = "—";
+        return;
+    }
+
+    const destaque = jogadores.reduce((melhor, jogador) => {
+
+        return jogador.overall > melhor.overall
+            ? jogador
+            : melhor;
+
+    });
+
+    document.querySelector("#jogadorDestaque").textContent =
+        destaque.nome;
+}
+
+function salvarEscalação() {
+
+    const dados = {};
+
+    for (const slot in escalação) {
+
+        dados[slot] = escalação[slot]
+            ? escalação[slot].id
+            : null;
+    }
+
+    localStorage.setItem(
+        "escalaçãoBlueLock",
+        JSON.stringify(dados)
+    );
+}
+
+function carregarEscalação() {
+
+    const dadosSalvos =
+        localStorage.getItem("escalaçãoBlueLock");
+
+    if (!dadosSalvos) return;
+
+    const dados = JSON.parse(dadosSalvos);
+
+    for (const slot in dados) {
+
+        const idJogador = dados[slot];
+
+        if (!idJogador) continue;
+
+        const jogador = personagens.find(
+            personagem => personagem.id === idJogador
+        );
+
+        if (jogador) {
+            escalação[slot] = jogador;
+        }
+    }
+
+    renderizarEscalação();
+    atualizarPainelTime();
+    atualizarDestaque();
+}
+
+document.querySelector("#limparEscalacao")
+    .addEventListener("click", () => {
+
+        for (const slot in escalação) {
+            escalação[slot] = null;
+        }
+
+        renderizarEscalação();
+        atualizarPainelTime();
+        atualizarDestaque();
+        salvarEscalação();
+    });
