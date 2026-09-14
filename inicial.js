@@ -2125,7 +2125,7 @@ function colocarJogadorNoTime(jogador, slotInfo) {
 
     slotSelecionado = null;
 
-
+    let jogadoresObtidos = [];
 
 }
 
@@ -2284,3 +2284,4 @@ document.querySelector("#limparTime")
         salvarEscalação();
 
     });
+
