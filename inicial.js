@@ -1397,7 +1397,7 @@ function animarGacha(personagemFinal) {
 
             const personagem =
                 personagensAnimacao[
-                    aleatorio
+                aleatorio
                 ];
 
             // Troca a imagem
@@ -1629,7 +1629,7 @@ function animarNomesX1(
 
                 const nomeFinal =
                     nomes[
-                        nomes.length - 1
+                    nomes.length - 1
                     ];
 
                 if (!nomeFinal) {
@@ -1894,7 +1894,6 @@ atualizarListaJogadores();
 
 let slotSelecionado = null;
 
-
 // -----------------------------------------------------
 // COMPATIBILIDADE DE POSIÇÕES
 // -----------------------------------------------------
@@ -2080,6 +2079,16 @@ function selecionarJogadorParaTime(jogador) {
 
 function colocarJogadorNoTime(jogador, slotInfo) {
 
+
+    const lista = document.getElementById(
+        "listaJogadores"
+    );
+
+    if (!jogadoresObtidos.some(jogador => jogador.id === personagem.id)) {
+        jogadoresObtidos.push(personagem);
+    }
+
+
     const slotId =
         encontrarSlotPorBotao(slotInfo.botao);
 
@@ -2115,6 +2124,8 @@ function colocarJogadorNoTime(jogador, slotInfo) {
     salvarEscalação();
 
     slotSelecionado = null;
+
+
 
 }
 
