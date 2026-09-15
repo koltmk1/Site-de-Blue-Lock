@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Biblioteca de Jogadores</title>
+
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="icon" href="Icon.jpg">
+    
+
+</head>
+
+<body>
+
+    <!-- =========================
+         CONTEÚDO
+    ========================== -->
+
+    <main class="pagina-jogadores">
+
+
+        <div class="titulo-pagina">
+
+            <h1>BIBLIOTECA DE JOGADORES</h1>
+
+            <p>
+                EXPLORE TODOS OS JOGADORES DO PROJETO BLUE LOCK
+            </p>
+
+        </div>
+
+
+
+        <div class="area-jogadores">
+
+
+            <!-- =========================
+                 BIBLIOTECA
+            ========================== -->
+
+            <section class="biblioteca" >
+
+
+                <div class="biblioteca-topo">
+
+                    <h2>
+                        JOGADORES
+                    </h2>
+
+                    <span id="contadorJogadores">
+                        35 JOGADORES
+                    </span>
+
+                </div>
+
+
+                <!-- PESQUISA -->
+                <div class="pesquisa">
+
+                    <span>⌕</span>
+
+                    <input type="text" id="pesquisaJogador" placeholder="Pesquisar jogador...">
+
+                </div>
+
+
+                <!-- FILTROS -->
+
+                <div class="filtros">
+
+                    <button class="filtro ativo" data-raridade="Todos">
+                        TODOS
+                    </button>
+
+                    <button class="filtro" data-raridade="Comum">
+                        COMUM
+                    </button>
+
+                    <button class="filtro" data-raridade="Raro">
+                        RARO
+                    </button>
+
+                    <button class="filtro" data-raridade="Épico">
+                        ÉPICO
+                    </button>
+
+                    <button class="filtro" data-raridade="Lendário">
+                        LENDÁRIO
+                    </button>
+
+                    <button class="filtro" data-raridade="New Gen">
+                        NEW GEN
+                    </button>
+
+                </div>
+
+
+                <!-- LISTA COM SCROLL -->
+
+                <div class="lista-jogadores" id="listaJogadores">
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 PERFIL
+            ========================== -->
+
+            <section class="perfil">
+
+
+                <div class="perfil-titulo">
+
+                    <span>
+                        PLAYER DATABASE
+                    </span>
+
+                    <h2>
+                        PERFIL DO JOGADOR
+                    </h2>
+
+                    <p>
+                        INFORMAÇÕES • ATRIBUTOS • HISTÓRIA
+                    </p>
+
+                </div>
+
+
+
+                <!-- PERFIL SERÁ PREENCHIDO PELO JS -->
+
+                <div id="perfilJogador">
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+<script src="perfil.js"></script>
+
+</body>
+
+</html>
