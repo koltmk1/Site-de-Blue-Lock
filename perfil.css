@@ -1,0 +1,986 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    background: #070A12;
+
+    color: white;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    min-height: 100vh;
+
+}
+
+
+/* =========================================
+   PÁGINA
+========================================= */
+
+.pagina-jogadores {
+
+    max-width: 1450px;
+
+    margin: auto;
+
+    padding: 40px;
+
+}
+
+
+.titulo-pagina {
+
+    margin-bottom: 30px;
+
+}
+
+
+.titulo-pagina h1 {
+
+    font-size: 42px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+}
+
+
+.titulo-pagina p {
+
+    margin-top: 8px;
+
+    color: #5E8CC2;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================
+   ÁREA PRINCIPAL
+========================================= */
+
+.area-jogadores {
+
+    display: grid;
+
+    grid-template-columns: 500px 1fr;
+
+    gap: 25px;
+
+    align-items: stretch;
+
+}
+
+
+/* =========================================
+   BIBLIOTECA
+========================================= */
+
+.biblioteca {
+
+    height: 730px;
+
+    background: #0B1120;
+
+    border: 1px solid #174B85;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.biblioteca-topo {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+}
+
+
+.biblioteca-topo h2 {
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+}
+
+
+.biblioteca-topo span {
+
+    color: #4F91DE;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================
+   PESQUISA
+========================================= */
+
+.pesquisa {
+
+    height: 45px;
+
+    border: 1px solid #174B85;
+
+    background: #08101F;
+
+    border-radius: 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 13px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.pesquisa span {
+
+    color: #4EA1FF;
+
+    font-size: 25px;
+
+    margin-right: 8px;
+
+}
+
+
+.pesquisa input {
+
+    width: 100%;
+
+    background: transparent;
+
+    border: none;
+
+    outline: none;
+
+    color: white;
+
+    font-size: 14px;
+
+}
+
+
+.pesquisa input::placeholder {
+
+    color: #55718F;
+
+}
+
+
+/* =========================================
+   FILTROS
+========================================= */
+
+.filtros {
+
+    display: flex;
+
+    gap: 7px;
+
+    overflow-x: auto;
+
+    padding-bottom: 8px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.filtros::-webkit-scrollbar {
+
+    height: 4px;
+
+}
+
+
+.filtros::-webkit-scrollbar-thumb {
+
+    background: #006BFF;
+
+}
+
+
+.filtro {
+
+    flex-shrink: 0;
+
+    background: #08101F;
+
+    border: 1px solid #174B85;
+
+    color: #7C9ABD;
+
+    padding: 8px 12px;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+}
+
+
+.filtro:hover {
+
+    color: white;
+
+    border-color: #006BFF;
+
+}
+
+
+.filtro.ativo {
+
+    background: #006BFF;
+
+    border-color: #006BFF;
+
+    color: white;
+
+}
+
+
+/* =========================================
+   LISTA DE JOGADORES
+========================================= */
+
+.lista-jogadores {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding-right: 8px;
+
+}
+
+
+/* SCROLL */
+
+.lista-jogadores::-webkit-scrollbar {
+
+    width: 7px;
+
+}
+
+
+.lista-jogadores::-webkit-scrollbar-track {
+
+    background: #080E1A;
+
+    border-radius: 10px;
+
+}
+
+
+.lista-jogadores::-webkit-scrollbar-thumb {
+
+    background: #006BFF;
+
+    border-radius: 10px;
+
+}
+
+
+.lista-jogadores::-webkit-scrollbar-thumb:hover {
+
+    background: #00CFFF;
+
+}
+
+
+/* =========================================
+   CARD DA BIBLIOTECA
+========================================= */
+
+.card-biblioteca {
+
+    height: 105px;
+
+    background: #08101F;
+
+    border: 1px solid #173B68;
+
+    border-radius: 10px;
+
+    margin-bottom: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 8px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+}
+
+
+.card-biblioteca:hover {
+
+    border-color: #006BFF;
+
+    transform: translateX(4px);
+
+    background: #0C1729;
+
+}
+
+
+.card-biblioteca.selecionado {
+
+    border: 2px solid #006BFF;
+
+    background: #0C1A30;
+
+    box-shadow:
+        0 0 15px rgba(0, 107, 255, 0.15);
+
+}
+
+
+.card-biblioteca img {
+
+    width: 75px;
+
+    height: 88px;
+
+    object-fit: cover;
+
+    border-radius: 7px;
+
+    border: 1px solid #174B85;
+
+}
+
+
+.card-info {
+
+    margin-left: 13px;
+
+    min-width: 0;
+
+}
+
+
+.card-info h3 {
+
+    font-size: 16px;
+
+    margin-bottom: 6px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+.card-info p {
+
+    color: #6498CD;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+}
+
+
+.card-overall {
+
+    font-size: 13px;
+
+    color: white;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================
+   PERFIL
+========================================= */
+
+.perfil {
+
+    height: 730px;
+
+    background: #0B1120;
+
+    border: 1px solid #174B85;
+
+    border-radius: 15px;
+
+    padding: 30px;
+
+    overflow-y: auto;
+
+}
+
+
+.perfil::-webkit-scrollbar {
+
+    width: 6px;
+
+}
+
+
+.perfil::-webkit-scrollbar-thumb {
+
+    background: #006BFF;
+
+    border-radius: 10px;
+
+}
+
+
+.perfil-titulo {
+
+    margin-bottom: 20px;
+
+}
+
+
+.perfil-titulo span {
+
+    color: #317FCB;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+}
+
+
+.perfil-titulo h2 {
+
+    font-size: 34px;
+
+    margin-top: 5px;
+
+    font-weight: 900;
+
+}
+
+
+.perfil-titulo p {
+
+    color: #527CA8;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+    margin-top: 5px;
+
+}
+
+
+/* =========================================
+   CARD DO PERFIL
+========================================= */
+
+.perfil-principal {
+
+    display: grid;
+
+    grid-template-columns: 330px 1fr;
+
+    gap: 25px;
+
+}
+
+
+/* =========================================
+   PERSONAGEM
+========================================= */
+
+.personagem-perfil {
+
+    background: #08101F;
+
+    border: 2px solid #006BFF;
+
+    border-radius: 13px;
+
+    padding: 15px;
+
+    text-align: center;
+
+}
+
+
+.imagem-perfil {
+
+    width: 100%;
+
+    height: 300px;
+
+    overflow: hidden;
+
+    border-radius: 9px;
+
+    border: 1px solid #174B85;
+
+}
+
+
+.imagem-perfil img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+.personagem-perfil h3 {
+
+    font-size: 25px;
+
+    margin-top: 13px;
+
+}
+
+
+.raridade-perfil {
+
+    color: #5EA5F5;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    margin-top: 5px;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =========================================
+   OVERALL
+========================================= */
+
+.overall-perfil {
+
+    margin-top: 15px;
+
+    height: 75px;
+
+    border: 1px solid #006BFF;
+
+    background: #071B34;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+}
+
+
+.overall-perfil span {
+
+    color: #5EA5F5;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+.overall-perfil strong {
+
+    font-size: 40px;
+
+}
+
+
+/* =========================================
+   INFORMAÇÕES
+========================================= */
+
+.info-perfil {
+
+    min-width: 0;
+
+}
+
+
+.titulo-info {
+
+    font-size: 21px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.info-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+}
+
+
+.info-box-perfil {
+
+    min-height: 70px;
+
+    background: #08101F;
+
+    border: 1px solid #173B68;
+
+    border-radius: 8px;
+
+    padding: 12px;
+
+}
+
+
+.info-box-perfil span {
+
+    display: block;
+
+    color: #5689BD;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+}
+
+
+.info-box-perfil strong {
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================
+   ATRIBUTOS
+========================================= */
+
+.atributos-titulo {
+
+    margin-top: 25px;
+
+    margin-bottom: 15px;
+
+    font-size: 21px;
+
+}
+
+
+.atributo {
+
+    margin-bottom: 15px;
+
+}
+
+
+.atributo-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 6px;
+
+}
+
+
+.atributo-header span {
+
+    color: #B6C8DC;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+}
+
+
+.atributo-header strong {
+
+    font-size: 14px;
+
+}
+
+
+.barra-atributo {
+
+    height: 9px;
+
+    background: #111D30;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+}
+
+
+.barra-atributo div {
+
+    height: 100%;
+
+    background: #006BFF;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 10px rgba(0, 107, 255, 0.5);
+
+}
+
+
+/* =========================================
+   ABAS
+========================================= */
+
+.abas-perfil {
+
+    display: flex;
+
+    margin-top: 25px;
+
+    background: #08101F;
+
+    border: 1px solid #173B68;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+}
+
+
+.aba-perfil {
+
+    flex: 1;
+
+    padding: 14px 8px;
+
+    background: transparent;
+
+    border: none;
+
+    color: #6483A4;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.aba-perfil.ativa {
+
+    background: #006BFF;
+
+    color: white;
+
+}
+
+
+/* =========================================
+   CONTEÚDO DA ABA
+========================================= */
+
+.conteudo-aba {
+
+    margin-top: 15px;
+
+    background: #08101F;
+
+    border: 1px solid #173B68;
+
+    border-radius: 8px;
+
+    padding: 18px;
+
+    color: #AFC2D7;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 1050px) {
+
+    .area-jogadores {
+
+        grid-template-columns: 400px 1fr;
+
+    }
+
+    .perfil-principal {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .personagem-perfil {
+
+        max-width: 350px;
+
+        margin: auto;
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .cabecalho-jogadores {
+
+        padding: 0 20px;
+
+    }
+
+    .cabecalho-jogadores nav {
+
+        display: none;
+
+    }
+
+    .pagina-jogadores {
+
+        padding: 25px 15px;
+
+    }
+
+    .titulo-pagina h1 {
+
+        font-size: 29px;
+
+    }
+
+    .area-jogadores {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .biblioteca {
+
+        height: 600px;
+
+    }
+
+    .perfil {
+
+        height: auto;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .info-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .perfil {
+
+        padding: 18px;
+
+    }
+
+    .perfil-titulo h2 {
+
+        font-size: 27px;
+
+    }
+
+    .imagem-perfil {
+
+        height: 280px;
+
+    }
+
+}
