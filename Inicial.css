@@ -2677,6 +2677,11 @@ color: #FFFFFF;
     background: #0B0F19;
     color: #ffffff;
     overflow: hidden;
+     background-image: url(fundoAzul.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
 }
 
 
