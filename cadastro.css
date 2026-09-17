@@ -22,6 +22,16 @@ body {
 
     color: white;
 
+    background-image: url(fundo\ New\ gens.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+    gap: 25px;
+    display: flex;
+    flex-direction: column;
+
 }
 
 
@@ -403,3 +413,13 @@ body {
 
 }
 
+.voltar{
+text-decoration: none;
+color: #FFFF;
+display: flex;
+justify-content: center;
+}
+
+.voltar:hover{
+color: #006bff;
+}
