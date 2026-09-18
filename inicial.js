@@ -168,6 +168,27 @@ const personagens = [
         ]
     },
 
+      {
+        id: "Fukako",
+        nome: "Fukako Gen",
+        raridade: "Comum",
+        imagem: "Gacha-Fukako.jpg",
+        posicoes: ["GK"],
+        overall: 73,
+        atributos: {
+        ataque: 67,
+        tecnica: 76,
+        velocidade: 73,
+        visao: 62,
+        },
+        qualidades: [
+            "Movimentação sem bola",
+            "Velocidade",
+            "Posicionamento"
+        ]
+    },
+
+
 
     // =====================================================
     // PERSONAGENS RAROS
@@ -726,9 +747,75 @@ const personagens = [
             "Drible",
             "Leitura defensiva"
         ]
+    },
+
+// Mestres
+
+{
+    id: "Noa",
+    nome: "Noel Noa",
+    raridade: "Mestres",
+    imagem: "Gacha-Noa.jpg",
+    posicoes: ["ST", "CF"],
+    overall: 99,
+    atributos: {
+        ataque: 99,
+        tecnica: 97,
+        velocidade: 96,
+        visao: 98
     }
+},
+
+{
+    id: "Lavinho",
+    nome: "Lavinho",
+    raridade: "Mestres",
+    imagem: "Gacha-Lavinho.jpg",
+    posicoes: ["ST", "CAM"],
+    overall: 98,
+    atributos: {
+        ataque: 96,
+        tecnica: 99,
+        velocidade: 97,
+        visao: 93
+    }
+},
+
+{
+    id: "Snuffy",
+    nome: "Marc Snuffy",
+    raridade: "Mestres",
+    imagem: "Gacha-Snuffy.jpg",
+    posicoes: ["ST", "CF"],
+    overall: 98,
+    atributos: {
+        ataque: 95,
+        tecnica: 96,
+        velocidade: 91,
+        visao: 99
+    }
+},
+
+{
+    id: "Prince",
+    nome: "Chris Prince",
+    raridade: "Mestres",
+    imagem: "Gacha-Prince.jpg",
+    posicoes: ["ST", "CF"],
+    overall: 98,
+    atributos: {
+        ataque: 98,
+        tecnica: 95,
+        velocidade: 99,
+        visao: 92
+    }
+},
+
 
 ];
+
+
+
 
 
 // =====================================================
@@ -739,12 +826,13 @@ function sortearRaridade() {
 
     const numero = Math.random() * 100;
 
-    if (numero <= 30) return "Comum";
-    if (numero <= 55) return "Raro";
-    if (numero <= 70) return "Épico";
-    if (numero <= 80) return "Lendário";
+    if (numero <= 20) return "Comum";
+    if (numero <= 65) return "Raro";
+    if (numero <= 80) return "Épico";
+    if (numero <= 90) return "Lendário";
+    if (numero <=99) return "New Gen"
 
-    return "New Gen";
+    return "Mestres";
 }
 
 
@@ -1871,14 +1959,6 @@ carregarEstado();
 
 atualizarListaJogadores();
 
-
-// =====================================================
-// SISTEMA DE MONTAR O TIME
-// =====================================================
-
-
-
-
 /* =====================================================
    SISTEMA DE MONTAR O TIME - BLUE LOCK
 ===================================================== */
@@ -2408,8 +2488,33 @@ function selecionarJogadorParaTime(jogador) {
 
     }
 
-    const posicao =
-        slotSelecionado.posicao;
+   const filtrosPosicao = [
+    {
+        id: "todos",
+        rotulo: "TODOS",
+        posicoes: []
+    },
+    {
+        id: "goleiro",
+        rotulo: "GK",
+        posicoes: ["GK"]
+    },
+    {
+        id: "defesa",
+        rotulo: "DEF",
+        posicoes: ["CB", "LB", "RB"]
+    },
+    {
+        id: "meio",
+        rotulo: "MID",
+        posicoes: ["CM", "CAM", "CDM"]
+    },
+    {
+        id: "ataque",
+        rotulo: "ATA",
+        posicoes: ["ST", "CF", "LW", "RW"]
+    }
+];
 
     if (
         !jogadorPodeJogar(

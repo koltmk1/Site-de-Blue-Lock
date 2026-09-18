@@ -156,6 +156,56 @@ const personagens = [
 
     },
 
+  {
+    id: "fukako",
+    nome: "Fukako Gen",
+    raridade: "Comum",
+    imagem: "Gacha-Fukako.jpg",
+
+    posicoes: ["GK"],
+
+    altura: "191 CM",
+
+    overall: 73,
+    ataque: 67,
+    tecnica: 76,
+    velocidade: 73,
+    visao: 62,
+
+    desempenho: {
+        partidas: 0,
+        vitorias: 0,
+        derrotas: 0,
+        gols: 0,
+        assistencias: 0
+    },
+
+    evolucao: [
+        {
+            fase: "Segunda Seleção",
+            overall: 71
+        },
+        {
+            fase: "Neo Egoist League",
+            overall: 79
+        }
+    ],
+
+    habilidades: [
+        {
+            descricao: "Defende mesmo sob pressão."
+        },
+        {
+            descricao: "Alcance impressionante."
+        },
+        {
+            descricao: "Velocidade na defesa."
+        }
+    ],
+
+    biografia:
+        "Fukako é o goleiro titular do Sub-20 do Japão."
+},
     {
         id: "raichi",
         nome: "Raichi Jingo",
@@ -1541,7 +1591,193 @@ const personagens = [
             { descricao: "Cobertura extremamente rápida." },
             { descricao: "Inicia contra-ataques com precisão." }
         ],
-    }
+    },
+
+// Mestres
+
+{
+    id: "Noa",
+
+    nome: "Noel Noa",
+
+    raridade: "Mestres",
+
+    imagem: "Gacha-Noa.jpg",
+
+    posicoes: ["ST", "CF"],
+
+    altura: "188 CM",
+
+    overall: 99,
+
+    ataque: 99,
+
+    tecnica: 97,
+
+    velocidade: 96,
+
+    visao: 98,
+    biografia:"Noel Noa é considerado um dos maiores atacantes do mundo e o principal jogador da Bastard München. Conhecido por sua inteligência, precisão e domínio dos fundamentos, ele é um jogador extremamente completo que serve como referência para os atacantes do Blue Lock.",
+
+    desempenho: {
+        partidas: 0,
+        vitorias: 0,
+        derrotas: 0,
+        gols: 0,
+        assistencias: 0
+    },
+
+    evolucao: [
+        {
+            fase: "Primeira Aparição",
+            overall: 99
+        }
+    ],
+
+    habilidades: [
+        { descricao: "Finalização extremamente precisa" },
+        { descricao: "Excelente leitura do campo" },
+        { descricao: "Domínio completo dos fundamentos" }
+    ]
+},
+
+{
+    id: "Lavinho",
+
+    nome: "Lavinho",
+
+    raridade: "Mestres",
+
+    imagem: "Gacha-Lavinho.jpg",
+
+    posicoes: ["ST", "CAM"],
+
+    altura: "186 CM",
+
+    overall: 98,
+
+    ataque: 96,
+
+    tecnica: 99,
+
+    velocidade: 97,
+
+    visao: 93,
+     biografia:"Lavinho é um dos melhores atacantes do mundo e o Mestre responsável por comandar o FC Barcha. Conhecido por seu estilo criativo e seus dribles imprevisíveis, ele utiliza sua técnica para quebrar as defesas e criar oportunidades de gol.",
+
+    desempenho: {
+        partidas: 0,
+        vitorias: 0,
+        derrotas: 0,
+        gols: 0,
+        assistencias: 0
+    },
+
+    evolucao: [
+        {
+            fase: "Primeira Aparição",
+            overall: 98
+        }
+    ],
+
+    habilidades: [
+        { descricao: "Dribles extremamente imprevisíveis" },
+        { descricao: "Controle de bola excepcional" },
+        { descricao: "Movimentação acrobática" }
+    ]
+},
+
+{
+    id: "Snuffy",
+
+    nome: "Marc Snuffy",
+
+    raridade: "Mestres",
+
+    imagem: "Gacha-Snuffy.jpg",
+
+    posicoes: ["ST", "CF"],
+
+    altura: "187 CM",
+
+    overall: 98,
+
+    ataque: 95,
+
+    tecnica: 96,
+
+    velocidade: 91,
+
+    visao: 99,
+     biografia:"Marc Snuffy é um dos melhores jogadores do mundo e o Mestre responsável pelo treinamento do Ubers. Conhecido por sua inteligência e visão de jogo, ele utiliza estratégias extremamente elaboradas para transformar seus companheiros em uma equipe organizada e eficiente.",
+
+    desempenho: {
+        partidas: 0,
+        vitorias: 0,
+        derrotas: 0,
+        gols: 0,
+        assistencias: 0
+    },
+
+    evolucao: [
+        {
+            fase: "Primeira Aparição",
+            overall: 98
+        }
+    ],
+
+    habilidades: [
+        { descricao: "Leitura excepcional do jogo" },
+        { descricao: "Grande capacidade estratégica" },
+        { descricao: "Excelente posicionamento ofensivo" }
+    ]
+},
+
+{
+    id: "Prince",
+
+    nome: "Chris Prince",
+
+    raridade: "Mestres",
+
+    imagem: "Gacha-Prince.jpg",
+
+    posicoes: ["ST", "CF"],
+
+    altura: "187 CM",
+
+    overall: 98,
+
+    ataque: 98,
+
+    tecnica: 95,
+
+    velocidade: 99,
+
+    visao: 92,
+    biografia:"Chris Prince é um dos melhores atacantes do mundo e o Mestre responsável pelo Manshine City. Conhecido por seu físico excepcional e sua velocidade, ele utiliza seu treinamento e conhecimento corporal para desenvolver jogadores capazes de alcançar seu máximo potencial.",
+
+    desempenho: {
+        partidas: 0,
+        vitorias: 0,
+        derrotas: 0,
+        gols: 0,
+        assistencias: 0
+    },
+
+    evolucao: [
+        {
+            fase: "Primeira Aparição",
+            overall: 98
+        }
+    ],
+
+    habilidades: [
+        { descricao: "Velocidade física impressionante" },
+        { descricao: "Força e condicionamento excepcionais" },
+        { descricao: "Finalização poderosa" }
+    ]
+},
 
 ];
 
@@ -1591,17 +1827,30 @@ function mostrarBiblioteca() {
 
     const textoPesquisa = pesquisa.value.toLowerCase().trim();
 
-    const jogadoresFiltrados = personagens.filter(personagem => {
+const jogadoresFiltrados = useMemo(() => {
 
-        const nomeValido =
-            personagem.nome.toLowerCase().includes(textoPesquisa);
+    const posicoesFiltro =
+        filtrosPosicao.find(
+            filtro => filtro.id === filtroSelecionado
+        )?.posicoes ?? [];
 
-        const raridadeValida =
-            filtroAtual === "Todos" ||
-            personagem.raridade === filtroAtual;
+    return elenco.filter((jogador) => {
 
-        return nomeValido && raridadeValida;
+        const combinaBusca =
+            jogador.nome
+                .toLowerCase()
+                .includes(busca.toLowerCase());
+
+        const combinaPosicao =
+            posicoesFiltro.length === 0 ||
+            jogador.posicoes.some(
+                posicao => posicoesFiltro.includes(posicao)
+            );
+
+        return combinaBusca && combinaPosicao;
     });
+
+}, [elenco, busca, filtroSelecionado]);
 
     contador.textContent =
         `${jogadoresFiltrados.length} JOGADORES`;

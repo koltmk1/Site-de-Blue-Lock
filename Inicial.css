@@ -4059,6 +4059,15 @@ color: #FFFFFF;
         0 0 15px rgba(255,79,163,.5);
 }
 
+.raridade.Mestres {
+    color: #83130f;
+
+    border-color: #f10202;
+
+    box-shadow:
+        0 0 15px rgba(230, 77, 77, 0.5);
+}
+
 
 /* ==========================================
    RESPONSIVO
@@ -4307,6 +4316,12 @@ color: #FFFFFF;
     color: #FF4DFF;
     background: rgba(255, 0, 255, 0.15);
     border: 1px solid #FF4DFF;
+}
+
+.raridade-Mestres {
+    color: #631111;
+    background: rgba(250, 3, 3, 0.97);
+    border: 1px solid #b04537;
 }
 
 

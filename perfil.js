@@ -136,6 +136,21 @@ const personagens = [
         biografia: "Naruhaya utiliza sua movimentação e velocidade para encontrar espaços."
     },
 
+     {
+        id: "fukako",
+        nome: "Fukako Gen",
+        raridade: "Comum",
+        imagem: "Gacha-Fukako.jpg",
+        posicoes: ["GK"],
+        altura: "191 CM",
+        overall: 73,
+        ataque: 67,
+        tecnica: 76,
+        velocidade: 73,
+        visao: 62
+    },
+
+
 
     /* =========================
        RARO
@@ -597,6 +612,11 @@ const personagens = [
    ELEMENTOS
 ========================================= */
 
+
+console.log(
+    "Fukako encontrado:",
+    personagens.find(jogador => jogador.id === "fukako")
+);
 
 const listaJogadores =
     document.getElementById("listaJogadores");
