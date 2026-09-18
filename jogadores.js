@@ -156,12 +156,13 @@ const personagens = [
 
     },
 
-  {
+   {
     id: "fukako",
     nome: "Fukako Gen",
     raridade: "Comum",
     imagem: "Gacha-Fukako.jpg",
 
+    // IMPORTANTE: use GK em maiúsculo
     posicoes: ["GK"],
 
     altura: "191 CM",
@@ -204,7 +205,7 @@ const personagens = [
     ],
 
     biografia:
-        "Fukako é o goleiro titular do Sub-20 do Japão."
+        "Fukako é o goleiro titular do Sub-20 do Japão e se destacou como um dos goleiros do projeto Blue Lock."
 },
     {
         id: "raichi",
@@ -1781,89 +1782,186 @@ const personagens = [
 
 ];
 
-/* =========================================
+/* ========================================
    ELEMENTOS
-========================================= */
+======================================== */
 
-const listaJogadores = document.getElementById("listaJogadores");
-const perfilJogador = document.getElementById("perfilJogador");
-const pesquisa = document.getElementById("pesquisaJogador");
-const contador = document.getElementById("contadorJogadores");
+const listaJogadores =
+    document.getElementById("listaJogadores");
 
-let filtroAtual = "Todos";
+const perfilJogador =
+    document.getElementById("perfilJogador");
+
+const pesquisa =
+    document.getElementById("pesquisaJogador");
+
+const contador =
+    document.getElementById("contadorJogadores");
+
+
+/* ========================================
+   VARIÁVEIS
+======================================== */
+
+let filtroAtual = "todos";
+
 let jogadorAtual = null;
+
 let abaAtual = "biografia";
 
 
-/* =========================================
+/* ========================================
    UTILITÁRIOS
-========================================= */
+======================================== */
+
+function normalizarTexto(texto) {
+
+    return String(texto ?? "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+
+}
+
+
+function formatarPosicoes(posicoes) {
+
+    if (Array.isArray(posicoes)) {
+
+        return posicoes.join(" / ");
+
+    }
+
+    return posicoes || "N/A";
+
+}
+
+
+/* ========================================
+   ATRIBUTOS
+======================================== */
 
 function criarAtributo(nome, valor) {
 
+    const numero = Number(valor) || 0;
+
     return `
+
         <div class="atributo">
 
             <div class="atributo-header">
+
                 <span>${nome}</span>
-                <strong>${valor}</strong>
+
+                <strong>${numero}</strong>
+
             </div>
 
             <div class="barra-atributo">
-                <div style="width:${valor}%"></div>
+
+                <div style="width:${numero}%"></div>
+
             </div>
 
         </div>
+
     `;
+
 }
 
-/* =========================================
+
+/* ========================================
    BIBLIOTECA
-========================================= */
+======================================== */
 
 function mostrarBiblioteca() {
 
+    if (!listaJogadores) return;
+
     listaJogadores.innerHTML = "";
 
-    const textoPesquisa = pesquisa.value.toLowerCase().trim();
+    const textoPesquisa = pesquisa
+        ? normalizarTexto(pesquisa.value)
+        : "";
 
-const jogadoresFiltrados = useMemo(() => {
 
-    const posicoesFiltro =
-        filtrosPosicao.find(
-            filtro => filtro.id === filtroSelecionado
-        )?.posicoes ?? [];
+    /*
+       Garante que o filtro TODOS
+       sempre funcione.
+    */
 
-    return elenco.filter((jogador) => {
+    const raridadeSelecionada =
+        normalizarTexto(filtroAtual || "todos");
 
-        const combinaBusca =
-            jogador.nome
-                .toLowerCase()
-                .includes(busca.toLowerCase());
 
-        const combinaPosicao =
-            posicoesFiltro.length === 0 ||
-            jogador.posicoes.some(
-                posicao => posicoesFiltro.includes(posicao)
-            );
+    /*
+       Filtra os personagens
+    */
 
-        return combinaBusca && combinaPosicao;
-    });
+    const jogadoresFiltrados = personagens.filter(
+        personagem => {
 
-}, [elenco, busca, filtroSelecionado]);
+            const nomePersonagem =
+                normalizarTexto(personagem.nome);
 
-    contador.textContent =
-        `${jogadoresFiltrados.length} JOGADORES`;
+
+            const raridadePersonagem =
+                normalizarTexto(personagem.raridade);
+
+
+            const combinaBusca =
+                nomePersonagem.includes(textoPesquisa);
+
+
+            /*
+               TODOS não filtra por raridade.
+            */
+
+            const combinaRaridade =
+                raridadeSelecionada === "todos" ||
+                raridadePersonagem ===
+                raridadeSelecionada;
+
+
+            return combinaBusca && combinaRaridade;
+
+        }
+    );
+
+
+    /*
+       Contador
+    */
+
+    if (contador) {
+
+        contador.textContent =
+            `${jogadoresFiltrados.length} JOGADORES`;
+
+    }
+
+
+    /*
+       Criação dos cards
+    */
 
     jogadoresFiltrados.forEach(personagem => {
 
-        const card = document.createElement("div");
+        const card =
+            document.createElement("div");
 
-        card.className = "card-biblioteca";
 
-        card.dataset.id = personagem.id;
+        card.className =
+            "card-biblioteca";
+
+
+        card.dataset.id =
+            personagem.id;
+
 
         card.innerHTML = `
+
             <img
                 src="${personagem.imagem}"
                 alt="${personagem.nome}"
@@ -1871,20 +1969,36 @@ const jogadoresFiltrados = useMemo(() => {
 
             <div class="card-info">
 
-                <h3>${personagem.nome}</h3>
+                <h3>
+                    ${personagem.nome}
+                </h3>
 
                 <p>
+
                     ${personagem.raridade}
+
                     •
-                    ${personagem.posicoes}
+
+                    ${formatarPosicoes(
+                        personagem.posicoes
+                    )}
+
                 </p>
 
                 <div class="card-overall">
+
                     OVR ${personagem.overall}
+
                 </div>
 
             </div>
+
         `;
+
+
+        /*
+           Clique no card
+        */
 
         card.addEventListener("click", () => {
 
@@ -1892,18 +2006,20 @@ const jogadoresFiltrados = useMemo(() => {
 
         });
 
+
         listaJogadores.appendChild(card);
 
     });
+
 
     destacarJogadorSelecionado();
 
 }
 
 
-/* =========================================
+/* ========================================
    DESTAQUE DO CARD SELECIONADO
-========================================= */
+======================================== */
 
 function destacarJogadorSelecionado() {
 
@@ -1912,9 +2028,12 @@ function destacarJogadorSelecionado() {
         .forEach(card => {
 
             card.classList.toggle(
+
                 "selecionado",
+
                 jogadorAtual &&
                 card.dataset.id === jogadorAtual.id
+
             );
 
         });
@@ -1922,25 +2041,34 @@ function destacarJogadorSelecionado() {
 }
 
 
-/* =========================================
+/* ========================================
    PESQUISA
-========================================= */
+======================================== */
 
-pesquisa.addEventListener(
-    "input",
-    mostrarBiblioteca
-);
+if (pesquisa) {
+
+    pesquisa.addEventListener(
+        "input",
+        mostrarBiblioteca
+    );
+
+}
 
 
-/* =========================================
+/* ========================================
    FILTROS
-========================================= */
+======================================== */
 
 document
     .querySelectorAll(".filtro")
     .forEach(botao => {
 
         botao.addEventListener("click", () => {
+
+
+            /*
+               Remove ativo de todos
+            */
 
             document
                 .querySelectorAll(".filtro")
@@ -1950,9 +2078,28 @@ document
 
                 });
 
+
             botao.classList.add("ativo");
 
-            filtroAtual = botao.dataset.raridade;
+
+            /*
+               Pega a raridade do botão
+            */
+
+            const valorFiltro =
+                botao.dataset.raridade;
+
+
+            /*
+               Se o botão não tiver
+               data-raridade, usa TODOS.
+            */
+
+            filtroAtual =
+                valorFiltro
+                    ? normalizarTexto(valorFiltro)
+                    : "todos";
+
 
             mostrarBiblioteca();
 
@@ -1960,104 +2107,241 @@ document
 
     });
 
-/* =========================================
-PERFIL DO JOGADOR
-========================================= */
+
+/* ========================================
+   PERFIL DO JOGADOR
+======================================== */
 
 function mostrarPerfil(id) {
 
-    const personagem = personagens.find(p => p.id === id);
+    const personagem =
+        personagens.find(
+            p => p.id === id
+        );
 
-    if (!personagem) return;
+
+    if (!personagem || !perfilJogador) return;
+
 
     jogadorAtual = personagem;
+
     abaAtual = "biografia";
+
 
     perfilJogador.innerHTML = `
 
         <div class="perfil-principal">
 
+
             <div class="personagem-perfil">
 
                 <div class="imagem-perfil">
-                    <img src="${personagem.imagem}" alt="${personagem.nome}">
+
+                    <img
+                        src="${personagem.imagem}"
+                        alt="${personagem.nome}"
+                    >
+
                 </div>
 
-                <h3>${personagem.nome.toUpperCase()}</h3>
+
+                <h3>
+
+                    ${personagem.nome.toUpperCase()}
+
+                </h3>
+
 
                 <p class="raridade-perfil">
-                    ${personagem.raridade} • ${personagem.posicoes}
+
+                    ${personagem.raridade}
+
+                    •
+
+                    ${formatarPosicoes(
+                        personagem.posicoes
+                    )}
+
                 </p>
 
+
                 <div class="overall-perfil">
+
                     <span>OVERALL</span>
-                    <strong>${personagem.overall}</strong>
+
+                    <strong>
+
+                        ${personagem.overall}
+
+                    </strong>
+
                 </div>
 
             </div>
+
 
             <div class="info-perfil">
 
-                <h3 class="titulo-info">VISÃO GERAL</h3>
+                <h3 class="titulo-info">
+
+                    VISÃO GERAL
+
+                </h3>
+
 
                 <div class="info-grid">
 
+
                     <div class="info-box-perfil">
+
                         <span>POSIÇÃO</span>
-                        <strong>${personagem.posicoes}</strong>
+
+                        <strong>
+
+                            ${formatarPosicoes(
+                                personagem.posicoes
+                            )}
+
+                        </strong>
+
                     </div>
 
+
                     <div class="info-box-perfil">
+
                         <span>PÉ DOMINANTE</span>
-                        <strong>${personagem.pe}</strong>
+
+                        <strong>
+
+                            ${personagem.pe || "N/A"}
+
+                        </strong>
+
                     </div>
 
+
                     <div class="info-box-perfil">
+
                         <span>ALTURA</span>
-                        <strong>${personagem.altura}</strong>
+
+                        <strong>
+
+                            ${personagem.altura || "N/A"}
+
+                        </strong>
+
                     </div>
 
+
                     <div class="info-box-perfil">
+
                         <span>RARIDADE</span>
-                        <strong>${personagem.raridade}</strong>
+
+                        <strong>
+
+                            ${personagem.raridade}
+
+                        </strong>
+
                     </div>
+
 
                 </div>
 
-                <h3 class="atributos-titulo">ATRIBUTOS</h3>
 
-                ${criarAtributo("ATAQUE", personagem.ataque)}
-                ${criarAtributo("TÉCNICA", personagem.tecnica)}
-                ${criarAtributo("VELOCIDADE", personagem.velocidade)}
-                ${criarAtributo("VISÃO", personagem.visao)}
+                <h3 class="atributos-titulo">
+
+                    ATRIBUTOS
+
+                </h3>
+
+
+                ${criarAtributo(
+                    "ATAQUE",
+                    personagem.ataque
+                )}
+
+
+                ${criarAtributo(
+                    "TÉCNICA",
+                    personagem.tecnica
+                )}
+
+
+                ${criarAtributo(
+                    "VELOCIDADE",
+                    personagem.velocidade
+                )}
+
+
+                ${criarAtributo(
+                    "VISÃO",
+                    personagem.visao
+                )}
+
 
             </div>
 
         </div>
 
+
         <div class="abas-perfil">
 
-            <button class="aba-perfil ativa" data-aba="biografia">
+
+            <button
+                class="aba-perfil ativa"
+                data-aba="biografia"
+            >
+
                 BIOGRAFIA
+
             </button>
 
-            <button class="aba-perfil" data-aba="habilidades">
+
+            <button
+                class="aba-perfil"
+                data-aba="habilidades"
+            >
+
                 HABILIDADES
+
             </button>
 
-            <button class="aba-perfil" data-aba="evolucao">
+
+            <button
+                class="aba-perfil"
+                data-aba="evolucao"
+            >
+
                 EVOLUÇÃO
+
             </button>
 
-            <button class="aba-perfil" data-aba="desempenho">
+
+            <button
+                class="aba-perfil"
+                data-aba="desempenho"
+            >
+
                 DESEMPENHO
+
             </button>
+
 
         </div>
 
-        <div class="conteudo-aba" id="conteudo-aba"></div>
+
+        <div
+            class="conteudo-aba"
+            id="conteudo-aba"
+        ></div>
 
     `;
+
+
+    /*
+       Eventos das abas
+    */
 
     perfilJogador
         .querySelectorAll(".aba-perfil")
@@ -2065,11 +2349,14 @@ function mostrarPerfil(id) {
 
             botao.addEventListener("click", () => {
 
-                trocarAba(botao.dataset.aba);
+                trocarAba(
+                    botao.dataset.aba
+                );
 
             });
 
         });
+
 
     renderizarAba();
 
@@ -2077,133 +2364,259 @@ function mostrarPerfil(id) {
 
 }
 
-/* =========================================
+
+/* ========================================
    TROCA DE ABAS
-========================================= */
+======================================== */
 
 function trocarAba(aba) {
 
     abaAtual = aba;
+
 
     perfilJogador
         .querySelectorAll(".aba-perfil")
         .forEach(botao => {
 
             botao.classList.toggle(
+
                 "ativa",
+
                 botao.dataset.aba === aba
+
             );
 
         });
+
 
     renderizarAba();
 
 }
 
 
-/* =========================================
+/* ========================================
    CONTEÚDO DAS ABAS
-========================================= */
+======================================== */
 
 function renderizarAba() {
 
     const conteudo =
         document.getElementById("conteudo-aba");
 
+
     if (!conteudo || !jogadorAtual) return;
 
+
     switch (abaAtual) {
+
+
+        /* ========================================
+           BIOGRAFIA
+        ======================================== */
 
         case "biografia":
 
             conteudo.innerHTML = `
-                <p>${jogadorAtual.biografia}</p>
+
+                <p>
+
+                    ${jogadorAtual.biografia ||
+                    "Sem biografia cadastrada."}
+
+                </p>
+
             `;
 
             break;
 
 
-        case "habilidades":
+        /* ========================================
+           HABILIDADES
+        ======================================== */
 
-            console.log(jogadorAtual.habilidades);
+        case "habilidades": {
 
-            conteudo.innerHTML = jogadorAtual.habilidades.map(h => `
-        <div class="linha-info">    
-            <p>${h.descricao}</p>
-        </div>
-    `).join("");
+            const habilidades =
+                Array.isArray(
+                    jogadorAtual.habilidades
+                )
+                    ? jogadorAtual.habilidades
+                    : [];
 
-            break;
 
+            conteudo.innerHTML = habilidades.length
 
-        case "evolucao":
+                ? habilidades.map(habilidade => `
 
-            if (!jogadorAtual.evolucao) {
+                    <div class="linha-info">
 
-                conteudo.innerHTML = `
-                    <p>Sem evolução cadastrada.</p>
-                `;
+                        <p>
 
-                break;
+                            ${habilidade.descricao}
 
-            }
-
-            conteudo.innerHTML =
-                jogadorAtual.evolucao.map(fase => `
-
-                    <div class="fase-card">
-
-                        <span>${fase.fase}</span>
-
-                        <strong>OVR ${fase.overall}</strong>
+                        </p>
 
                     </div>
 
-                `).join("");
+                `).join("")
+
+                : `
+
+                    <p>
+
+                        Sem habilidades cadastradas.
+
+                    </p>
+
+                `;
 
             break;
 
+        }
 
-        case "desempenho":
 
-            const d = jogadorAtual.desempenho || {
+        /* ========================================
+           EVOLUÇÃO
+        ======================================== */
 
-                partidas: 0,
-                vitorias: 0,
-                derrotas: 0,
-                gols: 0,
-                assistencias: 0
+        case "evolucao": {
 
-            };
+            const evolucao =
+                Array.isArray(
+                    jogadorAtual.evolucao
+                )
+                    ? jogadorAtual.evolucao
+                    : [];
+
+
+            conteudo.innerHTML = evolucao.length
+
+                ? evolucao.map(fase => `
+
+                    <div class="fase-card">
+
+                        <span>
+
+                            ${fase.fase}
+
+                        </span>
+
+                        <strong>
+
+                            OVR ${fase.overall}
+
+                        </strong>
+
+                    </div>
+
+                `).join("")
+
+                : `
+
+                    <p>
+
+                        Sem evolução cadastrada.
+
+                    </p>
+
+                `;
+
+            break;
+
+        }
+
+
+        /* ========================================
+           DESEMPENHO
+        ======================================== */
+
+        case "desempenho": {
+
+            const d =
+                jogadorAtual.desempenho || {
+
+                    partidas: 0,
+
+                    vitorias: 0,
+
+                    derrotas: 0,
+
+                    gols: 0,
+
+                    assistencias: 0
+
+                };
+
 
             conteudo.innerHTML = `
 
                 <div class="grid-desempenho">
 
+
                     <div class="stat-card">
+
                         <span>PARTIDAS</span>
-                        <strong>${d.partidas}</strong>
+
+                        <strong>
+
+                            ${d.partidas || 0}
+
+                        </strong>
+
                     </div>
 
+
                     <div class="stat-card">
+
                         <span>VITÓRIAS</span>
-                        <strong>${d.vitorias}</strong>
+
+                        <strong>
+
+                            ${d.vitorias || 0}
+
+                        </strong>
+
                     </div>
 
+
                     <div class="stat-card">
+
                         <span>DERROTAS</span>
-                        <strong>${d.derrotas}</strong>
+
+                        <strong>
+
+                            ${d.derrotas || 0}
+
+                        </strong>
+
                     </div>
 
+
                     <div class="stat-card">
+
                         <span>GOLS</span>
-                        <strong>${d.gols}</strong>
+
+                        <strong>
+
+                            ${d.gols || 0}
+
+                        </strong>
+
                     </div>
 
+
                     <div class="stat-card">
+
                         <span>ASSISTÊNCIAS</span>
-                        <strong>${d.assistencias}</strong>
+
+                        <strong>
+
+                            ${d.assistencias || 0}
+
+                        </strong>
+
                     </div>
+
 
                 </div>
 
@@ -2211,21 +2624,74 @@ function renderizarAba() {
 
             break;
 
+        }
+
     }
 
 }
 
-/* =========================================
+
+/* ========================================
    INICIALIZAÇÃO
-========================================= */
+======================================== */
 
 function inicializarJogadores() {
 
+    /*
+       Garante que TODOS seja
+       o filtro inicial.
+    */
+
+    filtroAtual = "todos";
+
+
+    /*
+       Marca o botão TODOS
+       como ativo.
+    */
+
+    document
+        .querySelectorAll(".filtro")
+        .forEach(botao => {
+
+            const valor =
+                normalizarTexto(
+                    botao.dataset.raridade
+                );
+
+
+            botao.classList.toggle(
+
+                "ativo",
+
+                valor === "todos"
+
+            );
+
+        });
+
+
     mostrarBiblioteca();
 
-    // Abre o Isagi por padrão
-    mostrarPerfil("isagi");
+
+    /*
+       Abre o Isagi por padrão,
+       caso ele exista.
+    */
+
+    const isagi =
+        personagens.find(
+            p => p.id === "isagi"
+        );
+
+
+    if (isagi) {
+
+        mostrarPerfil("isagi");
+
+    }
 
 }
+
 
 inicializarJogadores();

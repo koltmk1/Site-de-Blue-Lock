@@ -4059,7 +4059,7 @@ color: #FFFFFF;
         0 0 15px rgba(255,79,163,.5);
 }
 
-.raridade.Mestres {
+.raridade.mestres {
     color: #83130f;
 
     border-color: #f10202;
@@ -4318,10 +4318,10 @@ color: #FFFFFF;
     border: 1px solid #FF4DFF;
 }
 
-.raridade-Mestres {
+.raridade-mestres {
     color: #631111;
-    background: rgba(250, 3, 3, 0.97);
-    border: 1px solid #b04537;
+    background: rgba(194, 22, 22, 0.97);
+    border: 1px solid #000000;
 }
 
 

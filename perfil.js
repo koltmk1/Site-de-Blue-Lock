@@ -601,9 +601,111 @@ const personagens = [
         velocidade: 91,
         visao: 97,
         biografia: "Don Lorenzo é um defensor extremamente habilidoso e imprevisível."
-    }
+    },
 
     // Mestres 
+
+    {
+    id: "Noa",
+
+    nome: "Noel Noa",
+
+    raridade: "Mestres",
+
+    imagem: "Gacha-Noa.jpg",
+
+    posicoes: ["ST", "CF"],
+
+    altura: "188 CM",
+
+    overall: 99,
+
+    ataque: 99,
+
+    tecnica: 97,
+
+    velocidade: 96,
+
+    visao: 98,
+    biografia:"Noel Noa é considerado um dos maiores atacantes do mundo e o principal jogador da Bastard München. Conhecido por sua inteligência, precisão e domínio dos fundamentos, ele é um jogador extremamente completo que serve como referência para os atacantes do Blue Lock.",
+},
+
+    {
+    id: "Lavinho",
+
+    nome: "Lavinho",
+
+    raridade: "Mestres",
+
+    imagem: "Gacha-Lavinho.jpg",
+
+    posicoes: ["ST", "CAM"],
+
+    altura: "186 CM",
+
+    overall: 98,
+
+    ataque: 96,
+
+    tecnica: 99,
+
+    velocidade: 97,
+
+    visao: 93,
+     biografia:"Lavinho é um dos melhores atacantes do mundo e o Mestre responsável por comandar o FC Barcha. Conhecido por seu estilo criativo e seus dribles imprevisíveis, ele utiliza sua técnica para quebrar as defesas e criar oportunidades de gol.",
+
+     },
+
+    {
+    id: "Snuffy",
+
+    nome: "Marc Snuffy",
+
+    raridade: "Mestres",
+
+    imagem: "Gacha-Snuffy.jpg",
+
+    posicoes: ["ST", "CF"],
+
+    altura: "187 CM",
+
+    overall: 98,
+
+    ataque: 95,
+
+    tecnica: 96,
+
+    velocidade: 91,
+
+    visao: 99,
+     biografia:"Marc Snuffy é um dos melhores jogadores do mundo e o Mestre responsável pelo treinamento do Ubers. Conhecido por sua inteligência e visão de jogo, ele utiliza estratégias extremamente elaboradas para transformar seus companheiros em uma equipe organizada e eficiente.",
+
+     },
+
+     {
+    id: "Prince",
+
+    nome: "Chris Prince",
+
+    raridade: "Mestres",
+
+    imagem: "Gacha-Prince.jpg",
+
+    posicoes: ["ST", "CF"],
+
+    altura: "187 CM",
+
+    overall: 98,
+
+    ataque: 98,
+
+    tecnica: 95,
+
+    velocidade: 99,
+
+    visao: 92,
+    biografia:"Chris Prince é um dos melhores atacantes do mundo e o Mestre responsável pelo Manshine City. Conhecido por seu físico excepcional e sua velocidade, ele utiliza seu treinamento e conhecimento corporal para desenvolver jogadores capazes de alcançar seu máximo potencial.",
+    },
 
 ];
 
@@ -613,10 +715,7 @@ const personagens = [
 ========================================= */
 
 
-console.log(
-    "Fukako encontrado:",
-    personagens.find(jogador => jogador.id === "fukako")
-);
+
 
 const listaJogadores =
     document.getElementById("listaJogadores");
@@ -1010,43 +1109,34 @@ if (pesquisa) {
 }
 
 
-/* =========================================
-   FILTROS
-========================================= */
+// ========================================
+// FILTROS
+// ========================================
 
 document
     .querySelectorAll(".filtro")
     .forEach(botao => {
 
-        botao.addEventListener(
-            "click",
-            () => {
+        botao.addEventListener("click", () => {
 
-                document
-                    .querySelectorAll(".filtro")
-                    .forEach(btn => {
+            document
+                .querySelectorAll(".filtro")
+                .forEach(btn => {
 
-                        btn.classList.remove(
-                            "ativo"
-                        );
+                    btn.classList.remove("ativo");
 
-                    });
+                });
 
+            botao.classList.add("ativo");
 
-                botao.classList.add("ativo");
+            filtroAtual =
+                botao.dataset.raridade;
 
+            mostrarBiblioteca();
 
-                filtroAtual =
-                    botao.dataset.raridade;
-
-
-                mostrarBiblioteca();
-
-            }
-        );
+        });
 
     });
-
 
 /* =========================================
    INICIALIZAÇÃO

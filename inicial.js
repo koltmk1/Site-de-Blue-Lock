@@ -756,7 +756,7 @@ const personagens = [
     nome: "Noel Noa",
     raridade: "Mestres",
     imagem: "Gacha-Noa.jpg",
-    posicoes: ["ST", "CF"],
+    posicoes: ["ST", "CAM", "RW", "LW"],
     overall: 99,
     atributos: {
         ataque: 99,
@@ -771,7 +771,7 @@ const personagens = [
     nome: "Lavinho",
     raridade: "Mestres",
     imagem: "Gacha-Lavinho.jpg",
-    posicoes: ["ST", "CAM"],
+    posicoes: ["ST", "RW"],
     overall: 98,
     atributos: {
         ataque: 96,
@@ -786,7 +786,7 @@ const personagens = [
     nome: "Marc Snuffy",
     raridade: "Mestres",
     imagem: "Gacha-Snuffy.jpg",
-    posicoes: ["ST", "CF"],
+    posicoes: ["ST", "CM","CAM"],
     overall: 98,
     atributos: {
         ataque: 95,
@@ -801,7 +801,7 @@ const personagens = [
     nome: "Chris Prince",
     raridade: "Mestres",
     imagem: "Gacha-Prince.jpg",
-    posicoes: ["ST", "CF"],
+    posicoes: ["ST", "LW"],
     overall: 98,
     atributos: {
         ataque: 98,
@@ -830,7 +830,7 @@ function sortearRaridade() {
     if (numero <= 65) return "Raro";
     if (numero <= 80) return "Épico";
     if (numero <= 90) return "Lendário";
-    if (numero <=99) return "New Gen"
+    if (numero <=95) return "New Gen"
 
     return "Mestres";
 }
@@ -2991,5 +2991,7 @@ function salvarDiamantes() {
         JSON.stringify(usuarioAtual)
     );
 }
+
+
 
 
