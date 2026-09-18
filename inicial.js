@@ -877,7 +877,6 @@ function adicionarJogadorAoElenco(personagem) {
 // SISTEMA DE DIAMANTES
 // =====================================================
 
-let diamantes = 12450;
 
 const custoRoleta1 = 150;
 const custoRoleta10 = 1350;
@@ -918,7 +917,6 @@ function gastarDiamantes(custo) {
             diamantes
         );
 
-        diamantes = 12450;
 
         atualizarDiamantes();
         salvarEstado();
@@ -1000,7 +998,9 @@ function carregarEstado() {
 
         } else {
 
-            diamantes = 12450;
+            let usuarioAtual = JSON.parse(localStorage.getItem("usuarioAtual"));
+
+            let diamantes = usuarioAtual ? usuarioAtual.diamantes : 0;
 
         }
     }
@@ -2760,3 +2760,131 @@ function inicializarMonteSeuTime() {
 }
 
 inicializarMonteSeuTime();
+
+// ===============================
+// PAINEL DO USUÁRIO
+// ===============================
+
+const botaoUsuario = document.getElementById("botaoUsuario");
+const menuUsuario = document.getElementById("menuUsuario");
+
+const nomeUsuario = document.getElementById("nomeUsuario");
+const nomeMenu = document.getElementById("nomeMenu");
+
+const diamantesUsuario = document.getElementById("diamantesUsuario");
+
+const perfilUsuario = document.getElementById("perfilUsuario");
+const sairConta = document.getElementById("sairConta");
+
+const usuarioAtual = localStorage.getItem("usuarioAtual");
+
+
+// ===============================
+// VERIFICAR LOGIN
+// ===============================
+
+if (usuarioAtual) {
+
+    const usuario = JSON.parse(usuarioAtual);
+
+    nomeUsuario.textContent = usuario.nome;
+    nomeMenu.textContent = usuario.nome;
+
+} else {
+
+    // Se não estiver logado,
+    // não mostra o painel.
+
+    document.getElementById("painelUsuario").style.display = "none";
+}
+
+
+// ===============================
+// ABRIR / FECHAR MENU
+// ===============================
+
+if (botaoUsuario) {
+
+    botaoUsuario.addEventListener("click", function () {
+
+        menuUsuario.classList.toggle("aberto");
+        botaoUsuario.classList.toggle("aberto");
+
+    });
+
+}
+
+
+// ===============================
+// DIAMANTES
+// ===============================
+
+const estadoJogo = localStorage.getItem("estadoJogo");
+
+if (estadoJogo) {
+
+    try {
+
+        const jogo = JSON.parse(estadoJogo);
+
+        if (jogo.diamantes !== undefined) {
+            diamantesUsuario.textContent = jogo.diamantes.toLocaleString("pt-BR");
+        }
+
+    } catch (erro) {
+
+        console.log("Não foi possível carregar os diamantes.");
+
+    }
+
+}
+
+
+// ===============================
+// MEU PERFIL
+// ===============================
+
+if (perfilUsuario) {
+
+    perfilUsuario.addEventListener("click", function () {
+
+        window.location.href = "perfil.html";
+
+    });
+
+}
+
+
+// ===============================
+// SAIR DA CONTA
+// ===============================
+
+if (sairConta) {
+
+    sairConta.addEventListener("click", function () {
+
+        localStorage.removeItem("usuarioLogado");
+        localStorage.removeItem("usuarioAtual");
+
+        window.location.href = "Inicial.html";
+
+    });
+
+}
+
+function salvarDiamantes() {
+
+    usuarioAtual.diamantes = diamantes;
+
+    localStorage.setItem(
+        "usuarioAtual",
+        JSON.stringify(usuarioAtual)
+    );
+
+    localStorage.setItem(
+        "usuarioBlueLock",
+        JSON.stringify(usuarioAtual)
+    );
+}
+
+

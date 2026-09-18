@@ -29,7 +29,8 @@ if (formularioCadastro) {
         const usuario = {
             nome: nome,
             email: email,
-            senha: senha
+            senha: senha,
+            diamantes: 4000
         };
 
         // Salva a conta

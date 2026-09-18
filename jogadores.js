@@ -18,9 +18,9 @@ const personagens = [
         pe: "Direito",
         altura: "175 CM",
         ataque: 96,
-        tecnica: 91,
+        tecnica: 85,
         velocidade: 79,
-        visao: 85,
+        visao: 91,
 
         biografia: "Isagi Yoichi é um dos principais jogadores do projeto Blue Lock. Seu maior diferencial é sua capacidade de leitura do campo e posicionamento.",
 
@@ -1879,8 +1879,7 @@ function renderizarAba() {
             console.log(jogadorAtual.habilidades);
 
             conteudo.innerHTML = jogadorAtual.habilidades.map(h => `
-        <div class="linha-info">
-            <strong>${JSON.stringify(h)}</strong>
+        <div class="linha-info">    
             <p>${h.descricao}</p>
         </div>
     `).join("");
