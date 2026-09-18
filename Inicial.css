@@ -8,7 +8,7 @@ html {
 
 .Logo{
 width: 300px;
-height: 120px;
+height: 110px;
 }
 
 .Inicial{
@@ -3836,6 +3836,10 @@ color: #FFFFFF;
     border-color: #a855f7;
 }
 
+.raridade.lendario {
+    color: #ecdd04;
+    border-color: #dceb0e;
+}
 
 .raridade.newgen {
     color: #ff4fa3;
