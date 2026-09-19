@@ -26,12 +26,35 @@ if (formularioCadastro) {
         }
 
         // Cria o objeto do usuário
-        const usuario = {
-            nome: nome,
-            email: email,
-            senha: senha,
-            diamantes: 4000
-        };
+      const usuarios =
+    JSON.parse(localStorage.getItem("usuariosBlueLock")) || [];
+
+const emailExiste = usuarios.some(
+    usuario => usuario.email === email
+);
+
+if (emailExiste) {
+    mensagem.textContent =
+        "Este e-mail já está cadastrado.";
+
+    mensagem.style.color = "red";
+
+    return;
+}
+
+usuarios.push({
+    id: crypto.randomUUID(),
+    nome,
+    email,
+    senha,
+    diamantes: 4000,
+    jogadores: []
+});
+
+localStorage.setItem(
+    "usuariosBlueLock",
+    JSON.stringify(usuarios)
+);
 
         // Salva a conta
         localStorage.setItem("usuarioBlueLock", JSON.stringify(usuario));

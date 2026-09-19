@@ -169,7 +169,7 @@ const personagens = [
     },
 
       {
-        id: "Fukako",
+        id: "fukako",
         nome: "Fukako Gen",
         raridade: "Comum",
         imagem: "Gacha-Fukako.jpg",
